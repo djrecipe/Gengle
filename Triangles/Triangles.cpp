@@ -10,7 +10,7 @@
 
 enum Attrib_IDs { attribPosition = 0 };
 
-void Display(void)
+static void Display()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -22,7 +22,7 @@ void Display(void)
 GLboolean Triangles::Start(void)
 {
 	this->vao.Initialize();
-	this->buffer.Initialize(GL_ARRAY_BUFFER);
+	this->buffer.Initialize(BufferTypes::Array);
 	GLfloat vertices[NumVertices][3] = {
 		{ -0.90f, -0.90f, 0.0f },
 		{ 0.85f, -0.90f, 0.0f },
@@ -34,8 +34,8 @@ GLboolean Triangles::Start(void)
 	this->buffer.SendData(vertices, sizeof(vertices));
     // TODO 09/14/16: embed resource files into application executable
 	ShaderInfo shaders[] = {
-		{ GL_VERTEX_SHADER, "triangles.vert" },
-		{ GL_FRAGMENT_SHADER, "triangles.frag" },
+		{ GL_VERTEX_SHADER, "simple.vert" },
+		{ GL_FRAGMENT_SHADER, "simple.frag" },
 		{ GL_NONE, NULL } };
 
 	GLuint program = Shaders::LoadShaders(shaders);

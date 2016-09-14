@@ -6,9 +6,9 @@
 #pragma endregion
 
 #pragma region Static Members
-GLuint Buffer::current_index = 0;
 GLuint Buffer::buffer[Buffer::MAX_BUFFERS];
-GLboolean Buffer::occupied[Buffer::MAX_BUFFERS] = { false, false, false, false, false, false, false, false,
+GLboolean Buffer::occupied[Buffer::MAX_BUFFERS] = {
+false, false, false, false, false, false, false, false,
 false, false, false, false, false, false, false, false,
 false, false, false, false, false, false, false, false,
 false, false, false, false, false, false, false, false,
@@ -22,7 +22,7 @@ false, false, false, false, false, false, false, false };
 Buffer::Buffer()
 {
 	this->index = -1;
-	this->type = GL_ARRAY_BUFFER;
+    this->type = GL_ARRAY_BUFFER;
 	return;
 }
 #pragma endregion
@@ -42,18 +42,41 @@ Buffer::~Buffer()
 #pragma region Instance Methods	  
 GLboolean Buffer::Activate(void)
 {
-	if (this->Valid())
-	{
-		glBindBuffer(this->type, Buffer::buffer[this->index]);
-		return true;
-	}
-	return false;
+    if (this->Valid())
+    {
+        glBindBuffer(this->type, Buffer::buffer[this->index]);
+        return true;
+    }
+    return false;
 }
-GLboolean Buffer::Initialize(GLenum target)
+GLboolean Buffer::Delete()
 {
-	this->type = target;
+    if (this->Valid())
+    {
+        glBindBuffer(this->type, Buffer::buffer[this->index]);
+        Buffer::occupied[this->index] = false;
+        this->index = -1;
+        return true;
+    }
+    return false;
+}
+GLboolean Buffer::Initialize(BufferTypes buffer_type)
+{
+    // remove old buffer
+    this->Delete();
+    // assign buffer style
+    switch (buffer_type)
+    {
+        default:
+        case Array:
+            this->type = GL_ARRAY_BUFFER;
+            break;
+        case Element:
+            this->type = GL_ELEMENT_ARRAY_BUFFER;
+            break;
+    }
 	GLint target_index = -1;
-	for (GLint i = Buffer::current_index; i < Buffer::MAX_BUFFERS; i++)
+	for (GLint i = 0; i < Buffer::MAX_BUFFERS; i++)
 	{
 		if (!Buffer::occupied[i])
 		{
@@ -61,22 +84,10 @@ GLboolean Buffer::Initialize(GLenum target)
 			break;
 		}
 	}
-	if (target_index < 0)
-	{
-		for (GLint i = 0; i < Buffer::current_index; i++)
-		{
-			if (!Buffer::occupied[i])
-			{
-				target_index = i;
-				break;
-			}
-		}
-	}
 	this->index = target_index;
 	if (this->index > -1)
 	{
-		Buffer::current_index = this->index;
-		Buffer::occupied[Buffer::current_index] = true;
+		Buffer::occupied[this->index] = true;
 		glGenBuffers(1, Buffer::buffer + this->index);
 		return this->Activate();
 	}

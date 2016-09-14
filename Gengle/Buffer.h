@@ -5,6 +5,8 @@
 
 #include <GLEW/1.11.0/glew.h>  
 
+enum BufferTypes { Array = 0, Element = 1 };
+
 class Buffer
 {
 private:
@@ -16,7 +18,8 @@ private:
 	GLenum Buffer::type;
 public:
 	GLboolean Buffer::Activate(void);
-	GLboolean Buffer::Initialize(GLenum target);
+    GLboolean Buffer::Delete(void);
+	GLboolean Buffer::Initialize(BufferTypes buffer_type);
 	GLboolean Buffer::SendData(const GLvoid* data, GLsizeiptr size);
 	GLboolean Buffer::SendData(const GLvoid* data, GLsizeiptr size, GLenum usage);
 	GLboolean Buffer::Valid(void);

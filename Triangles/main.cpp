@@ -10,7 +10,8 @@ using namespace std;
 #include <GLEW/1.11.0/glew.h>
 #include <Freeglut/2.8.1/VS2013/freeglut.h>	
 
-#include "GlobalTools.h"
+#include "GlobalTools.h"    
+#include "Cubes.h"
 #include "Triangles.h"
 #include "GlutManager.h"
 		
@@ -19,8 +20,10 @@ int main(int argc, char** argv)
 {
 	if (!GlutManager::Initialize(argc, argv))
 		return -1;
-	Triangles triangles = Triangles();
-	triangles.Start();
+	//Triangles triangles = Triangles();
+	//triangles.Start();
+    Cubes cubes = Cubes();
+    cubes.Start();
 	return 0;
 }
 

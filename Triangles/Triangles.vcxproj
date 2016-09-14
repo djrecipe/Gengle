@@ -22,6 +22,7 @@
     <ProjectGuid>{C917BD29-850E-4CC2-80B2-A65724119B21}</ProjectGuid>
     <RootNamespace>Triangles</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>BasicDemo</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -127,18 +128,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cubes.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Triangles.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="triangles.frag">
+    <None Include="simple.frag">
       <DeploymentContent>true</DeploymentContent>
     </None>
-    <None Include="triangles.vert">
+    <None Include="simple.vert">
       <DeploymentContent>true</DeploymentContent>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cubes.h" />
     <ClInclude Include="Triangles.h" />
   </ItemGroup>
   <ItemGroup>

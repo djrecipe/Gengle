@@ -1,6 +1,6 @@
 #pragma once
 #ifndef __OmniTriangles__
-#define __OmniTriangles
+#define __OmniTriangles__
 
 #include <GLEW/1.11.0/glew.h> 
 #include "VAO.h"
