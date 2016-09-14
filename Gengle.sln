@@ -1,20 +1,34 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gengle", "Gengle\Gengle.vcxproj", "{CB75A33B-E9E6-4892-8DD0-E3192375C683}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Triangles", "Triangles\Triangles.vcxproj", "{C917BD29-850E-4CC2-80B2-A65724119B21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
 		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{CB75A33B-E9E6-4892-8DD0-E3192375C683}.Debug|Win32.ActiveCfg = Debug|Win32
 		{CB75A33B-E9E6-4892-8DD0-E3192375C683}.Debug|Win32.Build.0 = Debug|Win32
+		{CB75A33B-E9E6-4892-8DD0-E3192375C683}.Debug|x64.ActiveCfg = Debug|Win32
 		{CB75A33B-E9E6-4892-8DD0-E3192375C683}.Release|Win32.ActiveCfg = Release|Win32
 		{CB75A33B-E9E6-4892-8DD0-E3192375C683}.Release|Win32.Build.0 = Release|Win32
+		{CB75A33B-E9E6-4892-8DD0-E3192375C683}.Release|x64.ActiveCfg = Release|Win32
+		{C917BD29-850E-4CC2-80B2-A65724119B21}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C917BD29-850E-4CC2-80B2-A65724119B21}.Debug|Win32.Build.0 = Debug|Win32
+		{C917BD29-850E-4CC2-80B2-A65724119B21}.Debug|x64.ActiveCfg = Debug|x64
+		{C917BD29-850E-4CC2-80B2-A65724119B21}.Debug|x64.Build.0 = Debug|x64
+		{C917BD29-850E-4CC2-80B2-A65724119B21}.Release|Win32.ActiveCfg = Release|Win32
+		{C917BD29-850E-4CC2-80B2-A65724119B21}.Release|Win32.Build.0 = Release|Win32
+		{C917BD29-850E-4CC2-80B2-A65724119B21}.Release|x64.ActiveCfg = Release|x64
+		{C917BD29-850E-4CC2-80B2-A65724119B21}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

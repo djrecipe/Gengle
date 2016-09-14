@@ -14,7 +14,7 @@ GLboolean GlutManager::Initialize(GLint argc, GLchar** argv)
 	glutInitWindowSize(512, 512);
 	glutInitContextVersion(4, 3);
 	glutInitContextProfile(GLUT_CORE_PROFILE);
-	glutCreateWindow(argv[0]);
+    glutCreateWindow(argv[0]);
 	glewExperimental = GL_TRUE;
 	if (glewInit())
 	{

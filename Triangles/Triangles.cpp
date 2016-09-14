@@ -23,16 +23,16 @@ GLboolean Triangles::Start(void)
 {
 	this->vao.Initialize();
 	this->buffer.Initialize(GL_ARRAY_BUFFER);
-	GLfloat vertices[NumVertices][2] = {
-		{ -0.90f, -0.90f },
-		{ 0.85f, -0.90f },
-		{ -0.90f, 0.85f },
-		{ 0.90f, -0.85f },
-		{ 0.90f, 0.90f },
-		{ -0.85f, 0.90f } };
+	GLfloat vertices[NumVertices][3] = {
+		{ -0.90f, -0.90f, 0.0f },
+		{ 0.85f, -0.90f, 0.0f },
+		{ -0.90f, 0.85f, 0.0f },
+		{ 0.90f, -0.85f, 0.0f },
+		{ 0.90f, 0.90f, 0.0f },
+		{ -0.85f, 0.90f, 0.0f } };
 
 	this->buffer.SendData(vertices, sizeof(vertices));
-
+    // TODO 09/14/16: embed resource files into application executable
 	ShaderInfo shaders[] = {
 		{ GL_VERTEX_SHADER, "triangles.vert" },
 		{ GL_FRAGMENT_SHADER, "triangles.frag" },
@@ -41,7 +41,7 @@ GLboolean Triangles::Start(void)
 	GLuint program = Shaders::LoadShaders(shaders);
 	glUseProgram(program);
 
-	glVertexAttribPointer(attribPosition, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+	glVertexAttribPointer(attribPosition, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
 	glEnableVertexAttribArray(attribPosition);
 	glPointSize(10.0f);
 	this->vao.Activate();
