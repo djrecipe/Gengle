@@ -8,7 +8,7 @@
 
 #include <Freeglut/2.8.1/VS2013/freeglut.h>	
 
-enum Attrib_IDs { attribVertices = 0, attribIndices = 1 };
+enum Attrib_IDs { attribVertices = 0 };
 
 static void Display()
 {
@@ -43,8 +43,8 @@ GLboolean Cubes::Start(void)
         { -1.0f,  1.0f, -1.0f },
         {  1.0f, -1.0f,  1.0f } };
     this->arrayBuffer.SendData(vertices, sizeof(vertices));
-    glVertexAttribPointer(attribVertices, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
     glEnableVertexAttribArray(attribVertices);
+    glVertexAttribPointer(attribVertices, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
     // indices
     this->elementBuffer.Initialize(BufferTypes::Element);
     GLuint indices[NumIndices] = { 1, 2, 3, 7, 1, 3};
