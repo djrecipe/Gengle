@@ -107,7 +107,7 @@ GLboolean Buffer::Initialize(BufferTypes buffer_type)
 }
 GLboolean Buffer::SendData(const GLvoid* data, GLsizeiptr size)
 {
-	return this->SendData(data, size, GL_STATIC_DRAW);
+	return this->SendData(data, size, GL_DYNAMIC_DRAW);
 }
 GLboolean Buffer::SendData(const GLvoid* data, GLsizeiptr size, GLenum usage)
 {

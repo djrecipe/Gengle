@@ -111,7 +111,8 @@
     <ClCompile Include="VAO.cpp" />
     <ClCompile Include="GlobalTools.cpp" />
     <ClCompile Include="GlutManager.cpp" />
-    <ClCompile Include="Shaders.cpp" />
+    <ClCompile Include="ShaderConfig.cpp" />
+    <ClCompile Include="VertexAttribute.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Buffer.h" />
@@ -119,7 +120,8 @@
     <ClInclude Include="VAO.h" />
     <ClInclude Include="GlobalTools.h" />
     <ClInclude Include="GlutManager.h" />
-    <ClInclude Include="Shaders.h" />
+    <ClInclude Include="ShaderConfig.h" />
+    <ClInclude Include="VertexAttribute.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

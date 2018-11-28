@@ -1,6 +1,6 @@
 #include "Triangle.h"
 #include "GlobalTools.h"
-#include "Shaders.h"
+#include "ShaderConfig.h"
 
 #define FREEGLUT_STATIC
 
@@ -8,8 +8,9 @@
 
 #include <Freeglut/2.8.1/VS2013/freeglut.h>	
 
-Triangle::Triangle(VAO* vao, Buffer* array_buffer_in) : GElement(vao, array_buffer_in)
+Triangle::Triangle(ShaderConfig shaders, VAO* vao, Buffer* array_buffer_in) : GElement(shaders, vao, array_buffer_in)
 {
+	return;
 }
 
 void Triangle::Draw(void)
@@ -20,27 +21,19 @@ void Triangle::Draw(void)
 
 void Triangle::Prepare(void)
 {
+	// configure shaders
+	this->shaders.Prepare();
+	// activate vertex array object
 	this->vao->Activate();
+	// activate array buffer
 	this->arrayBuffer->Activate();
+	// send data to activated buffer
 	GLfloat vertices[NumVertices][3] = {
 		{ -1.0f, -1.0f, 0.0f },
 		{ 1.0f, -1.0f, 0.0f },
 		{ -1.0f, 1.0f, 0.0f }};
-
 	this->arrayBuffer->SendData(vertices, sizeof(vertices));
-    // TODO 09/14/16: embed resource files into application executable
-	ShaderInfo shaders[] = {
-		{ GL_VERTEX_SHADER, "simple.vert" },
-		{ GL_FRAGMENT_SHADER, "simple.frag" },
-		{ GL_NONE, NULL } };
-
-	GLuint program = Shaders::LoadShaders(shaders);
-	glUseProgram(program);
-
-	glVertexAttribPointer(attribVertices, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
-	glEnableVertexAttribArray(attribVertices);
+	//
 	glPointSize(10.0f);
-	this->vao->Activate();
-
 	return;
 }

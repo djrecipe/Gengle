@@ -1,8 +1,8 @@
-#include "Shaders.h" 		
+#include "ShaderConfig.h" 		
 #include "GlobalTools.h"
 #include <iostream>
 
-GLuint Shaders::LoadShaders(ShaderInfo* shaders)
+GLuint ShaderConfig::LoadShaders(ShaderInfo* shaders)
 {
 	if (shaders == NULL)
 	{
@@ -18,7 +18,7 @@ GLuint Shaders::LoadShaders(ShaderInfo* shaders)
 
 		entry->shader = new_shader;
 
-		const GLchar* source = Shaders::ReadShader(entry->filename);
+		const GLchar* source = ShaderConfig::ReadShader(entry->filename);
 		if (source == NULL)
 		{
 			for (entry = shaders; entry->type != GL_NONE; ++entry) {
@@ -75,8 +75,7 @@ GLuint Shaders::LoadShaders(ShaderInfo* shaders)
 
 	return program;
 }
-
-const GLchar* Shaders::ReadShader(const char* filename)
+const GLchar* ShaderConfig::ReadShader(const GLchar* filename)
 {
 	FILE* infile;
 	fopen_s(&infile, filename, "rb");
@@ -100,3 +99,43 @@ const GLchar* Shaders::ReadShader(const char* filename)
 
 	return const_cast<const GLchar*>(source);
 }
+
+ShaderConfig::ShaderConfig()
+{
+
+}
+
+ShaderConfig::ShaderConfig(ShaderInfo shaders[], std::vector<VertexAttribute> attributes_in)
+{
+	this->SetProgram(shaders);
+	this->SetAttributes(attributes_in);
+	return;
+}
+
+void ShaderConfig::Prepare(void)
+{
+	// enable shader program
+	glUseProgram(this->shaderProgram);
+	// configure shader attributes
+	for (VertexAttribute attribute : this->attributes)
+	{
+		attribute.Prepare();
+		attribute.Enable();
+	}
+	return;
+}
+
+void ShaderConfig::SetAttributes(std::vector<VertexAttribute> attributes_in)
+{
+	this->attributes.clear();
+	for (int i = 0; i < attributes_in.size(); i++)
+		this->attributes.push_back(attributes_in[i]);
+	return;
+}
+
+void ShaderConfig::SetProgram(ShaderInfo shaders[])
+{
+	this->shaderProgram = ShaderConfig::LoadShaders(shaders);
+	return;
+}
+

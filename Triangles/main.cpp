@@ -65,10 +65,19 @@ int main(int argc, char** argv)
 	array_buffer->Initialize(BufferTypes::Array);
 	Buffer* element_buffer = new Buffer();
 	element_buffer->Initialize(BufferTypes::Element);
+	// create shader descriptor(s)
+	ShaderInfo shader_infos[] = {
+		{ GL_VERTEX_SHADER, "simple.vert" },
+		{ GL_FRAGMENT_SHADER, "simple.frag" },
+		{ GL_NONE, NULL } };
+	std::vector<VertexAttribute> attributes;
+	VertexAttribute attribute(0, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+	attributes.push_back(attribute);
+	ShaderConfig shader_info(shader_infos, attributes);
 	// create elements
-	GElement * element = (GElement*)new Triangle(vao, array_buffer);
+	GElement * element = (GElement*)new Triangle(shader_info, vao, array_buffer);
 	elements.push_back(element);
-	element = (GElement*)new Cube(vao, array_buffer, element_buffer);
+	element = (GElement*)new Cube(shader_info, vao, array_buffer, element_buffer);
 	elements.push_back(element);
 	// start display loop
 	glutDisplayFunc(Draw);
