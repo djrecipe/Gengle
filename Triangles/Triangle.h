@@ -1,6 +1,6 @@
 #pragma once
-#ifndef __OmniTriangles__
-#define __OmniTriangles__
+#ifndef __OmniTriangle__
+#define __OmniTriangle__
 
 #include <GLEW/1.11.0/glew.h> 
 #include "GElement.h"
@@ -10,11 +10,11 @@
 class Triangle : GElement
 {
 private:
-	VAO Triangle::vao;
-	Buffer Triangle::buffer;
 public:
 	static const GLuint Triangle::NumVertices = 3;
-	GLboolean Triangle::Start(void);
+	Triangle::Triangle(VAO* vao, Buffer* array_buffer_in);
+	void Triangle::Draw(void);
+	void Triangle::Prepare(void);
 };
 
 #endif

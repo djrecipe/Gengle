@@ -128,7 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Cubes.cpp" />
+    <ClCompile Include="Cube.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
@@ -141,7 +141,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cubes.h" />
+    <ClInclude Include="Cube.h" />
     <ClInclude Include="Triangle.h" />
   </ItemGroup>
   <ItemGroup>

@@ -10,25 +10,26 @@
 
 enum Attrib_IDs { attribPosition = 0 };
 
-static void Display()
+Triangle::Triangle(VAO* vao, Buffer* array_buffer_in) : GElement(vao, array_buffer_in)
 {
-	glClear(GL_COLOR_BUFFER_BIT);
-
-	glDrawArrays(GL_TRIANGLES, 0, Triangle::NumVertices);
-
-	glFlush();
 }
 
-GLboolean Triangle::Start(void)
+void Triangle::Draw(void)
 {
-	this->vao.Initialize();
-	this->buffer.Initialize(BufferTypes::Array);
+	glDrawArrays(GL_TRIANGLES, 0, Triangle::NumVertices);
+	return;
+}
+
+void Triangle::Prepare(void)
+{
+	this->vao->Activate();
+	this->arrayBuffer->Activate();
 	GLfloat vertices[NumVertices][3] = {
 		{ -1.0f, -1.0f, 0.0f },
 		{ 1.0f, -1.0f, 0.0f },
 		{ -1.0f, 1.0f, 0.0f }};
 
-	this->buffer.SendData(vertices, sizeof(vertices));
+	this->arrayBuffer->SendData(vertices, sizeof(vertices));
     // TODO 09/14/16: embed resource files into application executable
 	ShaderInfo shaders[] = {
 		{ GL_VERTEX_SHADER, "simple.vert" },
@@ -41,9 +42,7 @@ GLboolean Triangle::Start(void)
 	glVertexAttribPointer(attribPosition, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
 	glEnableVertexAttribArray(attribPosition);
 	glPointSize(10.0f);
-	this->vao.Activate();
-	glutDisplayFunc(Display);
-	glutMainLoop();
+	this->vao->Activate();
 
-	return true;
+	return;
 }

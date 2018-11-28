@@ -1,4 +1,4 @@
-#include "Cubes.h"
+#include "Cube.h"
 #include "GlobalTools.h"
 #include "Shaders.h"
 
@@ -10,18 +10,20 @@
 
 enum Attrib_IDs { attribVertices = 0 };
 
-static void Display()
+Cube::Cube(VAO* vao, Buffer* array_buffer_in, Buffer* element_buffer_in) : GElement(vao, array_buffer_in, element_buffer_in)
 {
-    glClear(GL_COLOR_BUFFER_BIT);
 
-    glDrawElements(GL_TRIANGLES, Cubes::NumIndices, GL_UNSIGNED_INT, (void*)0);
-
-    glFlush();
 }
 
-GLboolean Cubes::Start(void)
+void Cube::Draw(void)
 {
-    this->vao.Initialize();
+	glDrawElements(GL_TRIANGLES, Cube::NumIndices, GL_UNSIGNED_INT, (void*)0);
+	return;
+}
+
+void Cube::Prepare(void)
+{
+	this->vao->Activate();
     // initialize shader(s)
     // TODO 09/14/16: embed resource files into application executable
     ShaderInfo shaders[] = {
@@ -32,7 +34,7 @@ GLboolean Cubes::Start(void)
     GLuint program = Shaders::LoadShaders(shaders);
     glUseProgram(program);
     // vertices
-    this->arrayBuffer.Initialize(BufferTypes::Array);
+	this->arrayBuffer->Activate();
     GLfloat vertices[NumVertices][3] = {
         { -0.9f, -0.9f, -0.9f },
         { -0.9f, -0.9f,  0.9f },
@@ -42,18 +44,16 @@ GLboolean Cubes::Start(void)
         {  0.9f, -0.9f, -0.9f },
         { -0.9f,  0.9f, -0.9f },
         {  0.9f, -0.9f,  0.9f } };
-    this->arrayBuffer.SendData(vertices, sizeof(vertices));
+    this->arrayBuffer->SendData(vertices, sizeof(vertices));
     glEnableVertexAttribArray(attribVertices);
     glVertexAttribPointer(attribVertices, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
     // indices
-    this->elementBuffer.Initialize(BufferTypes::Element);
+	this->elementBuffer->Activate();
     GLuint indices[NumIndices] = { 1, 2, 3, 7, 1, 3};
-    this->elementBuffer.SendData(indices, sizeof(indices));
+    this->elementBuffer->SendData(indices, sizeof(indices));
     //
     glPointSize(10.0f);
-    this->vao.Activate();
-    glutDisplayFunc(Display);
-    glutMainLoop();
+    this->vao->Activate();
 
-    return true;
+    return;
 }
