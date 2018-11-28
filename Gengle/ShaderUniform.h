@@ -17,6 +17,12 @@ public:
 	const char * GetName(void) { return this->name; }
 	GLenum GetType(void) { return this->type; }
 	void SetShaderProgram(GLint program) { this->shaderProgram = program; }
-	void SetValue(glm::mat4x4 value) { glUniformMatrix4fv(this->GetLocation(), 1, GL_FALSE, &value[0][0]); }
+	void SetValue(glm::mat4x4 value)
+	{
+		GLint location = this->GetLocation();
+		assert(location > -1);
+		glUniformMatrix4fv(location, 1, GL_FALSE, &value[0][0]);
+		return;
+	}
 };
 

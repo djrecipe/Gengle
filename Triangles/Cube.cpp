@@ -24,6 +24,12 @@ void Cube::Prepare(void)
 {
 	// configure shaders
 	this->shaders.Prepare();
+	// send uniform values
+	ShaderUniform temp = this->shaders.GetUniform("modelViewMatrix");
+	glm::mat4x4 matrix(1.0);
+	temp.SetValue(matrix);
+	temp = this->shaders.GetUniform("projectionMatrix");
+	temp.SetValue(matrix);
 	// activate vertex array object
 	this->vao->Activate();
     // activate array buffer
