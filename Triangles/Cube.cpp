@@ -8,8 +8,6 @@
 
 #include <Freeglut/2.8.1/VS2013/freeglut.h>	
 
-enum Attrib_IDs { attribVertices = 0 };
-
 Cube::Cube(VAO* vao, Buffer* array_buffer_in, Buffer* element_buffer_in) : GElement(vao, array_buffer_in, element_buffer_in)
 {
 

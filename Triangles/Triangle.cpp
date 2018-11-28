@@ -8,8 +8,6 @@
 
 #include <Freeglut/2.8.1/VS2013/freeglut.h>	
 
-enum Attrib_IDs { attribPosition = 0 };
-
 Triangle::Triangle(VAO* vao, Buffer* array_buffer_in) : GElement(vao, array_buffer_in)
 {
 }
@@ -39,8 +37,8 @@ void Triangle::Prepare(void)
 	GLuint program = Shaders::LoadShaders(shaders);
 	glUseProgram(program);
 
-	glVertexAttribPointer(attribPosition, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
-	glEnableVertexAttribArray(attribPosition);
+	glVertexAttribPointer(attribVertices, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+	glEnableVertexAttribArray(attribVertices);
 	glPointSize(10.0f);
 	this->vao->Activate();
 

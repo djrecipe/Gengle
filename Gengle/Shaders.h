@@ -12,6 +12,8 @@ typedef struct
 	GLuint       shader;
 } ShaderInfo;
 
+enum Attrib_IDs { attribVertices = 0 };
+
 class Shaders
 {
 private:
