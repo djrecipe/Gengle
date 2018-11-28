@@ -2,6 +2,8 @@
 #include "GlobalTools.h"
 #include "ShaderConfig.h"
 
+#include <glm/gtc/matrix_transform.hpp>
+
 #define FREEGLUT_STATIC
 
 #pragma comment(lib, "Freeglut/2.8.1/VS2015/x32/freeglut_static.lib")
@@ -25,11 +27,8 @@ void Cube::Prepare(void)
 	// configure shaders
 	this->shaders.Prepare();
 	// send uniform values
-	ShaderUniform temp = this->shaders.GetUniform("modelViewMatrix");
-	glm::mat4x4 matrix(1.0);
-	temp.SetValue(matrix);
-	temp = this->shaders.GetUniform("projectionMatrix");
-	temp.SetValue(matrix);
+	this->shaders.GetUniform("projectionMatrix").SetValue(glm::mat4x4(1.0));
+	this->shaders.GetUniform("modelViewMatrix").SetValue(glm::scale(glm::mat4x4(1.0), glm::vec3(0.5, 0.5, 0.5)));
 	// activate vertex array object
 	this->vao->Activate();
     // activate array buffer
