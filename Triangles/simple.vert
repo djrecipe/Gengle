@@ -2,7 +2,10 @@
 
 layout(location = 0) in vec4 vPosition;
 
+uniform mat4 modelViewMatrix = mat4(1.0);
+uniform mat4 projectionMatrix = mat4(1.0);
+
 void main()
 {
-	gl_Position = vec4(vPosition.x, vPosition.y, vPosition.z, vPosition.w);
+	gl_Position = projectionMatrix * modelViewMatrix * vec4(vPosition.x, vPosition.y, vPosition.z, vPosition.w);
 }

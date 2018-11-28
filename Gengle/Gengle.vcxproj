@@ -108,6 +108,7 @@
   <ItemGroup>
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="GElement.cpp" />
+    <ClCompile Include="ShaderUniform.cpp" />
     <ClCompile Include="VAO.cpp" />
     <ClCompile Include="GlobalTools.cpp" />
     <ClCompile Include="GlutManager.cpp" />
@@ -117,6 +118,7 @@
   <ItemGroup>
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="GElement.h" />
+    <ClInclude Include="ShaderUniform.h" />
     <ClInclude Include="VAO.h" />
     <ClInclude Include="GlobalTools.h" />
     <ClInclude Include="GlutManager.h" />

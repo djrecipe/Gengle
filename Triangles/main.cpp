@@ -73,7 +73,12 @@ int main(int argc, char** argv)
 	std::vector<VertexAttribute> attributes;
 	VertexAttribute attribute(0, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
 	attributes.push_back(attribute);
-	ShaderConfig shader_info(shader_infos, attributes);
+	std::vector<ShaderUniform> uniforms;
+	ShaderUniform model_view_matrix_uniform("modelViewMatrix", GL_MATRIX4_ARB);
+	ShaderUniform projection_matrix_uniform("projectionMatrix", GL_MATRIX4_ARB);
+	uniforms.push_back(model_view_matrix_uniform);
+	uniforms.push_back(projection_matrix_uniform);
+	ShaderConfig shader_info(shader_infos, attributes, uniforms);
 	// create elements
 	GElement * element = (GElement*)new Triangle(shader_info, vao, array_buffer);
 	elements.push_back(element);
