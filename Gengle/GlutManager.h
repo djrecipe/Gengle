@@ -8,7 +8,7 @@
 class GlutManager
 {
 public:
-	static GLboolean GlutManager::Initialize(GLint argc, GLchar** argv);
+	static GLboolean GlutManager::Initialize(GLint argc, GLchar** argv, void(*keyboard)(unsigned char, int, int));
 };
 
 #endif // __OmniGlutManager__

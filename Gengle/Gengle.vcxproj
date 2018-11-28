@@ -107,6 +107,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Buffer.cpp" />
+    <ClCompile Include="GElement.cpp" />
     <ClCompile Include="VAO.cpp" />
     <ClCompile Include="GlobalTools.cpp" />
     <ClCompile Include="GlutManager.cpp" />
@@ -114,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Buffer.h" />
+    <ClInclude Include="GElement.h" />
     <ClInclude Include="VAO.h" />
     <ClInclude Include="GlobalTools.h" />
     <ClInclude Include="GlutManager.h" />

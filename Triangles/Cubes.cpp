@@ -34,14 +34,14 @@ GLboolean Cubes::Start(void)
     // vertices
     this->arrayBuffer.Initialize(BufferTypes::Array);
     GLfloat vertices[NumVertices][3] = {
-        { -1.0f, -1.0f, -1.0f },
-        { -1.0f, -1.0f,  1.0f },
-        { -1.0f,  1.0f,  1.0f },
-        {  1.0f,  1.0f,  1.0f },
-        {  1.0f,  1.0f, -1.0f },
-        {  1.0f, -1.0f, -1.0f },
-        { -1.0f,  1.0f, -1.0f },
-        {  1.0f, -1.0f,  1.0f } };
+        { -0.9f, -0.9f, -0.9f },
+        { -0.9f, -0.9f,  0.9f },
+        { -0.9f,  0.9f,  0.9f },
+        {  0.9f,  0.9f,  0.9f },
+        {  0.9f,  0.9f, -0.9f },
+        {  0.9f, -0.9f, -0.9f },
+        { -0.9f,  0.9f, -0.9f },
+        {  0.9f, -0.9f,  0.9f } };
     this->arrayBuffer.SendData(vertices, sizeof(vertices));
     glEnableVertexAttribArray(attribVertices);
     glVertexAttribPointer(attribVertices, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));

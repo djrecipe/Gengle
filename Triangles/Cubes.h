@@ -3,10 +3,11 @@
 #define __OmniCubes__
 
 #include <GLEW/1.11.0/glew.h> 
+#include "GElement.h"
 #include "VAO.h"
 #include "Buffer.h"
 
-class Cubes
+class Cubes : GElement
 {
 private:
     VAO Cubes::vao;

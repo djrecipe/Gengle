@@ -7,7 +7,7 @@
 
 #include <Freeglut/2.8.1/VS2013/freeglut.h>	
 
-GLboolean GlutManager::Initialize(GLint argc, GLchar** argv)
+GLboolean GlutManager::Initialize(GLint argc, GLchar** argv, void (*keyboard)(unsigned char, int, int))
 {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA);
@@ -15,6 +15,7 @@ GLboolean GlutManager::Initialize(GLint argc, GLchar** argv)
 	glutInitContextVersion(4, 3);
 	glutInitContextProfile(GLUT_CORE_PROFILE);
     glutCreateWindow(argv[0]);
+	glutKeyboardFunc(keyboard);
 	glewExperimental = GL_TRUE;
 	if (glewInit())
 	{

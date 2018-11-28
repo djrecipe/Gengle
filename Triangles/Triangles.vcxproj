@@ -130,7 +130,7 @@
   <ItemGroup>
     <ClCompile Include="Cubes.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Triangles.cpp" />
+    <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="simple.frag">
@@ -142,7 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cubes.h" />
-    <ClInclude Include="Triangles.h" />
+    <ClInclude Include="Triangle.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gengle\Gengle.vcxproj">

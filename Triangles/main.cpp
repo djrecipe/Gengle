@@ -12,18 +12,33 @@ using namespace std;
 
 #include "GlobalTools.h"    
 #include "Cubes.h"
-#include "Triangles.h"
+#include "Triangle.h"
 #include "GlutManager.h"
-		
+	
+void KeyboardCallback(unsigned char key, int x, int y)
+{
+	switch (key)
+	{
+	case GLUT_KEY_UP:
+		dprint("UP");
+		break;
+	case GLUT_KEY_DOWN:
+		break;
+	case GLUT_KEY_LEFT:
+		break;
+	case GLUT_KEY_RIGHT:
+		dprint("RIGHT");
+		break;
+	}
+}
 
 int main(int argc, char** argv)
 {
-	if (!GlutManager::Initialize(argc, argv))
+	if (!GlutManager::Initialize(argc, argv, KeyboardCallback))
 		return -1;
-	//Triangles triangles = Triangles();
-	//triangles.Start();
-    Cubes cubes = Cubes();
-    cubes.Start();
+	Triangle triangle = Triangle();
+	triangle.Start();
+    //Cubes cubes = Cubes();
+    //cubes.Start();
 	return 0;
 }
-

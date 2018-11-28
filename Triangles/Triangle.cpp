@@ -1,4 +1,4 @@
-#include "Triangles.h"
+#include "Triangle.h"
 #include "GlobalTools.h"
 #include "Shaders.h"
 
@@ -14,22 +14,19 @@ static void Display()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	glDrawArrays(GL_TRIANGLES, 0, Triangles::NumVertices);
+	glDrawArrays(GL_TRIANGLES, 0, Triangle::NumVertices);
 
 	glFlush();
 }
 
-GLboolean Triangles::Start(void)
+GLboolean Triangle::Start(void)
 {
 	this->vao.Initialize();
 	this->buffer.Initialize(BufferTypes::Array);
 	GLfloat vertices[NumVertices][3] = {
-		{ -0.90f, -0.90f, 0.0f },
-		{ 0.85f, -0.90f, 0.0f },
-		{ -0.90f, 0.85f, 0.0f },
-		{ 0.90f, -0.85f, 0.0f },
-		{ 0.90f, 0.90f, 0.0f },
-		{ -0.85f, 0.90f, 0.0f } };
+		{ -1.0f, -1.0f, 0.0f },
+		{ 1.0f, -1.0f, 0.0f },
+		{ -1.0f, 1.0f, 0.0f }};
 
 	this->buffer.SendData(vertices, sizeof(vertices));
     // TODO 09/14/16: embed resource files into application executable
