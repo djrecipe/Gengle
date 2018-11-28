@@ -14,27 +14,32 @@ using namespace std;
 #include "Cubes.h"
 #include "Triangle.h"
 #include "GlutManager.h"
-	
+
 void KeyboardCallback(unsigned char key, int x, int y)
 {
 	switch (key)
 	{
+
+	}
+}
+void SpecialKeyboardCallback(int key, int x, int y)
+{
+	switch (key)
+	{
 	case GLUT_KEY_UP:
-		dprint("UP");
 		break;
 	case GLUT_KEY_DOWN:
 		break;
 	case GLUT_KEY_LEFT:
 		break;
 	case GLUT_KEY_RIGHT:
-		dprint("RIGHT");
 		break;
 	}
 }
 
 int main(int argc, char** argv)
 {
-	if (!GlutManager::Initialize(argc, argv, KeyboardCallback))
+	if (!GlutManager::Initialize(argc, argv, KeyboardCallback, SpecialKeyboardCallback))
 		return -1;
 	Triangle triangle = Triangle();
 	triangle.Start();

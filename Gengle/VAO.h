@@ -15,6 +15,7 @@ private:
 	GLint VAO::index;
 public:
 	GLboolean VAO::Activate(void);
+	GLboolean VAO::Delete(void);
 	GLboolean VAO::Initialize(void);
 	GLboolean VAO::Valid(void);
 	VAO::VAO();
