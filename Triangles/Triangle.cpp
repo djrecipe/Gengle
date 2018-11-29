@@ -24,8 +24,8 @@ void Triangle::Prepare(void)
 	// configure shaders
 	this->shaders.Prepare();
 	// send uniform values
-	this->shaders.GetUniform("projectionMatrix").SetValue(glm::mat4x4(1.0));
-	this->shaders.GetUniform("modelViewMatrix").SetValue(glm::mat4x4(1.0));
+	this->shaders.GetUniform("modelMatrix").SetValue(this->GetModelMatrix());
+	this->shaders.GetUniform("projectionViewMatrix").SetValue(glm::mat4x4(1.0));
 	// activate vertex array object
 	this->vao->Activate();
 	// activate array buffer
@@ -37,6 +37,7 @@ void Triangle::Prepare(void)
 		{ -1.0f, 1.0f, 0.0f }};
 	this->arrayBuffer->SendData(vertices, sizeof(vertices));
 	//
-	glPointSize(10.0f);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glPointSize(1.0f);
 	return;
 }

@@ -74,8 +74,8 @@ int main(int argc, char** argv)
 	VertexAttribute attribute(0, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
 	attributes.push_back(attribute);
 	std::vector<ShaderUniform> uniforms;
-	ShaderUniform model_view_matrix_uniform("modelViewMatrix", GL_MATRIX4_ARB);
-	ShaderUniform projection_matrix_uniform("projectionMatrix", GL_MATRIX4_ARB);
+	ShaderUniform model_view_matrix_uniform("modelMatrix", GL_MATRIX4_ARB);
+	ShaderUniform projection_matrix_uniform("projectionViewMatrix", GL_MATRIX4_ARB);
 	uniforms.push_back(model_view_matrix_uniform);
 	uniforms.push_back(projection_matrix_uniform);
 	ShaderConfig shader_info(shader_infos, attributes, uniforms);
@@ -83,6 +83,8 @@ int main(int argc, char** argv)
 	GElement * element = (GElement*)new Triangle(shader_info, vao, array_buffer);
 	elements.push_back(element);
 	element = (GElement*)new Cube(shader_info, vao, array_buffer, element_buffer);
+	element->SetScale(glm::vec3(0.5, 0.5, 0.5));
+	element->SetRotation(0.1f, glm::vec3(1.0, 0.0, 0.0));
 	elements.push_back(element);
 	// start display loop
 	glutDisplayFunc(Draw);
