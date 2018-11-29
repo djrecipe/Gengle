@@ -15,8 +15,13 @@ using namespace std;
 #include "Cube.h"
 #include "Triangle.h"
 #include "GlutManager.h"
+#include "MouseInputManager.h"
+#include "InputTransmitter.h"
 
 static std::vector<GElement*> elements;
+static MouseInputManager * mouseInputManager;
+static InputUpdate * inputUpdate;
+static InputTransmitter * inputTransmitter;
 
 static void Draw()
 {
@@ -29,6 +34,7 @@ static void Draw()
 	}
 
 	glFlush();
+	inputTransmitter->TransmitUpdate();
 }
 
 void KeyboardCallback(unsigned char key, int x, int y)
@@ -38,6 +44,13 @@ void KeyboardCallback(unsigned char key, int x, int y)
 
 	}
 }
+
+void MouseCallback(int x, int y)
+{
+	mouseInputManager->Process(x, y);
+	return;
+}
+
 void SpecialKeyboardCallback(int key, int x, int y)
 {
 	switch (key)
@@ -55,7 +68,13 @@ void SpecialKeyboardCallback(int key, int x, int y)
 
 int main(int argc, char** argv)
 {
-	if (!GlutManager::Initialize(argc, argv, KeyboardCallback, SpecialKeyboardCallback))
+	glm::vec2 window_size = glm::vec2(512, 512);
+	// create mouse input manager
+	inputUpdate = new InputUpdate();
+	mouseInputManager = new MouseInputManager(inputUpdate, window_size);
+	// initialize glut manager
+	if (!GlutManager::Initialize(argc, argv, window_size,
+		KeyboardCallback, SpecialKeyboardCallback, MouseCallback))
 		return -1;
 	// create vao
 	VAO* vao = new VAO();
@@ -73,12 +92,14 @@ int main(int argc, char** argv)
 	std::vector<VertexAttribute> attributes;
 	VertexAttribute attribute(0, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
 	attributes.push_back(attribute);
-	std::vector<ShaderUniform> uniforms;
-	ShaderUniform model_view_matrix_uniform("modelMatrix", GL_MATRIX4_ARB);
-	ShaderUniform projection_matrix_uniform("projectionViewMatrix", GL_MATRIX4_ARB);
-	uniforms.push_back(model_view_matrix_uniform);
-	uniforms.push_back(projection_matrix_uniform);
+	std::vector<ShaderUniform*> uniforms;
+	ShaderUniform * model_matrix_uniform = new ShaderUniform("modelMatrix", GL_MATRIX4_ARB);
+	ShaderUniform * projection_view_matrix_uniform = new ShaderUniform("projectionViewMatrix", GL_MATRIX4_ARB);
+	uniforms.push_back(model_matrix_uniform);
+	uniforms.push_back(projection_view_matrix_uniform);
 	ShaderConfig shader_info(shader_infos, attributes, uniforms);
+	// create input transmitter
+	inputTransmitter = new InputTransmitter(inputUpdate, projection_view_matrix_uniform);
 	// create elements
 	GElement * element = (GElement*)new Triangle(shader_info, vao, array_buffer);
 	elements.push_back(element);
@@ -94,5 +115,13 @@ int main(int argc, char** argv)
 	{
 		delete element;
 	}
+	// delete shader uniforms
+	for (ShaderUniform * uniform : uniforms)
+	{
+		delete uniform;
+	}
+	delete inputTransmitter;
+	delete mouseInputManager;
+	delete inputUpdate;
 	return 0;
 }

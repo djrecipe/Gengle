@@ -2,8 +2,8 @@
 
 layout(location = 0) in vec4 vPosition;
 
-uniform mat4 modelMatrix;
-uniform mat4 projectionViewMatrix;
+uniform mat4 modelMatrix = mat4(1.0);
+uniform mat4 projectionViewMatrix = mat4(1.0);
 
 void main()
 {

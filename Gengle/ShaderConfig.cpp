@@ -105,7 +105,7 @@ ShaderConfig::ShaderConfig()
 
 }
 
-ShaderConfig::ShaderConfig(ShaderInfo shaders_in[], std::vector<VertexAttribute> attributes_in, std::vector<ShaderUniform> uniforms_in)
+ShaderConfig::ShaderConfig(ShaderInfo shaders_in[], std::vector<VertexAttribute> attributes_in, std::vector<ShaderUniform*> uniforms_in)
 {
 	this->SetProgram(shaders_in);
 	this->SetAttributes(attributes_in);
@@ -140,13 +140,13 @@ void ShaderConfig::SetProgram(ShaderInfo shaders[])
 	return;
 }
 
-void ShaderConfig::SetUniforms(std::vector<ShaderUniform> uniforms_in)
+void ShaderConfig::SetUniforms(std::vector<ShaderUniform*> uniforms_in)
 {
 	this->uniforms.clear();
 	for (int i = 0; i < uniforms_in.size(); i++)
 	{
 		this->uniforms.push_back(uniforms_in[i]);
-		this->uniforms[i].SetShaderProgram(this->shaderProgram);
+		this->uniforms[i]->SetShaderProgram(this->shaderProgram);
 	}
 	return;
 }
