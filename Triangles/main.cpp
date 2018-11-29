@@ -93,19 +93,27 @@ int main(int argc, char** argv)
 	VertexAttribute attribute(0, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
 	attributes.push_back(attribute);
 	std::vector<ShaderUniform*> uniforms;
-	ShaderUniform * model_matrix_uniform = new ShaderUniform("modelMatrix", GL_MATRIX4_ARB);
-	ShaderUniform * projection_view_matrix_uniform = new ShaderUniform("projectionViewMatrix", GL_MATRIX4_ARB);
+	ShaderUniform * model_matrix_uniform = new ShaderUniform("modelMatrix");
+	ShaderUniform * projection_matrix_uniform = new ShaderUniform("projectionMatrix");
+	ShaderUniform * view_matrix_uniform = new ShaderUniform("viewMatrix");
 	uniforms.push_back(model_matrix_uniform);
-	uniforms.push_back(projection_view_matrix_uniform);
+	uniforms.push_back(projection_matrix_uniform);
+	uniforms.push_back(view_matrix_uniform);
 	ShaderConfig shader_info(shader_infos, attributes, uniforms);
 	// create input transmitter
-	inputTransmitter = new InputTransmitter(inputUpdate, projection_view_matrix_uniform);
+	glm::mat4 initial_view_matrix = glm::mat4(1.0);
+	glm::mat4 initial_projection_matrix = glm::perspective(glm::radians(45.0f), window_size[0] / window_size[1], 0.1f, 100.0f);
+	view_matrix_uniform->SetValue(initial_view_matrix);
+	projection_matrix_uniform->SetValue(initial_projection_matrix);
+	inputTransmitter = new InputTransmitter(inputUpdate, projection_matrix_uniform, view_matrix_uniform,
+		initial_projection_matrix, initial_view_matrix);
 	// create elements
 	GElement * element = (GElement*)new Triangle(shader_info, vao, array_buffer);
-	elements.push_back(element);
+	//elements.push_back(element);
 	element = (GElement*)new Cube(shader_info, vao, array_buffer, element_buffer);
-	element->SetScale(glm::vec3(0.5, 0.5, 0.5));
-	element->SetRotation(0.1f, glm::vec3(1.0, 0.0, 0.0));
+	element->SetScale(glm::vec3(20.0, 20.0, 20.0));
+	element->SetRotation(glm::radians(45.0f), glm::vec3(1.0, 0.0, 0.0));
+	element->SetOrigin(glm::vec3(30.0, 30.0, 30.0));
 	elements.push_back(element);
 	// start display loop
 	glutDisplayFunc(Draw);

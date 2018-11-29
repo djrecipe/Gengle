@@ -5,30 +5,19 @@
 class InputUpdate
 {
 private:
-	glm::vec2 angle = glm::vec2(0.0, 0.0);
+	glm::vec2 mouseTranslation = glm::vec2(0.0, 0.0);
 public:
 	InputUpdate();
 	~InputUpdate();
-	GLfloat GetAngleSide(void) { return this->angle[0]; }
-	GLfloat GetAngleUp(void) { return this->angle[1]; }
-
-	void AddHorizontalAngle(GLfloat value)
-	{
-		angle[0] += value;
-		return;
-	}
-
-	void AddVerticalAngle(GLfloat value)
-	{
-		angle[1] += value;
-		return;
-	}
 
 	glm::vec2 GetUpdate(void)
 	{
-		glm::vec2 value = glm::vec2(this->angle);
-		this->angle = glm::vec2(0.0, 0.0);
+		glm::vec2 value = glm::vec2(this->mouseTranslation);
+		this->mouseTranslation = glm::vec2(0.0, 0.0);
 		return value;
 	}
+
+	void IncrementMouseHorizontal(GLfloat value) { this->mouseTranslation[0] += value; }
+	void IncrementMouseVertical(GLfloat value) { this->mouseTranslation[1] += value; }
 };
 

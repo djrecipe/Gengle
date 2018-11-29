@@ -20,14 +20,8 @@ void MouseInputManager::Process(int x, int y)
 	if (x == width_half && y == height_half)
 		return;
 
-
-	GLfloat angle_up = this->inputUpdate->GetAngleUp();
-	GLfloat angle_side = this->inputUpdate->GetAngleSide();
-
-	this->inputUpdate->AddVerticalAngle(y - height_half);
-	this->inputUpdate->AddHorizontalAngle(x - width_half);
-
-	//dprint("Processing Mouse ::: x: %f | y: %f", this->inputUpdate->GetAngleSide(), this->inputUpdate->GetAngleUp());
+	this->inputUpdate->IncrementMouseVertical(height_half - y);
+	this->inputUpdate->IncrementMouseHorizontal(x - width_half);
 
 	glutWarpPointer(width_half, height_half);
 	glutPostRedisplay();
