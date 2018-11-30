@@ -17,11 +17,11 @@ protected:
 	VAO* vao;
 	Buffer* GElement::arrayBuffer = NULL;
 	Buffer* GElement::elementBuffer = NULL;
-	ShaderConfig shaders;
+	ShaderConfig* shaders;
 public:
-	GElement(ShaderConfig shaders_in, VAO* vao_in);
-	GElement(ShaderConfig shaders_in, VAO* vao_in, Buffer* array_buffer_in);
-	GElement(ShaderConfig shaders_in, VAO* vao_in, Buffer* array_buffer_in, Buffer* element_buffer_in);
+	GElement(ShaderConfig* shaders_in, VAO* vao_in);
+	GElement(ShaderConfig* shaders_in, VAO* vao_in, Buffer* array_buffer_in);
+	GElement(ShaderConfig* shaders_in, VAO* vao_in, Buffer* array_buffer_in, Buffer* element_buffer_in);
 	virtual void Draw(void) = 0;
 	virtual void Prepare(void) = 0;
 	glm::mat4x4 GetModelMatrix(void)

@@ -8,7 +8,7 @@
 
 #include <Freeglut/2.8.1/VS2013/freeglut.h>	
 
-Cube::Cube(ShaderConfig shaders, VAO* vao, Buffer* array_buffer_in, Buffer* element_buffer_in) :
+Cube::Cube(ShaderConfig* shaders, VAO* vao, Buffer* array_buffer_in, Buffer* element_buffer_in) :
 	GElement(shaders, vao, array_buffer_in, element_buffer_in)
 {
 	return;
@@ -23,9 +23,9 @@ void Cube::Draw(void)
 void Cube::Prepare(void)
 {
 	// configure shaders
-	this->shaders.Prepare();
+	this->shaders->Prepare();
 	// send uniform values
-	this->shaders.GetUniform("modelMatrix")->SetValue(this->GetModelMatrix());
+	this->shaders->GetUniform("modelMatrix")->SetValue(this->GetModelMatrix());
 	// activate vertex array object
 	this->vao->Activate();
     // activate array buffer

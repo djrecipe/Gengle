@@ -27,8 +27,11 @@ private:
 	static const GLchar* ShaderConfig::ReadShader(const GLchar* filename);
 public:
 	ShaderConfig::ShaderConfig();
-	ShaderConfig::ShaderConfig(ShaderInfo shaders_in[],
-		std::vector<VertexAttribute> attributes_in, std::vector<ShaderUniform*> uniforms_in);
+	ShaderConfig::~ShaderConfig();
+
+	ShaderConfig::ShaderConfig(ShaderInfo shaders_in[], std::vector<VertexAttribute> attributes_in);
+
+	void ShaderConfig::AddUniform(const char * name);
 	ShaderUniform* ShaderConfig::GetUniform(const char * name)
 	{
 		for (int i = 0; i < this->uniforms.size(); i++)
@@ -41,7 +44,6 @@ public:
 	void ShaderConfig::Prepare(void);
 	void ShaderConfig::SetAttributes(std::vector<VertexAttribute> attributes_in);
 	void ShaderConfig::SetProgram(ShaderInfo shaders_in[]);
-	void ShaderConfig::SetUniforms(std::vector<ShaderUniform*> uniforms_in);
 };
 
 #endif // __OmniShaders__

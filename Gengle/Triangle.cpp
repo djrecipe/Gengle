@@ -8,7 +8,7 @@
 
 #include <Freeglut/2.8.1/VS2013/freeglut.h>	
 
-Triangle::Triangle(ShaderConfig shaders, VAO* vao, Buffer* array_buffer_in) : GElement(shaders, vao, array_buffer_in)
+Triangle::Triangle(ShaderConfig* shaders, VAO* vao, Buffer* array_buffer_in) : GElement(shaders, vao, array_buffer_in)
 {
 	return;
 }
@@ -22,9 +22,9 @@ void Triangle::Draw(void)
 void Triangle::Prepare(void)
 {
 	// configure shaders
-	this->shaders.Prepare();
+	this->shaders->Prepare();
 	// send uniform values
-	this->shaders.GetUniform("modelMatrix")->SetValue(this->GetModelMatrix());
+	this->shaders->GetUniform("modelMatrix")->SetValue(this->GetModelMatrix());
 	// activate vertex array object
 	this->vao->Activate();
 	// activate array buffer

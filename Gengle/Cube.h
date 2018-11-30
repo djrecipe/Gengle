@@ -13,7 +13,7 @@ private:
 public:
 	static const GLuint Cube::NumVertices = 8;
 	static const GLuint Cube::NumIndices = 36;
-	Cube::Cube(ShaderConfig shaders, VAO* vao, Buffer* array_buffer_in, Buffer* element_buffer_in);
+	Cube::Cube(ShaderConfig* shaders, VAO* vao, Buffer* array_buffer_in, Buffer* element_buffer_in);
 	void Cube::Draw(void);
 	void Cube::Prepare(void);
 };

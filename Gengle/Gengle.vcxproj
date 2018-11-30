@@ -107,6 +107,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="GengleEngine.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="GElement.cpp" />
@@ -122,6 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h" />
+    <ClInclude Include="GengleEngine.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="GElement.h" />

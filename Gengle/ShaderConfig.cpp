@@ -105,11 +105,28 @@ ShaderConfig::ShaderConfig()
 
 }
 
-ShaderConfig::ShaderConfig(ShaderInfo shaders_in[], std::vector<VertexAttribute> attributes_in, std::vector<ShaderUniform*> uniforms_in)
+ShaderConfig::~ShaderConfig()
+{
+	for(ShaderUniform * uniform : this->uniforms)
+	{
+		delete uniform;
+	}
+	this->uniforms.clear();
+	return;
+}
+
+ShaderConfig::ShaderConfig(ShaderInfo shaders_in[], std::vector<VertexAttribute> attributes_in)
 {
 	this->SetProgram(shaders_in);
 	this->SetAttributes(attributes_in);
-	this->SetUniforms(uniforms_in);
+	return;
+}
+
+void ShaderConfig::AddUniform(const char * name)
+{
+	ShaderUniform * uniform = new ShaderUniform(name);
+	uniform->SetShaderProgram(this->shaderProgram);
+	this->uniforms.push_back(uniform);
 	return;
 }
 
@@ -141,17 +158,6 @@ void ShaderConfig::SetAttributes(std::vector<VertexAttribute> attributes_in)
 void ShaderConfig::SetProgram(ShaderInfo shaders[])
 {
 	this->shaderProgram = ShaderConfig::LoadShaders(shaders);
-	return;
-}
-
-void ShaderConfig::SetUniforms(std::vector<ShaderUniform*> uniforms_in)
-{
-	this->uniforms.clear();
-	for (int i = 0; i < uniforms_in.size(); i++)
-	{
-		this->uniforms.push_back(uniforms_in[i]);
-		this->uniforms[i]->SetShaderProgram(this->shaderProgram);
-	}
 	return;
 }
 
