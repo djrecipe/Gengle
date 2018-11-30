@@ -64,6 +64,10 @@ void KeyboardCallback(unsigned char key, int x, int y)
 	case 'f':
 		inputReceiver->ProcessMovementCommand(MoveDown);
 		break;
+	case 27:
+		GlutManager::Exit();
+		exit(0);
+		break;
 	}
 }
 
@@ -95,7 +99,7 @@ int main(int argc, char** argv)
 	inputUpdate = new InputUpdate();
 	inputReceiver = new InputReceiver(inputUpdate, window_size);
 	// initialize glut manager
-	if (!GlutManager::Initialize(argc, argv, window_size,
+	if (!GlutManager::Initialize(argc, argv, window_size,DrawCallback,IdleCallback,
 		KeyboardCallback, SpecialKeyboardCallback, MouseCallback))
 		return -1;
 	// create vao
@@ -139,9 +143,7 @@ int main(int argc, char** argv)
 	glm::mat4 initial_projection_matrix = glm::perspective(glm::radians(45.0f), window_size[0] / window_size[1], 0.1f, 1000.0f);
 	projection_matrix_uniform->SetValue(initial_projection_matrix);
 	// start display loop
-	glutDisplayFunc(DrawCallback);
-	glutIdleFunc(IdleCallback);
-	glutMainLoop();
+	GlutManager::Start();
 	// delete element pointers
 	for (GElement* element : elements)
 	{
