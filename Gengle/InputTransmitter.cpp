@@ -1,5 +1,6 @@
 #include "InputTransmitter.h"
 #include "GlobalTools.h"
+#include "GlutManager.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -17,9 +18,9 @@ void InputTransmitter::TransmitViewUpdate(void)
 	if (!this->inputUpdate->GetViewUpdatePending())
 		return;
 	this->inputUpdate->SetViewUpdatePending(false);
-	// calculate positions
+	// calculate camera origin
 	glm::vec3 cameraPos = this->inputUpdate->GetViewTranslations();
-	// calculate angles
+	// calculate camera target
 	glm::vec2 angles = this->inputUpdate->GetViewAngles();
 	glm::vec3 front(0.0);
 	front.x = cos(glm::radians(angles[0])) * cos(glm::radians(angles[1]));
@@ -27,7 +28,10 @@ void InputTransmitter::TransmitViewUpdate(void)
 	front.z = sin(glm::radians(angles[0])) * cos(glm::radians(angles[1]));
 	// calculate view matrix
 	glm::mat4 view_matrix = glm::lookAt(cameraPos, cameraPos + glm::normalize(front), glm::vec3(0.0f, 1.0f, 0.0f));
+	// transmit view matrix
 	this->uniformView->SetValue(view_matrix);
+	// force screen refresh
+	glutPostRedisplay();
 	return;
 }
 

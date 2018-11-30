@@ -17,7 +17,7 @@ private:
 	glm::vec3 cumulativeViewTranslations = glm::vec3(0.0, 0.0, 0.0);
 	glm::vec2 mouseSensitivities = glm::vec2(1.0f, 1.0f);
 	glm::vec3 movementSensitivities = glm::vec3(1.0f, 1.0f, 1.0f);
-	glm::vec2 verticalLimits = glm::vec2(-75.0f, 75.0f);
+	glm::vec2 verticalLimits = glm::vec2(-85.0f, 85.0f);
 public:
 	InputReceiver::InputReceiver(InputUpdate * input_update_in, glm::vec2 window_size);
 	InputReceiver::~InputReceiver();

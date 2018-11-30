@@ -49,8 +49,6 @@ void InputReceiver::ProcessMovementCommand(MovementCommands command)
 
 	this->inputUpdate->SetViewTranslations(cumulativeViewTranslations);
 	this->inputUpdate->SetViewUpdatePending(true);
-
-	glutPostRedisplay();
 	return;
 }
 
@@ -70,7 +68,6 @@ void InputReceiver::ProcessMouseMovement(int x, int y)
 	this->inputUpdate->SetViewUpdatePending(true);
 
 	glutWarpPointer(width_half, height_half);
-	glutPostRedisplay();
 	return;
 }
 

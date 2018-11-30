@@ -23,7 +23,7 @@ static InputReceiver * inputReceiver;
 static InputUpdate * inputUpdate;
 static InputTransmitter * inputTransmitter;
 
-static void Draw()
+static void DrawCallback()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -34,6 +34,11 @@ static void Draw()
 	}
 
 	glFlush();
+	inputTransmitter->TransmitViewUpdate();
+}
+
+static void IdleCallback()
+{
 	inputTransmitter->TransmitViewUpdate();
 }
 
@@ -134,7 +139,8 @@ int main(int argc, char** argv)
 	glm::mat4 initial_projection_matrix = glm::perspective(glm::radians(45.0f), window_size[0] / window_size[1], 0.1f, 1000.0f);
 	projection_matrix_uniform->SetValue(initial_projection_matrix);
 	// start display loop
-	glutDisplayFunc(Draw);
+	glutDisplayFunc(DrawCallback);
+	glutIdleFunc(IdleCallback);
 	glutMainLoop();
 	// delete element pointers
 	for (GElement* element : elements)
