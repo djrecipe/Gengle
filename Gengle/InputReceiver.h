@@ -15,7 +15,7 @@ private:
 	glm::vec2 windowSize;
 	glm::vec2 cumulativeViewAngles = glm::vec2(0.0, 0.0);
 	glm::vec3 cumulativeViewTranslations = glm::vec3(0.0, 0.0, 0.0);
-	glm::vec2 mouseSensitivities = glm::vec2(1.0f, 1.0f);
+	glm::vec2 mouseSensitivities = glm::vec2(0.1f, 0.1f);
 	glm::vec3 movementSensitivities = glm::vec3(1.0f, 1.0f, 1.0f);
 	glm::vec2 verticalLimits = glm::vec2(-85.0f, 85.0f);
 public:

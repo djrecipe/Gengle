@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gengle", "Gengle\Gengle.vcxproj", "{CB75A33B-E9E6-4892-8DD0-E3192375C683}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Triangles", "Triangles\Triangles.vcxproj", "{C917BD29-850E-4CC2-80B2-A65724119B21}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BasicDemo", "BasicDemo\BasicDemo.vcxproj", "{C917BD29-850E-4CC2-80B2-A65724119B21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

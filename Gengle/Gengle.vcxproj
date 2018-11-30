@@ -106,6 +106,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="GElement.cpp" />
     <ClCompile Include="InputTransmitter.cpp" />
@@ -119,6 +121,8 @@
     <ClCompile Include="VertexAttribute.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cube.h" />
+    <ClInclude Include="Triangle.h" />
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="GElement.h" />
     <ClInclude Include="InputTransmitter.h" />
