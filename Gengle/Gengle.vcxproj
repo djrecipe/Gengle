@@ -110,7 +110,7 @@
     <ClCompile Include="GElement.cpp" />
     <ClCompile Include="InputTransmitter.cpp" />
     <ClCompile Include="InputUpdate.cpp" />
-    <ClCompile Include="MouseInputManager.cpp" />
+    <ClCompile Include="InputReceiver.cpp" />
     <ClCompile Include="ShaderUniform.cpp" />
     <ClCompile Include="VAO.cpp" />
     <ClCompile Include="GlobalTools.cpp" />
@@ -123,7 +123,7 @@
     <ClInclude Include="GElement.h" />
     <ClInclude Include="InputTransmitter.h" />
     <ClInclude Include="InputUpdate.h" />
-    <ClInclude Include="MouseInputManager.h" />
+    <ClInclude Include="InputReceiver.h" />
     <ClInclude Include="ShaderUniform.h" />
     <ClInclude Include="VAO.h" />
     <ClInclude Include="GlobalTools.h" />

@@ -1,23 +1,33 @@
 #pragma once
 #include <GLEW/1.11.0/glew.h>  
 #include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
 
 class InputUpdate
 {
 private:
-	glm::vec2 mouseTranslation = glm::vec2(0.0, 0.0);
+	glm::vec2 viewAngles = glm::vec2(0.0, 0.0);
+	glm::vec3 viewTranslations = glm::vec3(0.0, 0.0, 0.0);
+	GLboolean pendingViewUpdate = false;
 public:
 	InputUpdate();
 	~InputUpdate();
 
-	glm::vec2 GetUpdate(void)
+	GLboolean GetViewUpdatePending(void)
 	{
-		glm::vec2 value = glm::vec2(this->mouseTranslation);
-		this->mouseTranslation = glm::vec2(0.0, 0.0);
-		return value;
+		return this->pendingViewUpdate;
 	}
 
-	void IncrementMouseHorizontal(GLfloat value) { this->mouseTranslation[0] += value; }
-	void IncrementMouseVertical(GLfloat value) { this->mouseTranslation[1] += value; }
+	void SetViewUpdatePending(GLboolean value)
+	{
+		this->pendingViewUpdate = value;
+		return;
+	}
+
+	glm::vec2 GetViewAngles(void) { return this->viewAngles; }
+	void SetViewAngles(glm::vec2 value) { this->viewAngles = value; }
+
+	glm::vec3 GetViewTranslations(void) { return this->viewTranslations;}
+	void SetViewTranslations(glm::vec3 value) { this->viewTranslations = value; }
 };
 

@@ -15,11 +15,11 @@ using namespace std;
 #include "Cube.h"
 #include "Triangle.h"
 #include "GlutManager.h"
-#include "MouseInputManager.h"
+#include "InputReceiver.h"
 #include "InputTransmitter.h"
 
 static std::vector<GElement*> elements;
-static MouseInputManager * mouseInputManager;
+static InputReceiver * inputReceiver;
 static InputUpdate * inputUpdate;
 static InputTransmitter * inputTransmitter;
 
@@ -34,20 +34,37 @@ static void Draw()
 	}
 
 	glFlush();
-	inputTransmitter->TransmitUpdate();
+	inputTransmitter->TransmitViewUpdate();
 }
 
 void KeyboardCallback(unsigned char key, int x, int y)
 {
 	switch (key)
 	{
-
+	case 'w':
+		inputReceiver->ProcessMovementCommand(MoveForward);
+		break;
+	case 's':
+		inputReceiver->ProcessMovementCommand(MoveBackward);
+		break;
+	case 'a':
+		inputReceiver->ProcessMovementCommand(MoveLeft);
+		break;
+	case 'd':
+		inputReceiver->ProcessMovementCommand(MoveRight);
+		break;
+	case 'r':
+		inputReceiver->ProcessMovementCommand(MoveUp);
+		break;
+	case 'f':
+		inputReceiver->ProcessMovementCommand(MoveDown);
+		break;
 	}
 }
 
 void MouseCallback(int x, int y)
 {
-	mouseInputManager->Process(x, y);
+	inputReceiver->ProcessMouseMovement(x, y);
 	return;
 }
 
@@ -71,7 +88,7 @@ int main(int argc, char** argv)
 	glm::vec2 window_size = glm::vec2(512, 512);
 	// create mouse input manager
 	inputUpdate = new InputUpdate();
-	mouseInputManager = new MouseInputManager(inputUpdate, window_size);
+	inputReceiver = new InputReceiver(inputUpdate, window_size);
 	// initialize glut manager
 	if (!GlutManager::Initialize(argc, argv, window_size,
 		KeyboardCallback, SpecialKeyboardCallback, MouseCallback))
@@ -102,19 +119,20 @@ int main(int argc, char** argv)
 	ShaderConfig shader_info(shader_infos, attributes, uniforms);
 	// create input transmitter
 	glm::mat4 initial_view_matrix = glm::mat4(1.0);
-	glm::mat4 initial_projection_matrix = glm::perspective(glm::radians(45.0f), window_size[0] / window_size[1], 0.1f, 100.0f);
 	view_matrix_uniform->SetValue(initial_view_matrix);
-	projection_matrix_uniform->SetValue(initial_projection_matrix);
-	inputTransmitter = new InputTransmitter(inputUpdate, projection_matrix_uniform, view_matrix_uniform,
-		initial_projection_matrix, initial_view_matrix);
+	inputTransmitter = new InputTransmitter(inputUpdate, projection_matrix_uniform, view_matrix_uniform);
 	// create elements
 	GElement * element = (GElement*)new Triangle(shader_info, vao, array_buffer);
-	//elements.push_back(element);
+	elements.push_back(element);
 	element = (GElement*)new Cube(shader_info, vao, array_buffer, element_buffer);
 	element->SetScale(glm::vec3(20.0, 20.0, 20.0));
-	element->SetRotation(glm::radians(45.0f), glm::vec3(1.0, 0.0, 0.0));
+	element->SetRotation(glm::radians(0.0f), glm::vec3(1.0, 0.0, 0.0));
 	element->SetOrigin(glm::vec3(30.0, 30.0, 30.0));
 	elements.push_back(element);
+	// send projection matrix
+	shader_info.Prepare();
+	glm::mat4 initial_projection_matrix = glm::perspective(glm::radians(45.0f), window_size[0] / window_size[1], 0.1f, 1000.0f);
+	projection_matrix_uniform->SetValue(initial_projection_matrix);
 	// start display loop
 	glutDisplayFunc(Draw);
 	glutMainLoop();
@@ -129,7 +147,7 @@ int main(int argc, char** argv)
 		delete uniform;
 	}
 	delete inputTransmitter;
-	delete mouseInputManager;
+	delete inputReceiver;
 	delete inputUpdate;
 	return 0;
 }

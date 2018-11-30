@@ -115,6 +115,10 @@ ShaderConfig::ShaderConfig(ShaderInfo shaders_in[], std::vector<VertexAttribute>
 
 void ShaderConfig::Prepare(void)
 {
+	GLint id;
+	glGetIntegerv(GL_CURRENT_PROGRAM, &id);
+	if (id == this->shaderProgram)
+		return;
 	// enable shader program
 	glUseProgram(this->shaderProgram);
 	// configure shader attributes

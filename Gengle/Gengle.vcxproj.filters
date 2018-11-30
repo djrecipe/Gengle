@@ -39,13 +39,13 @@
     <ClCompile Include="ShaderUniform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MouseInputManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="InputUpdate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InputTransmitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputReceiver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,13 +74,13 @@
     <ClInclude Include="ShaderUniform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MouseInputManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="InputUpdate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="InputTransmitter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputReceiver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

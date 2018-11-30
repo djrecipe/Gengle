@@ -27,3 +27,10 @@ void __cdecl dprint(const GLchar *format, ...)
 	OutputDebugString(buf);
 	return;
 }
+
+GLfloat modulus(GLfloat value, GLfloat trim)
+{
+	int count = value / trim;
+	GLfloat remainder = value - (trim * (GLfloat)count);
+	return remainder;
+}
