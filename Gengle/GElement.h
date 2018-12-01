@@ -5,7 +5,7 @@
 
 #include "Buffer.h"
 #include "ShaderConfig.h"
-#include "VAO.h"
+#include "VertexArray.h"
 
 class GElement
 {
@@ -14,14 +14,14 @@ protected:
 	glm::vec3 scale = glm::vec3(1.0f, 1.0f, 1.0f);
 	glm::vec3 rotationAxis = glm::vec3(1.0f, 0.0f, 0.0f);
 	GLfloat rotationAngle = 0.0f;
-	VAO* vao;
+	VertexArray* vao;
 	Buffer* GElement::arrayBuffer = NULL;
 	Buffer* GElement::elementBuffer = NULL;
 	ShaderConfig* shaders;
 public:
-	GElement(ShaderConfig* shaders_in, VAO* vao_in);
-	GElement(ShaderConfig* shaders_in, VAO* vao_in, Buffer* array_buffer_in);
-	GElement(ShaderConfig* shaders_in, VAO* vao_in, Buffer* array_buffer_in, Buffer* element_buffer_in);
+	GElement(ShaderConfig* shaders_in, VertexArray* vao_in);
+	GElement(ShaderConfig* shaders_in, VertexArray* vao_in, Buffer* array_buffer_in);
+	GElement(ShaderConfig* shaders_in, VertexArray* vao_in, Buffer* array_buffer_in, Buffer* element_buffer_in);
 	virtual void Draw(void) = 0;
 	virtual void Prepare(void) = 0;
 	glm::mat4x4 GetModelMatrix(void)

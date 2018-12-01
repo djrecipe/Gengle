@@ -1,4 +1,5 @@
 #pragma once
+#include "VertexArray.h"
 #include "GElement.h"
 #include "GlutManager.h"
 #include "InputReceiver.h"
@@ -20,7 +21,7 @@ private:
 
 	glm::vec2 window_size;
 
-	VAO* vao = NULL;
+	VertexArray* vao = NULL;
 	Buffer* arrayBuffer = NULL;
 	Buffer* elementBuffer = NULL;
 

@@ -92,7 +92,7 @@ GengleEngine::GengleEngine(GLint argc, GLchar** argv, glm::vec2 window_size_in)
 		GengleEngine::KeyboardCallback, GengleEngine::SpecialKeyboardCallback, GengleEngine::MouseCallback))
 		throw std::runtime_error("Error while initializing Glut");
 	// create vao
-	this->vao = new VAO();
+	this->vao = new VertexArray();
 	this->vao->Initialize();
 	// create buffers
 	this->arrayBuffer = new Buffer();

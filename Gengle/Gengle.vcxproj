@@ -115,7 +115,7 @@
     <ClCompile Include="InputUpdate.cpp" />
     <ClCompile Include="InputReceiver.cpp" />
     <ClCompile Include="ShaderUniform.cpp" />
-    <ClCompile Include="VAO.cpp" />
+    <ClCompile Include="VertexArray.cpp" />
     <ClCompile Include="GlobalTools.cpp" />
     <ClCompile Include="GlutManager.cpp" />
     <ClCompile Include="ShaderConfig.cpp" />
@@ -131,7 +131,7 @@
     <ClInclude Include="InputUpdate.h" />
     <ClInclude Include="InputReceiver.h" />
     <ClInclude Include="ShaderUniform.h" />
-    <ClInclude Include="VAO.h" />
+    <ClInclude Include="VertexArray.h" />
     <ClInclude Include="GlobalTools.h" />
     <ClInclude Include="GlutManager.h" />
     <ClInclude Include="ShaderConfig.h" />

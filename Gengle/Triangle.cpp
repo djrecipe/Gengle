@@ -1,24 +1,31 @@
 #include "Triangle.h"
-#include "GlobalTools.h"
-#include "ShaderConfig.h"
 
-#define FREEGLUT_STATIC
-
-#pragma comment(lib, "Freeglut/2.8.1/VS2015/x32/freeglut_static.lib")
-
-#include <Freeglut/2.8.1/VS2013/freeglut.h>	
-
-Triangle::Triangle(ShaderConfig* shaders, VAO* vao, Buffer* array_buffer_in) : GElement(shaders, vao, array_buffer_in)
+#pragma region Instance Methods
+/// <summary>
+/// Create a new triangle using the specified resources
+/// </summary>
+/// <param name="shaders">Shader configuration</param>
+/// <param name="vao">Vertex array</param>
+/// <param name="array_buffer_in">Array buffer for vertex data</param>
+Triangle::Triangle(ShaderConfig* shaders, VertexArray* vao, Buffer* array_buffer_in)
+	: GElement(shaders, vao, array_buffer_in)
 {
 	return;
 }
 
+/// <summary>
+/// Draw the triangle
+/// </summary>
+/// <seealso cref="glDrawArrays"/>
 void Triangle::Draw(void)
 {
 	glDrawArrays(GL_TRIANGLES, 0, Triangle::NumVertices);
 	return;
 }
 
+/// <summary>
+/// Prepare to draw the triangle
+/// </summary>
 void Triangle::Prepare(void)
 {
 	// configure shaders
@@ -40,3 +47,4 @@ void Triangle::Prepare(void)
 	glPointSize(1.0f);
 	return;
 }
+#pragma endregion

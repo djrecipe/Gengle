@@ -1,13 +1,13 @@
 #include "GElement.h"
 
-GElement::GElement(ShaderConfig* shaders_in, VAO * vao_in)
+GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in)
 {
 	this->shaders = shaders_in;
 	this->vao = vao_in;
 	return;
 }
 
-GElement::GElement(ShaderConfig* shaders_in, VAO * vao_in, Buffer* array_buffer_in)
+GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, Buffer* array_buffer_in)
 {
 	this->shaders = shaders_in;
 	this->vao = vao_in;
@@ -15,7 +15,7 @@ GElement::GElement(ShaderConfig* shaders_in, VAO * vao_in, Buffer* array_buffer_
 	return;
 }
 
-GElement::GElement(ShaderConfig* shaders_in, VAO * vao_in, Buffer* array_buffer_in, Buffer* element_buffer_in)
+GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, Buffer* array_buffer_in, Buffer* element_buffer_in)
 {
 	this->shaders = shaders_in;
 	this->vao = vao_in;

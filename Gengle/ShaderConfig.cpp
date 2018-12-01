@@ -1,7 +1,6 @@
-#include "ShaderConfig.h" 		
-#include "GlobalTools.h"
-#include <iostream>
+#include "ShaderConfig.h" 	
 
+#pragma region Static Methods
 GLuint ShaderConfig::LoadShaders(ShaderInfo* shaders)
 {
 	if (shaders == NULL)
@@ -99,13 +98,25 @@ const GLchar* ShaderConfig::ReadShader(const GLchar* filename)
 
 	return const_cast<const GLchar*>(source);
 }
+#pragma endregion
 
-ShaderConfig::ShaderConfig()
+#pragma region Instance Methods
+/// <summary>
+/// Create a new shader configuration using the specified parameters
+/// </summary>
+/// <param name="shaders_in">Shader program file descriptors</param>
+/// <param name="attributes_in">Vertex attribute definitions</param>
+ShaderConfig::ShaderConfig(ShaderInfo shaders_in[], std::vector<VertexAttribute> attributes_in)
 {
-
+	this->SetProgram(shaders_in);
+	this->SetAttributes(attributes_in);
+	return;
 }
 
-ShaderConfig::~ShaderConfig()
+/// <summary>
+/// Destroy the shader configuration and delete all shader uniform objects
+/// </summary>
+ShaderConfig::~ShaderConfig(void)
 {
 	for(ShaderUniform * uniform : this->uniforms)
 	{
@@ -115,13 +126,10 @@ ShaderConfig::~ShaderConfig()
 	return;
 }
 
-ShaderConfig::ShaderConfig(ShaderInfo shaders_in[], std::vector<VertexAttribute> attributes_in)
-{
-	this->SetProgram(shaders_in);
-	this->SetAttributes(attributes_in);
-	return;
-}
-
+/// <summary>
+/// Create and add a new shader uniform using the specified name
+/// </summary>
+/// <param name="name">Shader uniform name</param>
 void ShaderConfig::AddUniform(const char * name)
 {
 	ShaderUniform * uniform = new ShaderUniform(name);
@@ -130,6 +138,26 @@ void ShaderConfig::AddUniform(const char * name)
 	return;
 }
 
+/// <summary>
+/// Retrieve the shader uniform associated with the specified name
+/// </summary>
+/// <param name="name">Shader uniform name to find</param>
+/// <returns>Shader uniform</returns>
+/// <exception cref="std::runtime_error">Failed to find a shader uniform with the specified name</exception>
+ShaderUniform* ShaderConfig::GetUniform(const char * name)
+{
+	for (int i = 0; i < this->uniforms.size(); i++)
+	{
+		if (this->uniforms[i]->GetName() == name)
+			return this->uniforms[i];
+	}
+	throw std::runtime_error("Failed to find uniform '" + std::string(name) + "'");
+	return NULL;
+}
+
+/// <summary>
+/// Enable and prepare the shader program for usage
+/// </summary>
 void ShaderConfig::Prepare(void)
 {
 	GLint id;
@@ -147,6 +175,10 @@ void ShaderConfig::Prepare(void)
 	return;
 }
 
+/// <summary>
+/// Assign the specified vertex attributes to this shader program
+/// </summary>
+/// <param name="attributes_in">Vertex attributes to assign</param>
 void ShaderConfig::SetAttributes(std::vector<VertexAttribute> attributes_in)
 {
 	this->attributes.clear();
@@ -155,9 +187,13 @@ void ShaderConfig::SetAttributes(std::vector<VertexAttribute> attributes_in)
 	return;
 }
 
+/// <summary>
+/// Load the specified shader program files and store the shader program index
+/// </summary>
+/// <param name="shaders">Shader program file descriptors</param>
 void ShaderConfig::SetProgram(ShaderInfo shaders[])
 {
 	this->shaderProgram = ShaderConfig::LoadShaders(shaders);
 	return;
 }
-
+#pragma endregion

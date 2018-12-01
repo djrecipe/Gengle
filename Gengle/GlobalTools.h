@@ -2,6 +2,7 @@
 #ifndef __OmniGlobalTools__
 #define __OmniGlobalTools__
 
+#define FREEGLUT_STATIC
 #define GLM_ENABLE_EXPERIMENTAL
 
 #pragma comment(lib,"opengl32.lib")
@@ -9,6 +10,16 @@
 #pragma comment(lib, "Freeglut/2.8.1/VS2015/x32/freeglut_static.lib")
 
 #include <GLEW/1.11.0/glew.h>
+#include <glm/mat4x4.hpp>
+#include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
+#include <Freeglut/2.8.1/VS2013/freeglut.h>	
+
+#include <assert.h> 
+#include <iostream>
+#include <stdexcept>
+#include <vector>
+
 
 #define BUFFER_OFFSET(x)  ((const void*) (x))
 
