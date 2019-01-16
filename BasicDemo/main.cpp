@@ -18,7 +18,7 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-	glm::vec2 window_size = glm::vec2(512, 512);
+	glm::vec2 window_size = glm::vec2(1280, 960);
 	// create engine
 	GengleEngine engine(argc, argv, window_size);
 	// define elements

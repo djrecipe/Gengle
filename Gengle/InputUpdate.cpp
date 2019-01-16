@@ -15,6 +15,11 @@ InputUpdate::~InputUpdate()
 {
 }
 
+MovementCommands InputUpdate::GetMovementFlags(void)
+{
+	return this->currentMovement;
+}
+
 /// <summary>
 /// Retrieve updated view/camera angles
 /// </summary>
@@ -40,6 +45,21 @@ glm::vec3 InputUpdate::GetViewTranslations(void)
 GLboolean InputUpdate::GetViewUpdatePending(void)
 {
 	return this->pendingViewUpdate;
+}
+
+void InputUpdate::SetMovementFlag(MovementCommands command, bool set)
+{
+	if (set)
+	{
+		this->currentMovement = this->currentMovement | command;
+		dprint("Enabling movement.");
+	}
+	else
+	{
+		this->currentMovement = this->currentMovement & (~command);
+		dprint("Disabling movement.");
+	}
+	return;
 }
 
 /// <summary>

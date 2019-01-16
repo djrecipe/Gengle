@@ -34,26 +34,52 @@ void GengleEngine::KeyboardCallback(unsigned char key, int x, int y)
 	switch (key)
 	{
 	case 'w':
-		GengleEngine::instance->inputReceiver->ProcessMovementCommand(MoveForward);
+		GengleEngine::instance->inputReceiver->ProcessKeyboardEvent(MoveForward, KeyStateDown);
 		break;
 	case 's':
-		GengleEngine::instance->inputReceiver->ProcessMovementCommand(MoveBackward);
+		GengleEngine::instance->inputReceiver->ProcessKeyboardEvent(MoveBackward, KeyStateDown);
 		break;
 	case 'a':
-		GengleEngine::instance->inputReceiver->ProcessMovementCommand(MoveLeft);
+		GengleEngine::instance->inputReceiver->ProcessKeyboardEvent(MoveLeft, KeyStateDown);
 		break;
 	case 'd':
-		GengleEngine::instance->inputReceiver->ProcessMovementCommand(MoveRight);
+		GengleEngine::instance->inputReceiver->ProcessKeyboardEvent(MoveRight, KeyStateDown);
 		break;
 	case 'r':
-		GengleEngine::instance->inputReceiver->ProcessMovementCommand(MoveUp);
+		GengleEngine::instance->inputReceiver->ProcessKeyboardEvent(MoveUp, KeyStateDown);
 		break;
 	case 'f':
-		GengleEngine::instance->inputReceiver->ProcessMovementCommand(MoveDown);
+		GengleEngine::instance->inputReceiver->ProcessKeyboardEvent(MoveDown, KeyStateDown);
 		break;
 	case 27:
 		GlutManager::Exit();
 		exit(0);
+		break;
+	}
+	return;
+}
+
+void GengleEngine::KeyboardUpCallback(unsigned char key, int x, int y)
+{
+	switch (key)
+	{
+	case 'w':
+		GengleEngine::instance->inputReceiver->ProcessKeyboardEvent(MoveForward, KeyStateUp);
+		break;
+	case 's':
+		GengleEngine::instance->inputReceiver->ProcessKeyboardEvent(MoveBackward, KeyStateUp);
+		break;
+	case 'a':
+		GengleEngine::instance->inputReceiver->ProcessKeyboardEvent(MoveLeft, KeyStateUp);
+		break;
+	case 'd':
+		GengleEngine::instance->inputReceiver->ProcessKeyboardEvent(MoveRight, KeyStateUp);
+		break;
+	case 'r':
+		GengleEngine::instance->inputReceiver->ProcessKeyboardEvent(MoveUp, KeyStateUp);
+		break;
+	case 'f':
+		GengleEngine::instance->inputReceiver->ProcessKeyboardEvent(MoveDown, KeyStateUp);
 		break;
 	}
 	return;
@@ -89,7 +115,8 @@ GengleEngine::GengleEngine(GLint argc, GLchar** argv, glm::vec2 window_size_in)
 	// initialize glut manager
 	if (!GlutManager::Initialize(argc, argv, this->window_size,
 		GengleEngine::DrawCallback, GengleEngine::IdleCallback,
-		GengleEngine::KeyboardCallback, GengleEngine::SpecialKeyboardCallback, GengleEngine::MouseCallback))
+		GengleEngine::KeyboardCallback, GengleEngine::KeyboardUpCallback,
+		GengleEngine::SpecialKeyboardCallback, GengleEngine::MouseCallback))
 		throw std::runtime_error("Error while initializing Glut");
 	// create vao
 	this->vao = new VertexArray();

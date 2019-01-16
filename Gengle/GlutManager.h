@@ -19,7 +19,8 @@ private:
 public:
 	static GLboolean GlutManager::Initialize(GLint argc, GLchar** argv, glm::vec2 window_size,
 		void(*display_callback)(void), void(*idle_callback)(void),
-		void(*keyboard)(unsigned char, int, int),
+		void(*keyboard_callback)(unsigned char, int, int),
+		void(*keyboard_up_callback)(unsigned char, int, int),
 		void(*special_keyboard)(int, int, int),
 		void(*mouse_move_callback)(int, int));
 	static void GlutManager::Start(void);

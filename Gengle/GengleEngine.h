@@ -16,6 +16,7 @@ private:
 	static void GengleEngine::DrawCallback();
 	static void GengleEngine::IdleCallback();
 	static void GengleEngine::KeyboardCallback(unsigned char key, int x, int y);
+	static void GengleEngine::KeyboardUpCallback(unsigned char key, int x, int y);
 	static void GengleEngine::MouseCallback(int x, int y);
 	static void GengleEngine::SpecialKeyboardCallback(int key, int x, int y);
 
