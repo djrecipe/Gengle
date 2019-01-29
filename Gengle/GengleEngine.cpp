@@ -83,6 +83,9 @@ void GengleEngine::KeyboardUpCallback(unsigned char key, int x, int y)
 	case 'f':
 		GengleEngine::instance->inputReceiver->ProcessKeyboardEvent(MoveDown, KeyStateUp);
 		break;
+	case 'x':
+		GengleEngine::instance->AddBasicElement(CubeElement);
+		break;
 	}
 	return;
 }
@@ -112,8 +115,8 @@ GengleEngine::GengleEngine(GLint argc, GLchar** argv, glm::vec2 window_size_in)
 {
 	this->window_size = window_size_in;
 	// create mouse input manager
-	inputUpdate = new InputUpdate();
-	inputReceiver = new InputReceiver(inputUpdate, this->window_size);
+	this->inputUpdate = new InputUpdate();
+	this->inputReceiver = new InputReceiver(inputUpdate, this->window_size);
 	// initialize glut manager
 	if (!GlutManager::Initialize(argc, argv, this->window_size,
 		GengleEngine::DrawCallback, GengleEngine::IdleCallback,
@@ -175,7 +178,7 @@ GengleEngine::~GengleEngine()
 	return;
 }
 
-GElement* GengleEngine::AddBasicElement(BasicElementTypes type)
+GElement* GengleEngine::AddBasicElement(BasicElementTypes type, SpawnOriginTypes origin_type, glm::vec3 origin)
 {
 
 	GElement * element = NULL;
@@ -187,6 +190,15 @@ GElement* GengleEngine::AddBasicElement(BasicElementTypes type)
 	case CubeElement:
 		element = (GElement*)new Cube(this->shaderConfig, this->vao,
 			this->arrayBuffer, this->elementBuffer);
+		break;
+	}
+	switch (origin_type)
+	{
+	case AbsoluteSpawnOrigin:
+		element->SetOrigin(origin);
+		break;
+	case RelativeSpawnOrigin:
+		element->SetOrigin(this->inputUpdate->GetViewTranslations() + origin);
 		break;
 	}
 	this->elements.push_back(element);

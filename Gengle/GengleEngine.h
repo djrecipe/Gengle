@@ -8,6 +8,7 @@
 #include "PhysicsEngine.h"
 
 enum BasicElementTypes : GLuint { TriangleElement = 0, CubeElement = 1};
+enum SpawnOriginTypes : GLuint { AbsoluteSpawnOrigin = 0, RelativeSpawnOrigin = 1};
 
 class GengleEngine
 {
@@ -41,7 +42,8 @@ public:
 	GengleEngine::GengleEngine(GLint argc, GLchar** argv, glm::vec2 window_size_in);
 	GengleEngine::~GengleEngine();
 
-	GElement* GengleEngine::AddBasicElement(BasicElementTypes type);
+	GElement* GengleEngine::AddBasicElement(BasicElementTypes type,
+		SpawnOriginTypes origin_type = RelativeSpawnOrigin, glm::vec3 origin = glm::vec3(0.0, 0.0, 0.0));
 	void GengleEngine::Start(void);
 };
 
