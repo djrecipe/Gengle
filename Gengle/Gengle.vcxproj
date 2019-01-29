@@ -198,6 +198,8 @@
   <ItemGroup>
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="GengleEngine.cpp" />
+    <ClCompile Include="PhysicsDescriptor.cpp" />
+    <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="GElement.cpp" />
@@ -214,6 +216,8 @@
   <ItemGroup>
     <ClInclude Include="Cube.h" />
     <ClInclude Include="GengleEngine.h" />
+    <ClInclude Include="PhysicsDescriptor.h" />
+    <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="GElement.h" />

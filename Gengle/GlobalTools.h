@@ -16,7 +16,12 @@
 #include <Freeglut/2.8.1/VS2013/freeglut.h>	
 
 #include <assert.h> 
+#include <chrono>
+#include <combaseapi.h>
 #include <iostream>
+#include <map>
+#include <mutex>
+#include <thread>
 #include <stdexcept>
 #include <vector>
 
@@ -25,6 +30,15 @@
 
 void __cdecl dprint(const GLchar *format, ...);
 GLfloat modulus(GLfloat value, GLfloat trim);
+
+struct GUIDComparer
+{
+	bool operator()(const GUID & Left, const GUID & Right) const
+	{
+		// comparison logic goes here
+		return memcmp(&Left, &Right, sizeof(Right)) < 0;
+	}
+};
 
 #endif // __OmniGlobalTools__
 

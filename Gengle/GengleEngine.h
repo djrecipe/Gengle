@@ -5,6 +5,7 @@
 #include "InputReceiver.h"
 #include "InputTransmitter.h"
 #include "InputUpdate.h"
+#include "PhysicsEngine.h"
 
 enum BasicElementTypes : GLuint { TriangleElement = 0, CubeElement = 1};
 
@@ -32,6 +33,10 @@ private:
 	InputUpdate* inputUpdate = NULL;
 
 	ShaderConfig* shaderConfig = NULL;
+
+	PhysicsEngine* physicsEngine = NULL;
+
+	void GengleEngine::ProcessPhysics(void);
 public:
 	GengleEngine::GengleEngine(GLint argc, GLchar** argv, glm::vec2 window_size_in);
 	GengleEngine::~GengleEngine();

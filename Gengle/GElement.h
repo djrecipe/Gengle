@@ -4,12 +4,15 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "Buffer.h"
+#include "PhysicsDescriptor.h"
 #include "ShaderConfig.h"
 #include "VertexArray.h"
 
 class GElement
 {
 protected:
+	GUID id;
+
 	glm::vec3 origin = glm::vec3(0.0f, 0.0f, 0.0f);
 	glm::vec3 scale = glm::vec3(1.0f, 1.0f, 1.0f);
 	glm::vec3 rotationAxis = glm::vec3(1.0f, 0.0f, 0.0f);
@@ -19,12 +22,14 @@ protected:
 	Buffer* GElement::elementBuffer = NULL;
 	ShaderConfig* shaders;
 public:
-	GElement(ShaderConfig* shaders_in, VertexArray* vao_in);
-	GElement(ShaderConfig* shaders_in, VertexArray* vao_in, Buffer* array_buffer_in);
-	GElement(ShaderConfig* shaders_in, VertexArray* vao_in, Buffer* array_buffer_in, Buffer* element_buffer_in);
-	virtual void Draw(void) = 0;
-	virtual void Prepare(void) = 0;
-	glm::mat4x4 GetModelMatrix(void)
+	GElement::GElement(ShaderConfig* shaders_in, VertexArray* vao_in);
+	GElement::GElement(ShaderConfig* shaders_in, VertexArray* vao_in, Buffer* array_buffer_in);
+	GElement::GElement(ShaderConfig* shaders_in, VertexArray* vao_in, Buffer* array_buffer_in, Buffer* element_buffer_in);
+	void GElement::ConsumePhysicsDescriptor(PhysicsDescriptor descriptor);
+	virtual void GElement::Draw(void) = 0;
+	virtual void GElement::Prepare(void) = 0;
+	GUID GElement::GetID(void);
+	glm::mat4x4 GElement::GetModelMatrix(void)
 	{
 		glm::mat4x4 matrix(1.0);
 		matrix = glm::translate(matrix, this->origin);
@@ -32,22 +37,23 @@ public:
 		matrix = glm::scale(matrix, this->scale);
 		return matrix;
 	}
-	void SetOrigin(glm::vec3 value)
+	PhysicsDescriptor GElement::GetPhysicsDescriptor(void);
+	void GElement::SetOrigin(glm::vec3 value)
 	{
 		this->origin = value;
 		return;
 	}
-	void SetRotation(GLfloat angle, glm::vec3 axis)
+	void GElement::SetRotation(GLfloat angle, glm::vec3 axis)
 	{
 		this->rotationAngle = angle;
 		this->rotationAxis = axis;
 		return;
 	}
-	void SetScale(glm::vec3 value)
+	void GElement::SetScale(glm::vec3 value)
 	{
 		this->scale = value;
 		return;
 	}
-	~GElement();
+	GElement::~GElement();
 };
 

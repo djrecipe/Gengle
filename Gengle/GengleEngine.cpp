@@ -19,12 +19,14 @@ void GengleEngine::DrawCallback()
 	}
 
 	glFlush();
+	GengleEngine::instance->ProcessPhysics();
 	GengleEngine::instance->inputTransmitter->TransmitViewUpdate();
 	return;
 }
 
 void GengleEngine::IdleCallback()
 {
+	GengleEngine::instance->ProcessPhysics();
 	GengleEngine::instance->inputTransmitter->TransmitViewUpdate();
 	return;
 }
@@ -143,6 +145,8 @@ GengleEngine::GengleEngine(GLint argc, GLchar** argv, glm::vec2 window_size_in)
 	this->inputTransmitter = new InputTransmitter(inputUpdate,
 		this->shaderConfig->GetUniform("projectionMatrix"),
 		this->shaderConfig->GetUniform("viewMatrix"));
+	// create physics engine
+	this->physicsEngine = new PhysicsEngine();
 	// set instance
 	GengleEngine::instance = this;
 	return;
@@ -152,6 +156,8 @@ GengleEngine::GengleEngine(GLint argc, GLchar** argv, glm::vec2 window_size_in)
 GengleEngine::~GengleEngine()
 {
 	GlutManager::Exit();
+
+	delete this->physicsEngine;
 
 	delete this->shaderConfig;
 	delete this->vao;
@@ -185,6 +191,24 @@ GElement* GengleEngine::AddBasicElement(BasicElementTypes type)
 	}
 	this->elements.push_back(element);
 	return element;
+}
+
+void GengleEngine::ProcessPhysics(void)
+{
+	// TODO 01/29/19: finish real implementation
+	std::map<GUID, PhysicsDescriptor, GUIDComparer> results = this->physicsEngine->GetResults();
+	std::map<GUID, PhysicsDescriptor, GUIDComparer> inputs;
+	std::map<GUID, PhysicsDescriptor, GUIDComparer>::iterator iterator;
+	for (GElement* element : this->elements)
+	{
+		iterator = results.find(element->GetID());
+		if (iterator != results.end())
+			element->ConsumePhysicsDescriptor(iterator->second);
+		PhysicsDescriptor physics = element->GetPhysicsDescriptor();
+		inputs.insert(std::make_pair(element->GetID(), physics));
+	}
+	this->physicsEngine->SetInputs(inputs);
+	return;
 }
 
 void GengleEngine::Start(void)
