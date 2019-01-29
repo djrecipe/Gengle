@@ -36,8 +36,9 @@ GElement::~GElement()
 
 void GElement::ConsumePhysicsDescriptor(PhysicsDescriptor value)
 {
-	// TODO 01/29/19: finish real implementation
+	this->direction = value.GetDirection();
 	this->origin = value.GetOrigin();
+	this->speed = value.GetSpeed();
 	return;
 }
 
@@ -49,5 +50,5 @@ GUID GElement::GetID(void)
 PhysicsDescriptor GElement::GetPhysicsDescriptor(void)
 {
 	// TODO 01/29/19: finish real implementation
-	return PhysicsDescriptor(this->id, glm::vec3(0.1, 0.0, 0.0), this->origin, 1.0);
+	return PhysicsDescriptor(this->id, this->direction, this->origin, this->speed);
 }
