@@ -4,6 +4,8 @@ GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in)
 {
 	CoCreateGuid(&this->id);
 
+	this->physics.SetID(this->id);
+
 	this->shaders = shaders_in;
 	this->vao = vao_in;
 	return;
@@ -12,6 +14,8 @@ GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in)
 GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, Buffer* array_buffer_in)
 {
 	CoCreateGuid(&this->id);
+
+	this->physics.SetID(this->id);
 
 	this->shaders = shaders_in;
 	this->vao = vao_in;
@@ -22,6 +26,8 @@ GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, Buffer* array
 GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, Buffer* array_buffer_in, Buffer* element_buffer_in)
 {
 	CoCreateGuid(&this->id);
+
+	this->physics.SetID(this->id);
 
 	this->shaders = shaders_in;
 	this->vao = vao_in;
@@ -36,9 +42,7 @@ GElement::~GElement()
 
 void GElement::ConsumePhysicsDescriptor(PhysicsDescriptor value)
 {
-	this->direction = value.GetDirection();
-	this->origin = value.GetOrigin();
-	this->speed = value.GetSpeed();
+	this->physics = value;
 	return;
 }
 
@@ -49,6 +53,17 @@ GUID GElement::GetID(void)
 
 PhysicsDescriptor GElement::GetPhysicsDescriptor(void)
 {
-	// TODO 01/29/19: finish real implementation
-	return PhysicsDescriptor(this->id, this->direction, this->origin, this->speed);
+	return this->physics;
+}
+
+void GElement::SetAcceleration(glm::vec3 value)
+{
+	this->physics.Acceleration = value;
+	return;
+}
+
+void GElement::SetVelocity(glm::vec3 value)
+{
+	this->physics.Velocity = value;
+	return;
 }

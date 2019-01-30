@@ -25,9 +25,11 @@ int main(int argc, char** argv)
 	GElement * element = NULL;
 	element = engine.AddBasicElement(TriangleElement);
 	element = engine.AddBasicElement(CubeElement);
+	element->SetAcceleration(glm::vec3(0.01, 0.0, 0.0));
 	element->SetScale(glm::vec3(20.0, 20.0, 20.0));
 	element->SetRotation(glm::radians(0.0f), glm::vec3(1.0, 0.0, 0.0));
 	element->SetOrigin(glm::vec3(30.0, 30.0, 30.0));
+	element->SetVelocity(glm::vec3(-1.0, 0.0, 0.0));
 	element = engine.AddBasicElement(CubeElement);
 	element->SetScale(glm::vec3(10.0, 5.0, 20.0));
 	element->SetRotation(glm::radians(45.0f), glm::vec3(0.0, 1.0, 0.0));

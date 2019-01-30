@@ -1,11 +1,30 @@
 #include "PhysicsDescriptor.h"
 
-PhysicsDescriptor::PhysicsDescriptor(GUID id_in, glm::vec3 direction_in, glm::vec3 origin_in, GLdouble speed_in)
+PhysicsDescriptor& PhysicsDescriptor::operator=(const PhysicsDescriptor &object)
+{
+	this->Acceleration = object.Acceleration;
+	this->Origin = object.Origin;
+	this->Velocity = object.Velocity;
+	return *this;
+}
+
+PhysicsDescriptor::PhysicsDescriptor(void)
+{
+	return;
+}
+
+PhysicsDescriptor::PhysicsDescriptor(GUID id_in)
 {
 	this->id = id_in;
-	this->direction = direction_in;
-	this->origin = origin_in;
-	this->speed = speed_in;
+	return;
+}
+
+PhysicsDescriptor::PhysicsDescriptor(GUID id_in, glm::vec3 origin_in, glm::vec3 velocity_in, glm::vec3 acceleration_in)
+{
+	this->Acceleration = acceleration_in;
+	this->id = id_in;
+	this->Origin = origin_in;
+	this->Velocity = velocity_in;
 	return;
 }
 
@@ -13,23 +32,15 @@ PhysicsDescriptor::~PhysicsDescriptor()
 {
 }
 
-
-glm::vec3 PhysicsDescriptor::GetDirection(void)
-{
-	return this->direction;
-}
-
 GUID PhysicsDescriptor::GetID(void)
 {
+	if (this->id == GUID_NULL)
+		throw new std::runtime_error("Error while retrieving physics descriptor ID (value is uninitialized)");
 	return this->id;
 }
 
-glm::vec3 PhysicsDescriptor::GetOrigin(void)
+void PhysicsDescriptor::SetID(GUID id_in)
 {
-	return this->origin;
-}
-
-GLdouble PhysicsDescriptor::GetSpeed(void)
-{
-	return this->speed;
+	this->id = id_in;
+	return;
 }

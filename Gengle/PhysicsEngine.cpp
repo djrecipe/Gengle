@@ -83,10 +83,9 @@ void PhysicsEngine::Process(void)
 
 PhysicsDescriptor PhysicsEngine::ProcessItem(PhysicsDescriptor value)
 {
-	// TODO 01/29/17 : create real implementation
-	glm::vec3 normalized_direction = glm::normalize(value.GetDirection());
-	normalized_direction *= value.GetSpeed();
-	PhysicsDescriptor result = PhysicsDescriptor(value.GetID(), value.GetDirection(), value.GetOrigin() + normalized_direction, value.GetSpeed());
+	PhysicsDescriptor result = value;
+	result.Origin += value.Velocity;
+	result.Velocity += value.Acceleration;
 	return result;
 }
 
