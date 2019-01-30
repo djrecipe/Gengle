@@ -84,7 +84,8 @@ void GengleEngine::KeyboardUpCallback(unsigned char key, int x, int y)
 		GengleEngine::instance->inputReceiver->ProcessKeyboardEvent(MoveDown, KeyStateUp);
 		break;
 	case 'x':
-		GengleEngine::instance->AddBasicElement(CubeElement);
+		GElement* entity = GengleEngine::instance->AddBasicElement(CubeElement);
+		entity->SetVelocity(glm::vec3(0.1, 0.0, 0.0));
 		break;
 	}
 	return;
@@ -207,8 +208,9 @@ GElement* GengleEngine::AddBasicElement(BasicElementTypes type, SpawnOriginTypes
 
 void GengleEngine::ProcessPhysics(void)
 {
-	// TODO 01/29/19: finish real implementation
-	std::map<GUID, PhysicsDescriptor, GUIDComparer> results = this->physicsEngine->GetResults();
+	// retrieve physics results
+	std::map<GUID, PhysicsDescriptor, GUIDComparer> results = this->physicsEngine->GetOutputs();
+	// loop through entities
 	std::map<GUID, PhysicsDescriptor, GUIDComparer> inputs;
 	std::map<GUID, PhysicsDescriptor, GUIDComparer>::iterator iterator;
 	for (GElement* element : this->elements)
@@ -219,6 +221,7 @@ void GengleEngine::ProcessPhysics(void)
 		PhysicsDescriptor physics = element->GetPhysicsDescriptor();
 		inputs.insert(std::make_pair(element->GetID(), physics));
 	}
+	// send new physics entity properties to physics engine
 	this->physicsEngine->SetInputs(inputs);
 	return;
 }

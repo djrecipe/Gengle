@@ -23,21 +23,14 @@ int main(int argc, char** argv)
 	GengleEngine engine(argc, argv, window_size);
 	// define elements
 	GElement * element = NULL;
-	element = engine.AddBasicElement(TriangleElement);
 	element = engine.AddBasicElement(CubeElement);
-	element->SetAcceleration(glm::vec3(0.01, 0.0, 0.0));
-	element->SetScale(glm::vec3(20.0, 20.0, 20.0));
-	element->SetRotation(glm::radians(0.0f), glm::vec3(1.0, 0.0, 0.0));
-	element->SetOrigin(glm::vec3(30.0, 30.0, 30.0));
-	element->SetVelocity(glm::vec3(-1.0, 0.0, 0.0));
-	element = engine.AddBasicElement(CubeElement);
-	element->SetScale(glm::vec3(10.0, 5.0, 20.0));
-	element->SetRotation(glm::radians(45.0f), glm::vec3(0.0, 1.0, 0.0));
-	element->SetOrigin(glm::vec3(-30.0, 100.0, 0.0));
-	element = engine.AddBasicElement(CubeElement);
-	element->SetScale(glm::vec3(100.0, 5.0, 20.0));
-	element->SetRotation(glm::radians(-277.0f), glm::vec3(0.0, 0.0, 1.0));
-	element->SetOrigin(glm::vec3(17.0, 5.0, -39.0));
+	element->SetScale(glm::vec3(200.0, 10.0, 40.0));
+	element->SetRotation(glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
+	element->SetOrigin(glm::vec3(0.0, 0.0, 0.0));
+	PhysicsRectangle rect = element->GetPhysicsDescriptor().GetHitbox();
+	dprint("Left: %f | Right: %f\n", rect.GetXMin(), rect.GetXMax());
+	dprint("Top: %f | Bottom: %f\n", rect.GetYMin(), rect.GetYMax());
+	dprint("Front: %f | Back: %f\n", rect.GetZMin(), rect.GetZMax());
 	// start display loop
 	engine.Start();
 	// end program

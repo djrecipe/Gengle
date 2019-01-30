@@ -23,6 +23,8 @@ protected:
 	Buffer* GElement::arrayBuffer = NULL;
 	Buffer* GElement::elementBuffer = NULL;
 	ShaderConfig* shaders;
+
+	void GElement::UpdatePhysicsHitbox(void);
 public:
 	GElement::GElement(ShaderConfig* shaders_in, VertexArray* vao_in);
 	GElement::GElement(ShaderConfig* shaders_in, VertexArray* vao_in, Buffer* array_buffer_in);
@@ -54,11 +56,13 @@ public:
 	{
 		this->rotationAngle = angle;
 		this->rotationAxis = axis;
+		this->UpdatePhysicsHitbox();
 		return;
 	}
 	void GElement::SetScale(glm::vec3 value)
 	{
 		this->scale = value;
+		this->UpdatePhysicsHitbox();
 		return;
 	}
 

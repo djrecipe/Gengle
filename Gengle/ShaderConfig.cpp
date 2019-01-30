@@ -74,6 +74,12 @@ GLuint ShaderConfig::LoadShaders(ShaderInfo* shaders)
 
 	return program;
 }
+
+/// <summary>
+/// Read shader program text from a file at the specified path
+/// </summary>
+/// <param name="filename">Shader file path</param>
+/// <returns>Shader file contents</returns>
 const GLchar* ShaderConfig::ReadShader(const GLchar* filename)
 {
 	FILE* infile;

@@ -8,6 +8,8 @@ GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in)
 
 	this->shaders = shaders_in;
 	this->vao = vao_in;
+
+	this->UpdatePhysicsHitbox();
 	return;
 }
 
@@ -20,6 +22,8 @@ GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, Buffer* array
 	this->shaders = shaders_in;
 	this->vao = vao_in;
 	this->arrayBuffer = array_buffer_in;
+
+	this->UpdatePhysicsHitbox();
 	return;
 }
 
@@ -33,6 +37,8 @@ GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, Buffer* array
 	this->vao = vao_in;
 	this->arrayBuffer = array_buffer_in;
 	this->elementBuffer = element_buffer_in;
+
+	this->UpdatePhysicsHitbox();
 	return;
 }
 
@@ -65,5 +71,11 @@ void GElement::SetAcceleration(glm::vec3 value)
 void GElement::SetVelocity(glm::vec3 value)
 {
 	this->physics.Velocity = value;
+	return;
+}
+
+void GElement::UpdatePhysicsHitbox(void)
+{
+	this->physics.Size = glm::abs(glm::rotate(this->scale, this->rotationAngle, this->rotationAxis));
 	return;
 }
