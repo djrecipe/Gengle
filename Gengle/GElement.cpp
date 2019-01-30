@@ -57,6 +57,11 @@ GUID GElement::GetID(void)
 	return this->id;
 }
 
+GLboolean GElement::GetEnablePhysics(void)
+{
+	return this->enablePhysics;
+}
+
 PhysicsDescriptor GElement::GetPhysicsDescriptor(void)
 {
 	return this->physics;
@@ -65,6 +70,12 @@ PhysicsDescriptor GElement::GetPhysicsDescriptor(void)
 void GElement::SetAcceleration(glm::vec3 value)
 {
 	this->physics.Acceleration = value;
+	return;
+}
+
+void GElement::SetEnablePhysics(GLboolean value)
+{
+	this->enablePhysics = value;
 	return;
 }
 

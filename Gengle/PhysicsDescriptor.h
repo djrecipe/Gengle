@@ -11,8 +11,6 @@ struct PhysicsDescriptor
 private:
 	GUID id;
 public:
-	GLboolean Enabled = true;
-
 	glm::vec3 Acceleration = glm::vec3(0.0);
 	glm::vec3 Origin = glm::vec3(0.0);
 	glm::vec3 Size = glm::vec3(1.0);

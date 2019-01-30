@@ -14,6 +14,7 @@ protected:
 	GUID id;
 
 	PhysicsDescriptor physics;
+	GLboolean enablePhysics = true;
 
 	glm::vec3 scale = glm::vec3(1.0f, 1.0f, 1.0f);
 	glm::vec3 rotationAxis = glm::vec3(1.0f, 0.0f, 0.0f);
@@ -35,6 +36,7 @@ public:
 	void GElement::ConsumePhysicsDescriptor(PhysicsDescriptor descriptor);
 	virtual void GElement::Draw(void) = 0;
 	virtual void GElement::Prepare(void) = 0;
+	GLboolean GElement::GetEnablePhysics(void);
 	GUID GElement::GetID(void);
 	glm::mat4x4 GElement::GetModelMatrix(void)
 	{
@@ -47,6 +49,7 @@ public:
 	PhysicsDescriptor GElement::GetPhysicsDescriptor(void);
 
 	void GElement::SetAcceleration(glm::vec3 value);
+	void GElement::SetEnablePhysics(GLboolean value);
 	void GElement::SetOrigin(glm::vec3 value)
 	{
 		this->physics.Origin = value;

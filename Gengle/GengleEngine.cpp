@@ -215,6 +215,8 @@ void GengleEngine::ProcessPhysics(void)
 	std::map<GUID, PhysicsDescriptor, GUIDComparer>::iterator iterator;
 	for (GElement* element : this->elements)
 	{
+		if (!element->GetEnablePhysics())
+			continue;
 		iterator = results.find(element->GetID());
 		if (iterator != results.end())
 			element->ConsumePhysicsDescriptor(iterator->second);
