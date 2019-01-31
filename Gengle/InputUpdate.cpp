@@ -29,6 +29,16 @@ glm::vec2 InputUpdate::GetViewAngles(void)
 	return this->viewAngles;
 }
 
+glm::vec3 InputUpdate::GetViewDirection(void)
+{
+	glm::vec2 angles = this->GetViewAngles();
+	glm::vec3 direction(0.0);
+	direction.x = cos(glm::radians(angles[0])) * cos(glm::radians(angles[1]));
+	direction.y = sin(glm::radians(angles[1]));
+	direction.z = sin(glm::radians(angles[0])) * cos(glm::radians(angles[1]));
+	return direction;
+}
+
 /// <summary>
 /// Retrieve updated view/camera translations
 /// </summary>

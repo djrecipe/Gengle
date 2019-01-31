@@ -87,6 +87,8 @@ void GElement::SetVelocity(glm::vec3 value)
 
 void GElement::UpdatePhysicsHitbox(void)
 {
-	this->physics.Size = glm::abs(glm::rotate(this->scale, this->rotationAngle, this->rotationAxis));
+	glm::vec3 value = glm::rotate(this->scale, this->rotationAngleOne, this->rotationAxisOne);
+	value = glm::rotate(value, this->rotationAngleTwo, this->rotationAxisTwo);
+	this->physics.Size = glm::abs(value);
 	return;
 }

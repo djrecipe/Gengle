@@ -22,7 +22,8 @@ public:
 		void(*keyboard_callback)(unsigned char, int, int),
 		void(*keyboard_up_callback)(unsigned char, int, int),
 		void(*special_keyboard)(int, int, int),
-		void(*mouse_move_callback)(int, int));
+		void(*mouse_move_callback)(int, int),
+		void(*mouse_button_callback)(int, int, int, int));
 	static void GlutManager::Start(void);
 	static void GlutManager::Exit(void);
 };

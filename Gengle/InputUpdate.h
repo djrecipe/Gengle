@@ -37,6 +37,7 @@ public:
 
 	MovementCommands InputUpdate::GetMovementFlags(void);
 	glm::vec2 InputUpdate::GetViewAngles(void);
+	glm::vec3 InputUpdate::GetViewDirection(void);
 	glm::vec3 InputUpdate::GetViewTranslations(void);
 	GLboolean InputUpdate::GetViewUpdatePending(void);
 

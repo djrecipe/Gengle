@@ -84,8 +84,6 @@ void GengleEngine::KeyboardUpCallback(unsigned char key, int x, int y)
 		GengleEngine::instance->inputReceiver->ProcessKeyboardEvent(MoveDown, KeyStateUp);
 		break;
 	case 'x':
-		GElement* entity = GengleEngine::instance->AddBasicElement(CubeElement);
-		entity->SetVelocity(glm::vec3(0.1, 0.0, 0.0));
 		break;
 	}
 	return;
@@ -94,6 +92,28 @@ void GengleEngine::KeyboardUpCallback(unsigned char key, int x, int y)
 void GengleEngine::MouseCallback(int x, int y)
 {
 	GengleEngine::instance->inputReceiver->ProcessMouseMovement(x, y);
+	return;
+}
+
+void GengleEngine::MouseButtonCallback(int button, int state, int x, int y)
+{
+	switch (button)
+	{
+	case GLUT_LEFT_BUTTON:
+		switch (state)
+		{
+		case GLUT_DOWN:
+			GElement* entity = GengleEngine::instance->AddBasicElement(CubeElement);
+			glm::vec3 direction = glm::normalize(GengleEngine::instance->inputUpdate->GetViewDirection());
+			glm::vec2 angles = GengleEngine::instance->inputUpdate->GetViewAngles();
+			direction *= 10.0;
+			entity->SetVelocity(direction);
+			entity->SetRotation(glm::radians(-1.0*angles[0]), glm::vec3(0.0, 1.0, 0.0));
+			entity->SetRotation(glm::radians(angles[1]), glm::vec3(0.0, 0.0, 1.0), RotationOrderTwo);
+			break;
+		}
+		break;
+	}
 	return;
 }
 
@@ -122,7 +142,8 @@ GengleEngine::GengleEngine(GLint argc, GLchar** argv, glm::vec2 window_size_in)
 	if (!GlutManager::Initialize(argc, argv, this->window_size,
 		GengleEngine::DrawCallback, GengleEngine::IdleCallback,
 		GengleEngine::KeyboardCallback, GengleEngine::KeyboardUpCallback,
-		GengleEngine::SpecialKeyboardCallback, GengleEngine::MouseCallback))
+		GengleEngine::SpecialKeyboardCallback, GengleEngine::MouseCallback,
+		GengleEngine::MouseButtonCallback))
 		throw std::runtime_error("Error while initializing Glut");
 	// create vao
 	this->vao = new VertexArray();

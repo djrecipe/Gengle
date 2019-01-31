@@ -18,11 +18,10 @@ void InputTransmitter::TransmitViewUpdate(void)
 	if (!this->inputUpdate->GetViewUpdatePending())
 		return;
 	// calculate camera target
-	glm::vec2 angles = this->inputUpdate->GetViewAngles();
-	glm::vec3 direction(0.0);
-	direction.x = cos(glm::radians(angles[0])) * cos(glm::radians(angles[1])) * this->movementSensitivities[0];
-	direction.y = sin(glm::radians(angles[1])) * this->movementSensitivities[1];
-	direction.z = sin(glm::radians(angles[0])) * cos(glm::radians(angles[1])) * this->movementSensitivities[2];
+	glm::vec3 direction = this->inputUpdate->GetViewDirection();
+	direction.x *= this->movementSensitivities[0];
+	direction.y *= this->movementSensitivities[1];
+	direction.z *= this->movementSensitivities[2];
 	// calculate camera origin
 	glm::vec3 cameraPos = this->inputUpdate->GetViewTranslations();
 	MovementCommands movement = this->inputUpdate->GetMovementFlags();

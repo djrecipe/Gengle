@@ -8,7 +8,8 @@ GLboolean GlutManager::Initialize(GLint argc, GLchar** argv, glm::vec2 window_si
 	void(*keyboard_callback)(unsigned char, int, int),
 	void(*keyboard_up_callback)(unsigned char, int, int),
 	void(*special_keyboard_callback)(int, int, int),
-	void(*mouse_move_callback)(int, int))
+	void(*mouse_move_callback)(int, int),
+	void(*mouse_button_callback)(int, int, int, int))
 {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA);
@@ -23,6 +24,7 @@ GLboolean GlutManager::Initialize(GLint argc, GLchar** argv, glm::vec2 window_si
 	glutKeyboardUpFunc(keyboard_up_callback);
 	glutSpecialFunc(special_keyboard_callback);
 	glutPassiveMotionFunc(mouse_move_callback);
+	glutMouseFunc(mouse_button_callback);
 	//
 	glutSetCursor(GLUT_CURSOR_NONE);
 	glutIgnoreKeyRepeat(true);

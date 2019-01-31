@@ -8,6 +8,8 @@
 #include "ShaderConfig.h"
 #include "VertexArray.h"
 
+enum RotationOrders : GLuint { RotationOrderOne = 0, RotationOrderTwo = 1 };
+
 class GElement
 {
 protected:
@@ -17,9 +19,12 @@ protected:
 	GLboolean enablePhysics = true;
 
 	glm::vec3 scale = glm::vec3(1.0f, 1.0f, 1.0f);
-	glm::vec3 rotationAxis = glm::vec3(1.0f, 0.0f, 0.0f);
 
-	GLfloat rotationAngle = 0.0f;
+	glm::vec3 rotationAxisOne = glm::vec3(1.0f, 0.0f, 0.0f);
+	glm::vec3 rotationAxisTwo = glm::vec3(1.0f, 0.0f, 0.0f);
+	GLfloat rotationAngleOne = 0.0f;
+	GLfloat rotationAngleTwo = 0.0f;
+
 	VertexArray* vao;
 	Buffer* GElement::arrayBuffer = NULL;
 	Buffer* GElement::elementBuffer = NULL;
@@ -42,7 +47,8 @@ public:
 	{
 		glm::mat4x4 matrix(1.0);
 		matrix = glm::translate(matrix, this->physics.Origin);
-		matrix = glm::rotate(matrix, this->rotationAngle, this->rotationAxis);
+		matrix = glm::rotate(matrix, this->rotationAngleOne, this->rotationAxisOne);
+		matrix = glm::rotate(matrix, this->rotationAngleTwo, this->rotationAxisTwo);
 		matrix = glm::scale(matrix, this->scale);
 		return matrix;
 	}
@@ -55,10 +61,19 @@ public:
 		this->physics.Origin = value;
 		return;
 	}
-	void GElement::SetRotation(GLfloat angle, glm::vec3 axis)
+	void GElement::SetRotation(GLfloat angle, glm::vec3 axis, RotationOrders rotation_order = RotationOrderOne)
 	{
-		this->rotationAngle = angle;
-		this->rotationAxis = axis;
+		switch (rotation_order)
+		{
+		case RotationOrderOne:
+			this->rotationAngleOne = angle;
+			this->rotationAxisOne = axis;
+			break;
+		case RotationOrderTwo:
+			this->rotationAngleTwo = angle;
+			this->rotationAxisTwo = axis;
+			break;
+		}
 		this->UpdatePhysicsHitbox();
 		return;
 	}
