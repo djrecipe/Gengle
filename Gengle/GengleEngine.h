@@ -7,7 +7,7 @@
 #include "InputUpdate.h"
 #include "PhysicsEngine.h"
 
-enum BasicElementTypes : GLuint { TriangleElement = 0, CubeElement = 1};
+enum BasicElementTypes : GLuint { TriangleElement = 0, CubeElement = 1, SphereElement = 2};
 enum SpawnOriginTypes : GLuint { AbsoluteSpawnOrigin = 0, RelativeSpawnOrigin = 1};
 
 class GengleEngine

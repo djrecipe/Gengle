@@ -1,14 +1,9 @@
 #include "Triangle.h"
 
 #pragma region Instance Methods
-/// <summary>
-/// Create a new triangle using the specified resources
-/// </summary>
-/// <param name="shaders">Shader configuration</param>
-/// <param name="vao">Vertex array</param>
-/// <param name="array_buffer_in">Array buffer for vertex data</param>
-Triangle::Triangle(ShaderConfig* shaders, VertexArray* vao, Buffer* array_buffer_in)
-	: GElement(shaders, vao, array_buffer_in)
+
+Triangle::Triangle(ShaderConfig* shaders, VertexArray* vao, Buffer* array_buffer_in, Buffer* element_buffer_in)
+	: GElement(shaders, vao, array_buffer_in, element_buffer_in)
 {
 	return;
 }
@@ -32,6 +27,7 @@ void Triangle::Prepare(void)
 	this->shaders->Prepare();
 	// send uniform values
 	this->shaders->GetUniform("modelMatrix")->SetValue(this->GetModelMatrix());
+	this->shaders->GetUniform("inputColor")->SetValue(glm::vec4(0.05, 0.1, 0.9, 1.0));
 	// activate vertex array object
 	this->vao->Activate();
 	// activate array buffer

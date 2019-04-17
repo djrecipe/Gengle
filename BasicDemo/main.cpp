@@ -23,14 +23,10 @@ int main(int argc, char** argv)
 	GengleEngine engine(argc, argv, window_size);
 	// define elements
 	GElement * element = NULL;
-	element = engine.AddBasicElement(CubeElement);
-	element->SetScale(glm::vec3(200.0, 10.0, 40.0));
-	element->SetRotation(glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
-	element->SetOrigin(glm::vec3(0.0, 0.0, 0.0));
-	PhysicsRectangle rect = element->GetPhysicsDescriptor().GetHitbox();
-	dprint("Left: %f | Right: %f\n", rect.GetXMin(), rect.GetXMax());
-	dprint("Top: %f | Bottom: %f\n", rect.GetYMin(), rect.GetYMax());
-	dprint("Front: %f | Back: %f\n", rect.GetZMin(), rect.GetZMax());
+	element = engine.AddBasicElement(SphereElement);
+	element->SetScale(glm::vec3(200.0, 100.0, 40.0));
+	element->SetRotation(glm::radians(70.0f), glm::vec3(0.0, 1.0, 1.0));
+	element->SetOrigin(glm::vec3(10.0, -10.0, 0.0));
 	// start display loop
 	engine.Start();
 	// end program

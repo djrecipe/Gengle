@@ -12,11 +12,15 @@ enum RotationOrders : GLuint { RotationOrderOne = 0, RotationOrderTwo = 1 };
 
 class GElement
 {
+
+	static const GLuint GElement::NumHitboxIndices = 36;
+	static const GLuint GElement::NumHitboxVertices = 8;
 protected:
 	GUID id;
 
 	PhysicsDescriptor physics;
 	GLboolean enablePhysics = true;
+	GLboolean drawHitbox = true;
 
 	glm::vec3 scale = glm::vec3(1.0f, 1.0f, 1.0f);
 
@@ -40,7 +44,10 @@ public:
 
 	void GElement::ConsumePhysicsDescriptor(PhysicsDescriptor descriptor);
 	virtual void GElement::Draw(void) = 0;
+	void GElement::DrawHitbox(void);
 	virtual void GElement::Prepare(void) = 0;
+	void GElement::PrepareHitbox(void);
+	GLboolean GElement::GetDrawHitbox(void);
 	GLboolean GElement::GetEnablePhysics(void);
 	GUID GElement::GetID(void);
 	glm::mat4x4 GElement::GetModelMatrix(void)
@@ -55,6 +62,7 @@ public:
 	PhysicsDescriptor GElement::GetPhysicsDescriptor(void);
 
 	void GElement::SetAcceleration(glm::vec3 value);
+	void GElement::SetDrawHitbox(GLboolean value);
 	void GElement::SetEnablePhysics(GLboolean value);
 	void GElement::SetOrigin(glm::vec3 value)
 	{

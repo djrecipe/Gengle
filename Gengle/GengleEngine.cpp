@@ -2,6 +2,7 @@
 
 #include "Cube.h"
 #include "Triangle.h"
+#include "Sphere.h"
 
 #include <GLEW/1.11.0/glew.h>
 #include <Freeglut/2.8.1/VS2013/freeglut.h>	
@@ -16,6 +17,8 @@ void GengleEngine::DrawCallback()
 	{
 		element->Prepare();
 		element->Draw();
+		element->PrepareHitbox();
+		element->DrawHitbox();
 	}
 
 	glFlush();
@@ -166,6 +169,7 @@ GengleEngine::GengleEngine(GLint argc, GLchar** argv, glm::vec2 window_size_in)
 	this->shaderConfig->AddUniform("modelMatrix");
 	this->shaderConfig->AddUniform("projectionMatrix");
 	this->shaderConfig->AddUniform("viewMatrix");
+	this->shaderConfig->AddUniform("inputColor");
 	// create input transmitter
 	this->inputTransmitter = new InputTransmitter(inputUpdate,
 		this->shaderConfig->GetUniform("projectionMatrix"),
@@ -207,10 +211,15 @@ GElement* GengleEngine::AddBasicElement(BasicElementTypes type, SpawnOriginTypes
 	switch (type)
 	{
 	case TriangleElement:
-		element = (GElement*)new Triangle(this->shaderConfig, this->vao, this->arrayBuffer);
+		element = (GElement*)new Triangle(this->shaderConfig, this->vao,
+			this->arrayBuffer, this->elementBuffer);
 		break;
 	case CubeElement:
 		element = (GElement*)new Cube(this->shaderConfig, this->vao,
+			this->arrayBuffer, this->elementBuffer);
+		break;
+	case SphereElement:
+		element = (GElement*)new Sphere(this->shaderConfig, this->vao,
 			this->arrayBuffer, this->elementBuffer);
 		break;
 	}

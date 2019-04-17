@@ -1,12 +1,4 @@
 #include "Cube.h"
-#include "GlobalTools.h"
-#include "ShaderConfig.h"
-
-#define FREEGLUT_STATIC
-
-#pragma comment(lib, "Freeglut/2.8.1/VS2015/x32/freeglut_static.lib")
-
-#include <Freeglut/2.8.1/VS2013/freeglut.h>	
 
 Cube::Cube(ShaderConfig* shaders, VertexArray* vao, Buffer* array_buffer_in, Buffer* element_buffer_in) :
 	GElement(shaders, vao, array_buffer_in, element_buffer_in)
@@ -26,6 +18,7 @@ void Cube::Prepare(void)
 	this->shaders->Prepare();
 	// send uniform values
 	this->shaders->GetUniform("modelMatrix")->SetValue(this->GetModelMatrix());
+	this->shaders->GetUniform("inputColor")->SetValue(glm::vec4(0.05, 0.1, 0.9, 1.0));
 	// activate vertex array object
 	this->vao->Activate();
     // activate array buffer
