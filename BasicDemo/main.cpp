@@ -24,7 +24,7 @@ int main(int argc, char** argv)
 	// define elements
 	GElement * element = NULL;
 	element = engine.AddBasicElement(SphereElement);
-	element->SetScale(glm::vec3(200.0, 100.0, 40.0));
+	element->SetScale(glm::vec3(10.0, 10.0, 10.0));
 	element->SetRotation(glm::radians(70.0f), glm::vec3(0.0, 1.0, 1.0));
 	element->SetOrigin(glm::vec3(10.0, -10.0, 0.0));
 	// start display loop

@@ -25,11 +25,14 @@
 #include <chrono>
 #include <combaseapi.h>
 #include <iostream>
+#include <math.h>
 #include <map>
 #include <mutex>
 #include <thread>
 #include <stdexcept>
 #include <vector>
+
+#define PI 3.14159265358979323846
 
 
 #define BUFFER_OFFSET(x)  ((const void*) (x))
