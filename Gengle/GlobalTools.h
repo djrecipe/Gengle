@@ -15,7 +15,8 @@
 #include <glm/gtx/rotate_vector.hpp>
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
-#include <Freeglut/2.8.1/VS2013/freeglut.h>	
+#include <Freeglut/2.8.1/VS2013/freeglut.h>
+#include <FreeImage/FreeImage.h>
 #ifndef FT2BUILD_H_
 #define FT2BUILD_H_
 #include <FreeType/2.9.1/freetype/config/ftheader.h>

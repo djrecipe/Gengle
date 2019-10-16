@@ -29,6 +29,10 @@ protected:
 	Buffer* GElement::arrayBuffer = NULL;
 	Buffer* GElement::elementBuffer = NULL;
 	ShaderConfig* shaders;
+	
+	FIBITMAP * texture = NULL;
+	GLint textureWidth = 0;
+	GLint textureHeight = 0;
 
 	void GElement::UpdatePhysicsHitbox(void);
 public:
@@ -41,6 +45,17 @@ public:
 	void GElement::ConsumePhysicsDescriptor(PhysicsDescriptor descriptor);
 	virtual void GElement::Draw(void) = 0;
 	virtual void GElement::Prepare(void) = 0;
+	void GElement::PrepareHitbox(void);
+	void GElement::PrepareTexture(void)
+	{
+		if (this->texture == NULL || this->textureWidth < 1 || this->textureHeight < 1)
+			return;
+		
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, this->textureWidth, this->textureHeight,
+			0, GL_BGRA, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(this->texture));
+		return;
+	}
+	GLboolean GElement::GetDrawHitbox(void);
 	GLboolean GElement::GetEnablePhysics(void);
 	GUID GElement::GetID(void);
 	glm::mat4x4 GElement::GetModelMatrix(void)
@@ -81,6 +96,20 @@ public:
 	{
 		this->scale = value;
 		this->UpdatePhysicsHitbox();
+		return;
+	}
+
+	void GElement::SetTexture(GLchar* path)
+	{
+		if (this->texture != NULL)
+			FreeImage_Unload(this->texture);
+		
+		FIBITMAP* bitmap = FreeImage_Load(FreeImage_GetFileType(path, 0), path);
+		this->texture = FreeImage_ConvertTo32Bits(bitmap);
+		this->textureWidth = FreeImage_GetWidth(this->texture);
+		this->textureHeight = FreeImage_GetHeight(this->texture);
+		dprint("Texture '%s' is %d x %d\n", path, this->textureWidth, this->textureHeight);
+
 		return;
 	}
 

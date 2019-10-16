@@ -44,6 +44,8 @@ GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, Buffer* array
 
 GElement::~GElement()
 {
+	if (this->texture != NULL)
+		FreeImage_Unload(this->texture);
 }
 
 void GElement::ConsumePhysicsDescriptor(PhysicsDescriptor value)

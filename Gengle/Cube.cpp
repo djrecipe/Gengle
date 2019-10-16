@@ -46,6 +46,7 @@ void Cube::Prepare(void)
 	// send data to activated buffer
     GLuint indices[NumIndices] = { 0, 5, 4, 4, 6, 0, 6, 4, 3, 3, 2, 6, 2, 3, 7, 7, 1, 2, 1, 7, 5, 5, 0, 1, 0, 1, 2, 2, 6, 0, 5, 7, 3, 3, 4, 5 };
     this->elementBuffer->SendData(indices, sizeof(indices));
+	this->PrepareTexture();
     //
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glPointSize(1.0f);

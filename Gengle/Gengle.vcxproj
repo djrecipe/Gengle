@@ -73,6 +73,7 @@
     <LibraryPath>..\Libraries;$(LibraryPath)</LibraryPath>
     <OutDir>..\bin\$(Configuration)</OutDir>
     <IntDir>obj\$(Configuration)</IntDir>
+    <ReferencePath>$(VC_ReferencesPath_x86);..\Libraries\FreeImage</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -113,6 +114,7 @@
     <Lib>
       <SubSystem>
       </SubSystem>
+      <AdditionalDependencies>%(AdditionalDependencies);FreeImage/FreeImage.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
