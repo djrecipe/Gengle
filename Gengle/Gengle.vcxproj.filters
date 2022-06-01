@@ -66,7 +66,7 @@
     <ClCompile Include="PhysicsRectangle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VoxelArrayGElement.cpp">
+    <ClCompile Include="VoxelCubeArrayGElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Voxel.cpp">
@@ -128,7 +128,7 @@
     <ClInclude Include="VoxelConstants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VoxelArrayGElement.h">
+    <ClInclude Include="VoxelCubeArrayGElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Voxel.h">

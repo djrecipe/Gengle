@@ -216,7 +216,7 @@
     <ClCompile Include="ShaderConfig.cpp" />
     <ClCompile Include="VertexAttribute.cpp" />
     <ClCompile Include="Voxel.cpp" />
-    <ClCompile Include="VoxelArrayGElement.cpp" />
+    <ClCompile Include="VoxelCubeArrayGElement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CubeGElement.h" />
@@ -238,7 +238,7 @@
     <ClInclude Include="VertexAttribute.h" />
     <ClInclude Include="Voxel.h" />
     <ClInclude Include="VoxelConstants.h" />
-    <ClInclude Include="VoxelArrayGElement.h" />
+    <ClInclude Include="VoxelCubeArrayGElement.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
