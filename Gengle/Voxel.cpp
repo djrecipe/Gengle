@@ -351,45 +351,32 @@ vector<glm::vec3> Voxel::SetMarchingCubesParameters(GLchar corner_vals[8], bool 
     for(GLint i=0; i<num_vertices; i++)
     {
         bool limit_node=false;
-        // determine corners associated with target edge
+        // determine relevant corners for interpolation for current vertex
         GLshort corner=Voxel::CornersOfEdge[these_edges[i]][0];
-        // determine current placement
+        // determine interpolation ratio for current vertex
         GLfloat ratio=((GLfloat)abs(corner_vals[corner]))/((GLfloat)(abs(corner_vals[corner])+abs(corner_vals[Voxel::CornersOfEdge[these_edges[i]][1]])));
-        // TODO 6/1/22: simplify this logic
-        GLint this_axis;
-        this_axis=-1;
-        for(GLint axis_i=0; axis_i<3; axis_i++)
+        // determine axis of interpolation for curent vertex
+        GLint axis=-1;
+        for(GLint axis_index=0; axis_index<3 && axis == -1; axis_index++)
         {
-            for(GLint axis_j=0; axis_j<4; axis_j++)
+            for(GLint edge_index=0; edge_index<4 && axis == -1; edge_index++)
             {
-                if (Voxel::EdgesByAxis[axis_i][axis_j]==these_edges[i])
-                {
-                    this_axis=axis_i;
-                }
-                if(this_axis!=(GLuint)-1)
-                    break;
-            }
-            if(this_axis!=(GLuint)-1)
-                break;
-        }
-        for(GLint j=0; j<3 && !limit_node; j++)
-        {
-            for (GLint k=0; k<2 && !limit_node; k++)
-            {
-                for(GLint m=0; m<4 && !limit_node; m++)
-                {
-                    if(these_edges[i]==Voxel::EdgesByRegion[j][k][m] && limit[j][k])
-                        limit_node=true;
-                }
+                if (Voxel::EdgesByAxis[axis_index][edge_index]==these_edges[i])
+                    axis=axis_index;
             }
         }
+        /* each edge is 1-dimensional and therefor only interpolated on a single axis */
+        // determine x, y, z, values for current vertex
         float node_vals[3];
         for(GLint j=0; j<3; j++)
         {
+            // assume vertex is on a non-interpolated edge
             node_vals[j]=this->corners[corner][j];
-            if(this_axis==j)
+            // add interpolation value to the 'active' edge
+            if(axis==j)
                 node_vals[j]+=(GLfloat)(2.0*ratio*this->radius);
         }
+        // store vertices
         vertices.push_back(glm::vec3(node_vals[0],node_vals[1],node_vals[2]));
 
     }
