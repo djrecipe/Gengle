@@ -312,7 +312,6 @@ Voxel::Voxel(GLfloat x_in, GLfloat y_in, GLfloat z_in, GLfloat radius_in)
     // 7
     this_corner[0]=x_in+radius_in; this_corner[1]=y_in+radius_in; this_corner[2]=z_in-radius_in;
     memcpy(this->corners[7],this_corner,sizeof(GLfloat)*3);
-    this->num_vertices=0;
     return;
 }  
 Voxel & Voxel::operator=(const Voxel & voxel_in)
@@ -331,6 +330,7 @@ Voxel & Voxel::operator=(const Voxel & voxel_in)
 }
 vector<glm::vec3> Voxel::SetMarchingCubesParameters(GLchar corner_vals[8], bool limit[3][2])
 {
+    // determine marchine cubes case
     vector<glm::vec3> vertices;
     this->marchingCubeCase=0;
     for(GLint i=0; i<8; i++)
@@ -338,21 +338,24 @@ vector<glm::vec3> Voxel::SetMarchingCubesParameters(GLchar corner_vals[8], bool 
         if(corner_vals[i]<0)
             this->marchingCubeCase+=(GLshort)pow(2.0,i);
     }
-    if(this->marchingCubeCase==0 || this->marchingCubeCase==255)
+    // determine number of vertices
+    GLuint num_vertices=(GLuint)Voxel::VerticeCount[this->marchingCubeCase];
+    // these cases render nothing
+    if(num_vertices < 1)
         return vertices;
+    // determine target edges (edges on which vertices will be placed)
     GLchar these_edges[15];
     memcpy(these_edges,Voxel::EdgesOfIndex[this->marchingCubeCase],sizeof(GLchar)*15);
-    GLuint num_verts=3*(GLuint)Voxel::VerticeCount[this->marchingCubeCase];         
-    GLfloat these_vertices[45];
-    int neighbor_indices[3];
-    assert(num_verts<=45);
-    for(GLint i=0; i<15; i++)
+    vertices.resize(num_vertices); 
+    // iterate through each vertex
+    for(GLint i=0; i<num_vertices; i++)
     {
         bool limit_node=false;
-        if (these_edges[i]==-1)
-            break;
-        GLshort this_corner=Voxel::CornersOfEdge[these_edges[i]][0];
-        GLfloat this_ratio=((GLfloat)abs(corner_vals[this_corner]))/((GLfloat)(abs(corner_vals[this_corner])+abs(corner_vals[Voxel::CornersOfEdge[these_edges[i]][1]])));
+        // determine corners associated with target edge
+        GLshort corner=Voxel::CornersOfEdge[these_edges[i]][0];
+        // determine current placement
+        GLfloat ratio=((GLfloat)abs(corner_vals[corner]))/((GLfloat)(abs(corner_vals[corner])+abs(corner_vals[Voxel::CornersOfEdge[these_edges[i]][1]])));
+        // TODO 6/1/22: simplify this logic
         GLint this_axis;
         this_axis=-1;
         for(GLint axis_i=0; axis_i<3; axis_i++)
@@ -383,41 +386,15 @@ vector<glm::vec3> Voxel::SetMarchingCubesParameters(GLchar corner_vals[8], bool 
         float node_vals[3];
         for(GLint j=0; j<3; j++)
         {
-            node_vals[j]=this->corners[this_corner][j];
+            node_vals[j]=this->corners[corner][j];
             if(this_axis==j)
-                node_vals[j]+=(GLfloat)(2.0*this_ratio*this->radius);
-            these_vertices[i*3+j]=node_vals[j];
-            //dprint("v%i: %f\n",j+i*3,temp_vertices[j+i*j]);
+                node_vals[j]+=(GLfloat)(2.0*ratio*this->radius);
         }
         vertices.push_back(glm::vec3(node_vals[0],node_vals[1],node_vals[2]));
-        //neighbor_indices[i%3]=net_in.AddNode(glm::vec3(node_vals[0],node_vals[1],node_vals[2]),limit_node);
-        //if((i+1)%3==0)
-        //{
-        //    for(int j=0; j<3; j++)
-        //    {
-        //        GLuint my_neighbors[2];
-        //        GLuint my_neighbor_counter=0;
-        //        for(int k=0; k<3; k++)
-        //        {
-        //            if(neighbor_indices[k]!=neighbor_indices[j])
-        //                my_neighbors[my_neighbor_counter++]=neighbor_indices[k];
-
-        //        }
-        //        if(my_neighbor_counter>0)
-        //            net_in.AddNeighbors(neighbor_indices[j],my_neighbors,my_neighbor_counter);
-        //    }
-        //}
 
     }
-    this->num_vertices=(GLchar)num_verts;
     return vertices;
 }
-//GLint Voxel::AddCubeMesh(LineStrip & line_in)
-//{
-//    for(GLint i=0; i<12; i++)
-//        line_in.AddInstance(this->corners[Voxel::CornersOfEdge[i][0]],this->corners[Voxel::CornersOfEdge[i][1]]);
-//    return _OK;
-//}
 Voxel::~Voxel(void)
 {
     return;

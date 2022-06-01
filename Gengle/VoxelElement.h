@@ -22,11 +22,6 @@ private:
     /// instances, etc. <seealso cref="VoxelField::FillWithRandom()"/></summary>
     /// <remarks>This member is initialized directly via a required parameter passed to the constructor of this class.</remarks>
     GLuint width;
-    /// <summary>A float representing the size of each individual voxel. This value is not only passed directly to the constructor of each voxel generated in <c>VoxelField::FillWithRandom()</c> but also
-    /// indirectly determines the coordinates at which each voxel will be located. Currently our Marching Cubes algorithm implementation expects all voxels which need to be connected to each-other to be
-    /// the same size.<seealso cref="Voxel::radius"/><seealso cref="VoxelField::FillWithRandom()"/></summary>
-    /// <remarks>This member is initialized directly via a parameter passed to the constructor.</remarks>
-    GLfloat vox_size;
     /// <summary>An std::vector (managed array) of Voxel class instances which holds all of the Voxels in this entire VoxelField. This member is populated via <c>VoxelField::FillWithRandom()</c> which uses
     /// a noise function to generate a three dimensional contiguous series of corner density values which are then passed to the Voxel constructor, thus configuring the Voxel and determining its vertices.
     /// <seealso cref="VoxelField::FillWithRandom()"/><seealso cref="VoxelField::vox"/></summary>

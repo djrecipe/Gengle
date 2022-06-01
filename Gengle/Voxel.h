@@ -64,11 +64,6 @@ protected:
     /// voxel and adding 2 to the power of the sign of the corner value (1 if the corner value is negative; 0 if the corner value is positive).</summary>
     /// <remarks>Initialized to _BAD (-1) in this class's constructor and set to a proper index in <c>Voxel::SetMarchingCubesParameters()</c>. If this value is 0 or 255 then no vertices will be rendered.</remarks>
     GLshort marchingCubeCase;
-    /// <summary>An 8-bit number representing the number of vertex components this voxel currently contains. This number represents the number of floating point numbers (the x,y, and z components for each
-    /// of the up-to 15 vertices) - not the number of vertices (which will be this value divided by three) - and will/should never exceed 45 (thus this number only need be 8-bit).
-    /// <seealso cref="Voxel::SetMarchingCubesParameters()"/></summary>
-    /// <remarks>Initialized to 0 in this class's constructor and modified again in <c>Voxel::SetMarchingCubesParameters()</c>.</remarks>
-    GLchar num_vertices;
 public:
     //--- Public Methods ---//
     // ~ Constructor(s)

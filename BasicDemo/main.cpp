@@ -32,6 +32,7 @@ int main(int argc, char** argv)
 	//
 	VoxelGElement * voxel_element = (VoxelGElement *)engine.AddBasicElement(VoxelElement);
 	voxel_element->SetOrigin(glm::vec3(0.0, 0.0, 0.0));
+	voxel_element->SetScale(glm::vec3(1.0, 1.0, 1.0));
 	voxel_element->UpdateVertices();
 	// start display loop
 	engine.Start();

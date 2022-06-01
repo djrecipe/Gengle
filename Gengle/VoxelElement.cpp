@@ -13,14 +13,13 @@ using namespace std;
 VoxelGElement::VoxelGElement(ShaderConfig* shaders, VertexArray* vao, Buffer* array_buffer_in, Buffer* element_buffer_in) :
 	GElement(shaders, vao, array_buffer_in, element_buffer_in)
 {
-    this->width=10;
+    this->width=100;
     this->widthplus=this->width+1;
     this->widthpluscubed=this->widthplus*this->widthplus*this->widthplus;
     this->width_squared=this->width*this->width;
     this->width_cubed=this->width_squared*this->width;
     this->v_width=this->width+1;
     this->v_w_squared=this->v_width*this->v_width;
-    this->vox_size=10.0f;
 	return;
 }
 
@@ -79,7 +78,7 @@ void VoxelGElement::UpdateVertices()
         GLuint z_index=i/width_squared;
         GLuint y_index=(i-z_index*width_squared)/this->width;
         GLuint x_index=i-z_index*width_squared-y_index*this->width;
-        Voxel temp_vox(this->physics.Origin[0]+(GLfloat)(x_index*this->vox_size*2.0),this->physics.Origin[1]+(GLfloat)(y_index*this->vox_size*2.0),this->physics.Origin[2]+(GLfloat)(z_index*this->vox_size*2.0),this->vox_size);
+        Voxel temp_vox(this->physics.Origin[0]+(GLfloat)(x_index*this->physics.Size[0] * 2.0), this->physics.Origin[1] + (GLfloat)(y_index * this->physics.Size[1] * 2.0), this->physics.Origin[2] + (GLfloat)(z_index * this->physics.Size[2] * 2.0), this->physics.Size[0]);
         GLchar these_params[8]={this->vox[x_index+y_index*v_width+z_index*v_w_squared],
                                 this->vox[x_index+y_index*v_width+z_index*v_w_squared+v_w_squared],
                                 this->vox[x_index+y_index*v_width+z_index*v_w_squared+v_w_squared+1],
