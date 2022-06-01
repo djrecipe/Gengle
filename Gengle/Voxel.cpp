@@ -328,7 +328,7 @@ Voxel & Voxel::operator=(const Voxel & voxel_in)
     this->marchingCubeCase=voxel_in.marchingCubeCase;
     return *this;
 }
-vector<glm::vec3> Voxel::SetMarchingCubesParameters(GLchar corner_vals[8], bool limit[3][2])
+vector<glm::vec3> Voxel::SetMarchingCubesParameters(GLchar corner_vals[8])
 {
     // determine marchine cubes case
     vector<glm::vec3> vertices;

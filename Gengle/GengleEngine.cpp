@@ -1,8 +1,8 @@
 #include "GengleEngine.h"
 
-#include "Cube.h"
-#include "Triangle.h"
-#include "VoxelElement.h"
+#include "CubeGElement.h"
+#include "TriangleGElement.h"
+#include "VoxelArrayGElement.h"
 
 #include <GLEW/1.11.0/glew.h>
 #include <Freeglut/2.8.1/VS2013/freeglut.h>	
@@ -208,14 +208,14 @@ GElement* GengleEngine::AddBasicElement(BasicElementTypes type, SpawnOriginTypes
 	switch (type)
 	{
 	case TriangleElement:
-		element = (GElement*)new Triangle(this->shaderConfig, this->vao, this->arrayBuffer);
+		element = (GElement*)new TriangleGElement(this->shaderConfig, this->vao, this->arrayBuffer);
 		break;
 	case CubeElement:
-		element = (GElement*)new Cube(this->shaderConfig, this->vao,
+		element = (GElement*)new CubeGElement(this->shaderConfig, this->vao,
 			this->arrayBuffer, this->elementBuffer);
 		break;
 	case VoxelElement:
-		element = (GElement*)new VoxelGElement(this->shaderConfig, this->vao,
+		element = (GElement*)new VoxelArrayGElement(this->shaderConfig, this->vao,
 			this->arrayBuffer, this->elementBuffer);
 		break;
 	}
@@ -259,7 +259,7 @@ void GengleEngine::Start(void)
 	// enable shader
 	this->shaderConfig->Prepare();
 	// send projection matrix
-	glm::mat4 initial_projection_matrix = glm::perspective(glm::radians(45.0f), window_size[0] / window_size[1], 0.1f, 1000.0f);
+	glm::mat4 initial_projection_matrix = glm::perspective(glm::radians(45.0f), window_size[0] / window_size[1], 0.1f, 10000.0f);
 	this->shaderConfig->GetUniform("projectionMatrix")->SetValue(initial_projection_matrix);
 	// send view matrix
 	glm::mat4 initial_view_matrix = glm::mat4(1.0);

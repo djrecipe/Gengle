@@ -1,4 +1,4 @@
-#include "Triangle.h"
+#include "TriangleGElement.h"
 
 #pragma region Instance Methods
 /// <summary>
@@ -7,7 +7,7 @@
 /// <param name="shaders">Shader configuration</param>
 /// <param name="vao">Vertex array</param>
 /// <param name="array_buffer_in">Array buffer for vertex data</param>
-Triangle::Triangle(ShaderConfig* shaders, VertexArray* vao, Buffer* array_buffer_in)
+TriangleGElement::TriangleGElement(ShaderConfig* shaders, VertexArray* vao, Buffer* array_buffer_in)
 	: GElement(shaders, vao, array_buffer_in)
 {
 	return;
@@ -17,16 +17,16 @@ Triangle::Triangle(ShaderConfig* shaders, VertexArray* vao, Buffer* array_buffer
 /// Draw the triangle
 /// </summary>
 /// <seealso cref="glDrawArrays"/>
-void Triangle::Draw(void)
+void TriangleGElement::Draw(void)
 {
-	glDrawArrays(GL_TRIANGLES, 0, Triangle::NumVertices);
+	glDrawArrays(GL_TRIANGLES, 0, TriangleGElement::NumVertices);
 	return;
 }
 
 /// <summary>
 /// Prepare to draw the triangle
 /// </summary>
-void Triangle::Prepare(void)
+void TriangleGElement::Prepare(void)
 {
 	// configure shaders
 	this->shaders->Prepare();

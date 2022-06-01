@@ -11,11 +11,11 @@ using namespace std;
 #include <GLEW/1.11.0/glew.h>
 
 #include "GlobalTools.h"    
-#include "Cube.h"
-#include "Triangle.h"
+#include "CubeGElement.h"
+#include "TriangleGElement.h"
 #include "GengleEngine.h"
 #include "GlutManager.h"
-#include "VoxelElement.h"
+#include "VoxelArrayGElement.h"
 
 int main(int argc, char** argv)
 {
@@ -30,7 +30,7 @@ int main(int argc, char** argv)
 	element->SetOrigin(glm::vec3(10.0, -10.0, 0.0));
 	element->SetTexture("BoxTexture.jpg");
 	//
-	VoxelGElement * voxel_element = (VoxelGElement *)engine.AddBasicElement(VoxelElement);
+	VoxelArrayGElement * voxel_element = (VoxelArrayGElement *)engine.AddBasicElement(VoxelElement);
 	voxel_element->SetOrigin(glm::vec3(0.0, 0.0, 0.0));
 	voxel_element->SetScale(glm::vec3(1.0, 1.0, 1.0));
 	voxel_element->UpdateVertices();

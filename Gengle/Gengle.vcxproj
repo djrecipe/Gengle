@@ -198,12 +198,12 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="CubeGElement.cpp" />
     <ClCompile Include="GengleEngine.cpp" />
     <ClCompile Include="PhysicsDescriptor.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="PhysicsRectangle.cpp" />
-    <ClCompile Include="Triangle.cpp" />
+    <ClCompile Include="TriangleGElement.cpp" />
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="GElement.cpp" />
     <ClCompile Include="InputTransmitter.cpp" />
@@ -216,15 +216,15 @@
     <ClCompile Include="ShaderConfig.cpp" />
     <ClCompile Include="VertexAttribute.cpp" />
     <ClCompile Include="Voxel.cpp" />
-    <ClCompile Include="VoxelElement.cpp" />
+    <ClCompile Include="VoxelArrayGElement.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cube.h" />
+    <ClInclude Include="CubeGElement.h" />
     <ClInclude Include="GengleEngine.h" />
     <ClInclude Include="PhysicsDescriptor.h" />
     <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="PhysicsRectangle.h" />
-    <ClInclude Include="Triangle.h" />
+    <ClInclude Include="TriangleGElement.h" />
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="GElement.h" />
     <ClInclude Include="InputTransmitter.h" />
@@ -238,7 +238,7 @@
     <ClInclude Include="VertexAttribute.h" />
     <ClInclude Include="Voxel.h" />
     <ClInclude Include="VoxelConstants.h" />
-    <ClInclude Include="VoxelElement.h" />
+    <ClInclude Include="VoxelArrayGElement.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

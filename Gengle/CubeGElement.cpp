@@ -1,4 +1,4 @@
-#include "Cube.h"
+#include "CubeGElement.h"
 #include "GlobalTools.h"
 #include "ShaderConfig.h"
 
@@ -8,19 +8,19 @@
 
 #include <Freeglut/2.8.1/VS2013/freeglut.h>	
 
-Cube::Cube(ShaderConfig* shaders, VertexArray* vao, Buffer* array_buffer_in, Buffer* element_buffer_in) :
+CubeGElement::CubeGElement(ShaderConfig* shaders, VertexArray* vao, Buffer* array_buffer_in, Buffer* element_buffer_in) :
 	GElement(shaders, vao, array_buffer_in, element_buffer_in)
 {
 	return;
 }
 
-void Cube::Draw(void)
+void CubeGElement::Draw(void)
 {
-	glDrawElements(GL_TRIANGLES, Cube::NumIndices, GL_UNSIGNED_INT, (void*)0);
+	glDrawElements(GL_TRIANGLES, CubeGElement::NumIndices, GL_UNSIGNED_INT, (void*)0);
 	return;
 }
 
-void Cube::Prepare(void)
+void CubeGElement::Prepare(void)
 {
 	// configure shaders
 	this->shaders->Prepare();

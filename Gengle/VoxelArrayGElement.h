@@ -6,7 +6,7 @@
 #include "Voxel.h"
 using namespace std;
 
-class VoxelGElement : public GElement
+class VoxelArrayGElement : public GElement
 {
 private:
 	vector<GLfloat> vertices;
@@ -15,13 +15,11 @@ private:
     GLfloat width_cubed;
     GLfloat v_width;
     GLfloat v_w_squared;
-    GLuint widthplus;
-    GLuint widthpluscubed;
     /// <summary>An unsigned integer representing the number of voxels in a single dimension of the voxel field (the size of each dimension should be the same). The total number of voxels will be this
     /// number to the power of three. This value is used widely through-out <c>VoxelField::FillWithRandom()</c> in order to iterate through the voxels, match corner density values to Voxel class
     /// instances, etc. <seealso cref="VoxelField::FillWithRandom()"/></summary>
     /// <remarks>This member is initialized directly via a required parameter passed to the constructor of this class.</remarks>
-    GLuint width;
+    GLuint voxelWidth;
     /// <summary>An std::vector (managed array) of Voxel class instances which holds all of the Voxels in this entire VoxelField. This member is populated via <c>VoxelField::FillWithRandom()</c> which uses
     /// a noise function to generate a three dimensional contiguous series of corner density values which are then passed to the Voxel constructor, thus configuring the Voxel and determining its vertices.
     /// <seealso cref="VoxelField::FillWithRandom()"/><seealso cref="VoxelField::vox"/></summary>
@@ -34,7 +32,7 @@ private:
     /// <remarks>This member need not be initialized in the constructor.</remarks>
     vector<GLchar> vox;
 public:
-	VoxelGElement(ShaderConfig* shaders, VertexArray* vao, Buffer* array_buffer_in, Buffer* element_buffer_in);
+	VoxelArrayGElement(ShaderConfig* shaders, VertexArray* vao, Buffer* array_buffer_in, Buffer* element_buffer_in);
 	void Draw(void);
 	void Prepare(void);
 	void UpdateVertices();

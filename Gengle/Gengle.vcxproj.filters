@@ -45,10 +45,10 @@
     <ClCompile Include="InputReceiver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Cube.cpp">
+    <ClCompile Include="CubeGElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Triangle.cpp">
+    <ClCompile Include="TriangleGElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GengleEngine.cpp">
@@ -66,7 +66,7 @@
     <ClCompile Include="PhysicsRectangle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VoxelElement.cpp">
+    <ClCompile Include="VoxelArrayGElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Voxel.cpp">
@@ -104,10 +104,10 @@
     <ClInclude Include="InputReceiver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Cube.h">
+    <ClInclude Include="CubeGElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Triangle.h">
+    <ClInclude Include="TriangleGElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GengleEngine.h">
@@ -128,7 +128,7 @@
     <ClInclude Include="VoxelConstants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VoxelElement.h">
+    <ClInclude Include="VoxelArrayGElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Voxel.h">
