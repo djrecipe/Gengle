@@ -2,6 +2,7 @@
 
 #include "Cube.h"
 #include "Triangle.h"
+#include "VoxelElement.h"
 
 #include <GLEW/1.11.0/glew.h>
 #include <Freeglut/2.8.1/VS2013/freeglut.h>	
@@ -211,6 +212,10 @@ GElement* GengleEngine::AddBasicElement(BasicElementTypes type, SpawnOriginTypes
 		break;
 	case CubeElement:
 		element = (GElement*)new Cube(this->shaderConfig, this->vao,
+			this->arrayBuffer, this->elementBuffer);
+		break;
+	case VoxelElement:
+		element = (GElement*)new VoxelGElement(this->shaderConfig, this->vao,
 			this->arrayBuffer, this->elementBuffer);
 		break;
 	}

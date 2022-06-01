@@ -215,6 +215,7 @@
     <ClCompile Include="GlutManager.cpp" />
     <ClCompile Include="ShaderConfig.cpp" />
     <ClCompile Include="VertexAttribute.cpp" />
+    <ClCompile Include="Voxel.cpp" />
     <ClCompile Include="VoxelElement.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +236,7 @@
     <ClInclude Include="GlutManager.h" />
     <ClInclude Include="ShaderConfig.h" />
     <ClInclude Include="VertexAttribute.h" />
+    <ClInclude Include="Voxel.h" />
     <ClInclude Include="VoxelConstants.h" />
     <ClInclude Include="VoxelElement.h" />
   </ItemGroup>

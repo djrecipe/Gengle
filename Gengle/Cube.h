@@ -7,7 +7,7 @@
 #include "VertexArray.h"
 #include "Buffer.h"
 
-class Cube : GElement
+class Cube : public GElement
 {
 private:
 public:

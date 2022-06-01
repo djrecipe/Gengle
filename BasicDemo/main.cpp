@@ -15,6 +15,7 @@ using namespace std;
 #include "Triangle.h"
 #include "GengleEngine.h"
 #include "GlutManager.h"
+#include "VoxelElement.h"
 
 int main(int argc, char** argv)
 {
@@ -28,6 +29,10 @@ int main(int argc, char** argv)
 	element->SetRotation(glm::radians(70.0f), glm::vec3(0.0, 1.0, 1.0));
 	element->SetOrigin(glm::vec3(10.0, -10.0, 0.0));
 	element->SetTexture("BoxTexture.jpg");
+	//
+	VoxelGElement * voxel_element = (VoxelGElement *)engine.AddBasicElement(VoxelElement);
+	voxel_element->SetOrigin(glm::vec3(0.0, 0.0, 0.0));
+	voxel_element->UpdateVertices();
 	// start display loop
 	engine.Start();
 	// end program
