@@ -13,6 +13,7 @@ class VoxelCubeArrayGElement : public GElement
 {
 private:
 	vector<GLfloat> vertices;
+	vector<GLfloat> normals;
 	vector<GLuint> elements;
     /// <summary>Number of voxel cubes within this voxel array</summary>
     GLuint numVoxelCubes;

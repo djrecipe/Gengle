@@ -116,6 +116,9 @@
       </SubSystem>
       <AdditionalDependencies>%(AdditionalDependencies);FreeImage/FreeImage.lib</AdditionalDependencies>
     </Lib>
+    <PostBuildEvent>
+      <Command>XCOPY "$(SolutionDir)Resources" "$(OutDir)" /E /Y /I /R /D</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -138,6 +141,9 @@
       <SubSystem>
       </SubSystem>
     </Lib>
+    <PostBuildEvent>
+      <Command>XCOPY "$(SolutionDir)Resources" "$(OutDir)" /E /Y /I /R /D</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -167,6 +173,9 @@
       <SubSystem>
       </SubSystem>
     </Lib>
+    <PostBuildEvent>
+      <Command>XCOPY "$(SolutionDir)Resources" "$(OutDir)" /E /Y /I /R /D</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -196,10 +205,14 @@
       <SubSystem>
       </SubSystem>
     </Lib>
+    <PostBuildEvent>
+      <Command>XCOPY "$(SolutionDir)Resources" "$(OutDir)" /E /Y /I /R /D</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CubeGElement.cpp" />
     <ClCompile Include="GengleEngine.cpp" />
+    <ClCompile Include="MathUtils.cpp" />
     <ClCompile Include="PhysicsDescriptor.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="PhysicsRectangle.cpp" />
@@ -221,6 +234,7 @@
   <ItemGroup>
     <ClInclude Include="CubeGElement.h" />
     <ClInclude Include="GengleEngine.h" />
+    <ClInclude Include="MathUtils.h" />
     <ClInclude Include="PhysicsDescriptor.h" />
     <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="PhysicsRectangle.h" />

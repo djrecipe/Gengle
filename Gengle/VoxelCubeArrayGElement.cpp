@@ -1,6 +1,7 @@
 #include "VoxelCubeArrayGElement.h"
 #include "Voxel.h"
 #include "GlobalTools.h"
+#include "MathUtils.h"
 #include "ShaderConfig.h"
 using namespace std;
 #define FREEGLUT_STATIC
@@ -74,6 +75,7 @@ void VoxelCubeArrayGElement::GenerateVertices()
     }
     //SurfaceNet my_surface;
     std::vector<glm::vec3> all_vertices;
+    std::vector<glm::vec3> all_normals;
     std::vector<GLuint> all_elements;
     for(GLuint i=0; i<width_cubed; i++)
     {
@@ -97,11 +99,31 @@ void VoxelCubeArrayGElement::GenerateVertices()
             all_elements.push_back(all_elements.size());
         }
     }
-    //
+    // calculate normals
+    GLuint these_indices[3];
+    for (GLuint i = 0; i < all_elements.size(); i++)
+    {
+        these_indices[i % 3] = all_elements[i];
+        if (i % 3 == 2)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                glm::vec3 normal = MathUtils::Normal(
+                    all_vertices[these_indices[1]] - all_vertices[these_indices[0]],
+                    all_vertices[these_indices[2]] - all_vertices[these_indices[0]],
+                    false);
+                all_normals.push_back(normal);
+            }
+        }
+    }
+    // copy vertices
     this->vertices.resize(all_vertices.size()*3);
     memcpy(&this->vertices[0], &all_vertices[0], all_vertices.size()*3 * sizeof(GLfloat));
-    //
+    // copy element indices
     this->elements.resize(all_elements.size());
     memcpy(&this->elements[0], &all_elements[0], all_elements.size() * sizeof(GLuint));
+    // copy normals
+    this->normals.resize(all_normals.size());
+    memcpy(&this->normals[0], &all_normals[0], all_normals.size() * sizeof(GLfloat));
     return;
 }
