@@ -71,7 +71,7 @@
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>..\Includes;$(IncludePath)</IncludePath>
     <LibraryPath>..\Libraries;$(LibraryPath)</LibraryPath>
-    <OutDir>..\bin\$(Configuration)</OutDir>
+    <OutDir>bin\$(Configuration)</OutDir>
     <IntDir>obj\$(Configuration)</IntDir>
     <ReferencePath>$(VC_ReferencesPath_x86);..\Libraries\FreeImage</ReferencePath>
   </PropertyGroup>
@@ -79,20 +79,22 @@
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>..\Includes;$(IncludePath)</IncludePath>
     <LibraryPath>..\Libraries;$(LibraryPath)</LibraryPath>
-    <OutDir>..\bin\$(Configuration)</OutDir>
+    <OutDir>bin\$(Configuration)</OutDir>
     <IntDir>obj\$(Configuration)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>..\Includes;$(IncludePath)</IncludePath>
     <LibraryPath>..\Libraries;$(LibraryPath)</LibraryPath>
-    <OutDir>..\bin\$(Configuration)</OutDir>
+    <OutDir>bin\$(Configuration)</OutDir>
     <IntDir>obj\$(Configuration)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>..\Includes;$(IncludePath)</IncludePath>
     <LibraryPath>..\Libraries;$(LibraryPath)</LibraryPath>
+    <OutDir>bin\$(Configuration)</OutDir>
+    <IntDir>obj\$(Configuration)</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -117,7 +119,8 @@
       <AdditionalDependencies>%(AdditionalDependencies);FreeImage/FreeImage.lib</AdditionalDependencies>
     </Lib>
     <PostBuildEvent>
-      <Command>XCOPY "$(SolutionDir)Resources" "$(OutDir)" /E /Y /I /R /D</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -142,7 +145,8 @@
       </SubSystem>
     </Lib>
     <PostBuildEvent>
-      <Command>XCOPY "$(SolutionDir)Resources" "$(OutDir)" /E /Y /I /R /D</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -174,7 +178,8 @@
       </SubSystem>
     </Lib>
     <PostBuildEvent>
-      <Command>XCOPY "$(SolutionDir)Resources" "$(OutDir)" /E /Y /I /R /D</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -206,7 +211,8 @@
       </SubSystem>
     </Lib>
     <PostBuildEvent>
-      <Command>XCOPY "$(SolutionDir)Resources" "$(OutDir)" /E /Y /I /R /D</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

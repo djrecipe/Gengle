@@ -71,21 +71,30 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>..\Includes;..\Gengle;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>..\Libraries;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
-    <OutDir>..\bin\$(Configuration)</OutDir>
+    <LibraryPath>..\Libraries;..\Gengle\bin\$(Configuration);..\Libraries;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
+    <OutDir>bin\$(Configuration)</OutDir>
     <IntDir>obj\$(Configuration)</IntDir>
+    <ReferencePath>..\References;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>..\Includes;..\Gengle;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>..\Libraries;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
-    <OutDir>..\bin\$(Configuration)</OutDir>
+    <LibraryPath>..\Libraries;..\Gengle\bin\$(Configuration);..\Libraries;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
+    <OutDir>bin\$(Configuration)</OutDir>
     <IntDir>obj\$(Configuration)</IntDir>
+    <ReferencePath>..\References;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\bin\$(Configuration)</OutDir>
+    <OutDir>bin\$(Configuration)</OutDir>
     <IntDir>obj\$(Configuration)</IntDir>
-    <LibraryPath>..\Libraries;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
+    <LibraryPath>..\Libraries;..\Gengle\bin\$(Configuration);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
     <IncludePath>..\Includes;..\Gengle;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <ReferencePath>..\References;$(ReferencePath)</ReferencePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>bin\$(Configuration)</OutDir>
+    <IntDir>obj\$(Configuration)</IntDir>
+    <LibraryPath>..\Libraries;..\Gengle\bin\$(Configuration);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <ReferencePath>..\References;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -97,6 +106,10 @@
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PostBuildEvent>
+      <Command>XCOPY "$(SolutionDir)Resources" "$(OutDir)" /E /Y /I /R /D
+XCOPY "$(SolutionDir)References" "$(OutDir)" /E /Y /I /R /D</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -104,6 +117,10 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
+    <PostBuildEvent>
+      <Command>XCOPY "$(SolutionDir)Resources" "$(OutDir)" /E /Y /I /R /D
+XCOPY "$(SolutionDir)References" "$(OutDir)" /E /Y /I /R /D</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -119,6 +136,10 @@
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PostBuildEvent>
+      <Command>XCOPY "$(SolutionDir)Resources" "$(OutDir)" /E /Y /I /R /D
+XCOPY "$(SolutionDir)References" "$(OutDir)" /E /Y /I /R /D</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -132,6 +153,10 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PostBuildEvent>
+      <Command>XCOPY "$(SolutionDir)Resources" "$(OutDir)" /E /Y /I /R /D
+XCOPY "$(SolutionDir)References" "$(OutDir)" /E /Y /I /R /D</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
