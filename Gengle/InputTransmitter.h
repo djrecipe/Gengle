@@ -10,10 +10,10 @@ private:
 	ShaderUniform * uniformView;
 	glm::vec3 movementSensitivities = glm::vec3(0.05f, 0.05f, 0.05f);
 public:
-	InputTransmitter::InputTransmitter(InputUpdate * input_update_in,
+	InputTransmitter(InputUpdate * input_update_in,
 		ShaderUniform * projection_uniform_in, ShaderUniform * view_uniform_in);
-	InputTransmitter::~InputTransmitter();
+	~InputTransmitter();
 
-	void InputTransmitter::TransmitViewUpdate(void);
+	void TransmitViewUpdate(void);
 };
 

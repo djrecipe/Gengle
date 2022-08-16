@@ -11,11 +11,11 @@ class CubeGElement : public GElement
 {
 private:
 public:
-	static const GLuint CubeGElement::NumVertices = 8;
-	static const GLuint CubeGElement::NumIndices = 36;
-	CubeGElement::CubeGElement(ShaderConfig* shaders, VertexArray* vao, Buffer* array_buffer_in, Buffer* element_buffer_in);
-	void CubeGElement::Draw(void);
-	void CubeGElement::Prepare(void);
+	static const GLuint NumVertices = 8;
+	static const GLuint NumIndices = 36;
+	CubeGElement(ShaderConfig* shaders, VertexArray* vao, Buffer* array_buffer_in, Buffer* element_buffer_in);
+	void Draw(void);
+	void Prepare(void);
 };
 
 #endif

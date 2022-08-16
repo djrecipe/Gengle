@@ -15,10 +15,10 @@ class TriangleGElement : GElement
 {
 private:
 public:
-	static const GLuint TriangleGElement::NumVertices = 3;
-	TriangleGElement::TriangleGElement(ShaderConfig* shaders, VertexArray* vao, Buffer* array_buffer_in);
-	void TriangleGElement::Draw(void);
-	void TriangleGElement::Prepare(void);
+	static const GLuint NumVertices = 3;
+	TriangleGElement(ShaderConfig* shaders, VertexArray* vao, Buffer* array_buffer_in);
+	void Draw(void);
+	void Prepare(void);
 };
 
 #endif

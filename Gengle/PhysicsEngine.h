@@ -16,23 +16,23 @@ private:
 	std::map<GUID, PhysicsDescriptor, GUIDComparer> outputs;
 
 	std::map<GUID, PhysicsDescriptor, GUIDComparer> GetInputs(void);
-	GLboolean PhysicsEngine::GetIsRunning(void);
+	GLboolean GetIsRunning(void);
 
-	void PhysicsEngine::Process(void);
+	void Process(void);
 
-	void PhysicsEngine::SetIsRunning(GLboolean value);
-	void PhysicsEngine::SetOutputs(std::map<GUID, PhysicsDescriptor, GUIDComparer> items);
+	void SetIsRunning(GLboolean value);
+	void SetOutputs(std::map<GUID, PhysicsDescriptor, GUIDComparer> items);
 
-	void PhysicsEngine::StartRunning(void);
-	void PhysicsEngine::StopRunning(void);
+	void StartRunning(void);
+	void StopRunning(void);
 public:
-	PhysicsEngine::PhysicsEngine(void);
-	PhysicsEngine::~PhysicsEngine(void);
+	PhysicsEngine(void);
+	~PhysicsEngine(void);
 
 	std::map<GUID, PhysicsDescriptor, GUIDComparer> GetOutputs(void);
 
-	PhysicsDescriptor PhysicsEngine::ProcessItem(PhysicsDescriptor value, std::vector<PhysicsDescriptor> collisions);
+	PhysicsDescriptor ProcessItem(PhysicsDescriptor value, std::vector<PhysicsDescriptor> collisions);
 
-	void PhysicsEngine::SetInputs(std::map<GUID, PhysicsDescriptor, GUIDComparer> items);
+	void SetInputs(std::map<GUID, PhysicsDescriptor, GUIDComparer> items);
 };
 

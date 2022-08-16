@@ -18,14 +18,14 @@ public:
 
 	GLfloat Mass = 1.0;
 
-	PhysicsDescriptor& PhysicsDescriptor::operator=(const PhysicsDescriptor &object);
+	PhysicsDescriptor& operator=(const PhysicsDescriptor &object);
 
-	PhysicsDescriptor::PhysicsDescriptor(void);
-	PhysicsDescriptor::PhysicsDescriptor(GUID id_in);
-	PhysicsDescriptor::~PhysicsDescriptor();
+	PhysicsDescriptor(void);
+	PhysicsDescriptor(GUID id_in);
+	~PhysicsDescriptor();
 
-	PhysicsRectangle PhysicsDescriptor::GetHitbox(void);
-	GUID PhysicsDescriptor::GetID(void);
-	void PhysicsDescriptor::SetID(GUID id_in);
+	PhysicsRectangle GetHitbox(void);
+	GUID GetID(void);
+	void SetID(GUID id_in);
 };
 

@@ -16,16 +16,16 @@ private:
 	glm::vec2 mouseSensitivities = glm::vec2(0.1f, 0.1f);
 	glm::vec2 verticalLimits = glm::vec2(-85.0f, 85.0f);
 public:
-	InputReceiver::InputReceiver(InputUpdate * input_update_in, glm::vec2 window_size);
-	InputReceiver::~InputReceiver();
-	void InputReceiver::ProcessKeyboardEvent(MovementCommands command, KeyStates state);
-	void InputReceiver::ProcessMouseMovement(int x, int y);
-	void InputReceiver::SetMouseSensitivities(GLfloat x, GLfloat y)
+	InputReceiver(InputUpdate * input_update_in, glm::vec2 window_size);
+	~InputReceiver();
+	void ProcessKeyboardEvent(MovementCommands command, KeyStates state);
+	void ProcessMouseMovement(int x, int y);
+	void SetMouseSensitivities(GLfloat x, GLfloat y)
 	{
 		this->mouseSensitivities = glm::vec2(x, y);
 		return;
 	}
-	void InputReceiver::SetVerticalLimits(GLfloat lower, GLfloat upper)
+	void SetVerticalLimits(GLfloat lower, GLfloat upper)
 	{
 		this->verticalLimits = glm::vec2(lower, upper);
 		return;

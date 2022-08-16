@@ -43,7 +43,7 @@ protected:
     /// <summary>An array of indices (into <c>Voxel::VerticeCount</c> and <c>Voxel::EdgesOfIndex</c>) which indicate which of the 256 possible voxel configurations must be inverted (from its "equivalent 
     /// case" - something I won't cover here). This member is currently not being utilized but may be utilized for debugging purposes if needed.</summary>
     static GLuchar InvertedIndices[];
-    static GLushort Voxel::EdgesByRegion[3][2][4];
+    static GLushort EdgesByRegion[3][2][4];
     //--- Protected Variables ---//
     /// <summary>A three element array of floats which represent the x,y, and z components of the very middle of the cubic area represented by the voxel. This center value is used in order to determine
     /// the vertices at the corner of the voxel and subsequently the generated interpolated vertices which lie on its edge. This value could also be used for operations such as proximity checks.

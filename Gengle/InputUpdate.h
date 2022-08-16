@@ -30,19 +30,19 @@ private:
 	glm::vec2 viewAngles = glm::vec2(0.0, 0.0);
 	glm::vec3 viewTranslations = glm::vec3(0.0, 0.0, 0.0);
 public:
-	InputUpdate::InputUpdate();
-	InputUpdate::~InputUpdate();
+	InputUpdate();
+	~InputUpdate();
 
-	void InputUpdate::SetMovementFlag(MovementCommands flag, bool set);
+	void SetMovementFlag(MovementCommands flag, bool set);
 
-	MovementCommands InputUpdate::GetMovementFlags(void);
-	glm::vec2 InputUpdate::GetViewAngles(void);
-	glm::vec3 InputUpdate::GetViewDirection(void);
-	glm::vec3 InputUpdate::GetViewTranslations(void);
-	GLboolean InputUpdate::GetViewUpdatePending(void);
+	MovementCommands GetMovementFlags(void);
+	glm::vec2 GetViewAngles(void);
+	glm::vec3 GetViewDirection(void);
+	glm::vec3 GetViewTranslations(void);
+	GLboolean GetViewUpdatePending(void);
 
-	void InputUpdate::SetViewAngles(glm::vec2 value);
-	void InputUpdate::SetViewTranslations(glm::vec3 value);
-	void InputUpdate::SetViewUpdatePending(GLboolean value);
+	void SetViewAngles(glm::vec2 value);
+	void SetViewTranslations(glm::vec3 value);
+	void SetViewUpdatePending(GLboolean value);
 };
 

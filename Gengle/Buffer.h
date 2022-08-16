@@ -10,21 +10,21 @@ enum BufferTypes { Array = 0, Element = 1 };
 class Buffer
 {
 private:
-	static const GLuint Buffer::MAX_BUFFERS = 64;
-	static GLuint Buffer::current_index;
-	static GLuint Buffer::buffer[Buffer::MAX_BUFFERS];
-	static GLboolean Buffer::occupied[Buffer::MAX_BUFFERS];
-	GLint Buffer::index;
-	GLenum Buffer::type;
+	static const GLuint MAX_BUFFERS = 64;
+	static GLuint current_index;
+	static GLuint buffer[Buffer::MAX_BUFFERS];
+	static GLboolean occupied[Buffer::MAX_BUFFERS];
+	GLint index;
+	GLenum type;
 public:
-	GLboolean Buffer::Activate(void);
-    GLboolean Buffer::Delete(void);
-	GLboolean Buffer::Initialize(BufferTypes buffer_type);
-	GLboolean Buffer::SendData(const GLvoid* data, GLsizeiptr size);
-	GLboolean Buffer::SendData(const GLvoid* data, GLsizeiptr size, GLenum usage);
-	GLboolean Buffer::Valid(void);
-	Buffer::Buffer();
-	Buffer::~Buffer();
+	GLboolean Activate(void);
+    GLboolean Delete(void);
+	GLboolean Initialize(BufferTypes buffer_type);
+	GLboolean SendData(const GLvoid* data, GLsizeiptr size);
+	GLboolean SendData(const GLvoid* data, GLsizeiptr size, GLenum usage);
+	GLboolean Valid(void);
+	Buffer();
+	~Buffer();
 };
 
 #endif // __OmniBuffer__

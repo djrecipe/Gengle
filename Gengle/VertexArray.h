@@ -11,18 +11,18 @@
 class VertexArray
 {
 private:
-	static const GLuint VertexArray::MAX_VAOS = 64;
-	static GLuint VertexArray::current_index;
-	static GLuint VertexArray::vao[VertexArray::MAX_VAOS];
-	static GLboolean VertexArray::occupied[VertexArray::MAX_VAOS];
-	GLint VertexArray::index;
+	static const GLuint MAX_VAOS = 64;
+	static GLuint current_index;
+	static GLuint vao[VertexArray::MAX_VAOS];
+	static GLboolean occupied[VertexArray::MAX_VAOS];
+	GLint index;
 public:
-	void VertexArray::Activate(void);
-	void VertexArray::Delete(void);
-	void VertexArray::Initialize(void);
-	GLboolean VertexArray::Valid(void);
-	VertexArray::VertexArray();
-	VertexArray::~VertexArray();
+	void Activate(void);
+	void Delete(void);
+	void Initialize(void);
+	GLboolean Valid(void);
+	VertexArray();
+	~VertexArray();
 };
 
 #endif // __OmniVertexArray__

@@ -23,20 +23,20 @@ typedef struct
 class ShaderConfig
 {
 private:
-	GLuint ShaderConfig::shaderProgram = -1;
-	std::vector<VertexAttribute> ShaderConfig::attributes;
-	std::vector<ShaderUniform*> ShaderConfig::uniforms;
-	static GLuint ShaderConfig::LoadShaders(ShaderInfo*);
-	static const GLchar* ShaderConfig::ReadShader(const GLchar* filename);
+	GLuint shaderProgram = -1;
+	std::vector<VertexAttribute> attributes;
+	std::vector<ShaderUniform*> uniforms;
+	static GLuint LoadShaders(ShaderInfo*);
+	static const GLchar* ReadShader(const GLchar* filename);
 public:
-	ShaderConfig::ShaderConfig(ShaderInfo shaders_in[], std::vector<VertexAttribute> attributes_in);
-	ShaderConfig::~ShaderConfig();
+	ShaderConfig(ShaderInfo shaders_in[], std::vector<VertexAttribute> attributes_in);
+	~ShaderConfig();
 
-	void ShaderConfig::AddUniform(const char * name);
-	ShaderUniform* ShaderConfig::GetUniform(const char * name);
-	void ShaderConfig::Prepare(void);
-	void ShaderConfig::SetAttributes(std::vector<VertexAttribute> attributes_in);
-	void ShaderConfig::SetProgram(ShaderInfo shaders_in[]);
+	void AddUniform(const char * name);
+	ShaderUniform* GetUniform(const char * name);
+	void Prepare(void);
+	void SetAttributes(std::vector<VertexAttribute> attributes_in);
+	void SetProgram(ShaderInfo shaders_in[]);
 };
 
 #endif // __OmniShaders__

@@ -26,27 +26,27 @@ protected:
 	GLfloat rotationAngleTwo = 0.0f;
 
 	VertexArray* vao;
-	Buffer* GElement::arrayBuffer = NULL;
-	Buffer* GElement::elementBuffer = NULL;
+	Buffer* arrayBuffer = NULL;
+	Buffer* elementBuffer = NULL;
 	ShaderConfig* shaders;
 	
 	FIBITMAP * texture = NULL;
 	GLint textureWidth = 0;
 	GLint textureHeight = 0;
 
-	void GElement::UpdatePhysicsHitbox(void);
+	void UpdatePhysicsHitbox(void);
 public:
-	GElement::GElement(ShaderConfig* shaders_in, VertexArray* vao_in);
-	GElement::GElement(ShaderConfig* shaders_in, VertexArray* vao_in, Buffer* array_buffer_in);
-	GElement::GElement(ShaderConfig* shaders_in, VertexArray* vao_in, Buffer* array_buffer_in, Buffer* element_buffer_in);
+	GElement(ShaderConfig* shaders_in, VertexArray* vao_in);
+	GElement(ShaderConfig* shaders_in, VertexArray* vao_in, Buffer* array_buffer_in);
+	GElement(ShaderConfig* shaders_in, VertexArray* vao_in, Buffer* array_buffer_in, Buffer* element_buffer_in);
 
-	GElement::~GElement();
+	~GElement();
 
-	void GElement::ConsumePhysicsDescriptor(PhysicsDescriptor descriptor);
-	virtual void GElement::Draw(void) = 0;
-	virtual void GElement::Prepare(void) = 0;
-	void GElement::PrepareHitbox(void);
-	void GElement::PrepareTexture(void)
+	void ConsumePhysicsDescriptor(PhysicsDescriptor descriptor);
+	virtual void Draw(void) = 0;
+	virtual void Prepare(void) = 0;
+	void PrepareHitbox(void);
+	void PrepareTexture(void)
 	{
 		if (this->texture == NULL || this->textureWidth < 1 || this->textureHeight < 1)
 			return;
@@ -55,10 +55,10 @@ public:
 			0, GL_BGRA, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(this->texture));
 		return;
 	}
-	GLboolean GElement::GetDrawHitbox(void);
-	GLboolean GElement::GetEnablePhysics(void);
-	GUID GElement::GetID(void);
-	glm::mat4x4 GElement::GetModelMatrix(void)
+	GLboolean GetDrawHitbox(void);
+	GLboolean GetEnablePhysics(void);
+	GUID GetID(void);
+	glm::mat4x4 GetModelMatrix(void)
 	{
 		glm::mat4x4 matrix(1.0);
 		matrix = glm::translate(matrix, this->physics.Origin);
@@ -67,16 +67,16 @@ public:
 		matrix = glm::scale(matrix, this->scale);
 		return matrix;
 	}
-	PhysicsDescriptor GElement::GetPhysicsDescriptor(void);
+	PhysicsDescriptor GetPhysicsDescriptor(void);
 
-	void GElement::SetAcceleration(glm::vec3 value);
-	void GElement::SetEnablePhysics(GLboolean value);
-	void GElement::SetOrigin(glm::vec3 value)
+	void SetAcceleration(glm::vec3 value);
+	void SetEnablePhysics(GLboolean value);
+	void SetOrigin(glm::vec3 value)
 	{
 		this->physics.Origin = value;
 		return;
 	}
-	void GElement::SetRotation(GLfloat angle, glm::vec3 axis, RotationOrders rotation_order = RotationOrderOne)
+	void SetRotation(GLfloat angle, glm::vec3 axis, RotationOrders rotation_order = RotationOrderOne)
 	{
 		switch (rotation_order)
 		{
@@ -92,14 +92,14 @@ public:
 		this->UpdatePhysicsHitbox();
 		return;
 	}
-	void GElement::SetScale(glm::vec3 value)
+	void SetScale(glm::vec3 value)
 	{
 		this->scale = value;
 		this->UpdatePhysicsHitbox();
 		return;
 	}
 
-	void GElement::SetTexture(GLchar* path)
+	void SetTexture(GLchar* path)
 	{
 		if (this->texture != NULL)
 			FreeImage_Unload(this->texture);
@@ -113,6 +113,6 @@ public:
 		return;
 	}
 
-	void GElement::SetVelocity(glm::vec3 value);
+	void SetVelocity(glm::vec3 value);
 };
 

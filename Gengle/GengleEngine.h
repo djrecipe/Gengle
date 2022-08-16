@@ -15,13 +15,13 @@ class GengleEngine
 private:
 	static GengleEngine* instance;
 
-	static void GengleEngine::DrawCallback();
-	static void GengleEngine::IdleCallback();
-	static void GengleEngine::KeyboardCallback(unsigned char key, int x, int y);
-	static void GengleEngine::KeyboardUpCallback(unsigned char key, int x, int y);
-	static void GengleEngine::MouseButtonCallback(int button, int state, int x, int y);
-	static void GengleEngine::MouseCallback(int x, int y);
-	static void GengleEngine::SpecialKeyboardCallback(int key, int x, int y);
+	static void DrawCallback();
+	static void IdleCallback();
+	static void KeyboardCallback(unsigned char key, int x, int y);
+	static void KeyboardUpCallback(unsigned char key, int x, int y);
+	static void MouseButtonCallback(int button, int state, int x, int y);
+	static void MouseCallback(int x, int y);
+	static void SpecialKeyboardCallback(int key, int x, int y);
 
 	glm::vec2 window_size;
 
@@ -38,13 +38,13 @@ private:
 
 	PhysicsEngine* physicsEngine = NULL;
 
-	void GengleEngine::ProcessPhysics(void);
+	void ProcessPhysics(void);
 public:
-	GengleEngine::GengleEngine(GLint argc, GLchar** argv, glm::vec2 window_size_in);
-	GengleEngine::~GengleEngine();
+	GengleEngine(GLint argc, GLchar** argv, glm::vec2 window_size_in);
+	~GengleEngine();
 
-	GElement* GengleEngine::AddBasicElement(BasicElementTypes type,
+	GElement* AddBasicElement(BasicElementTypes type,
 		SpawnOriginTypes origin_type = RelativeSpawnOrigin, glm::vec3 origin = glm::vec3(0.0, 0.0, 0.0));
-	void GengleEngine::Start(void);
+	void Start(void);
 };
 
