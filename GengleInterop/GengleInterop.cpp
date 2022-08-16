@@ -27,7 +27,8 @@ namespace Gengle
             {
 				glm::vec2 window_size = glm::vec2(1600, 900);
 				// create engine
-				GengleEngine engine(0, nullptr, window_size);
+				char* args[] = {(char*)" "};
+				GengleEngine engine(0, args, window_size);
 				// define elements
 				GElement* element = NULL;
 				element = engine.AddBasicElement(CubeElement);

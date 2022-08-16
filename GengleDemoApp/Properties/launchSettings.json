@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GengleDemoApp": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

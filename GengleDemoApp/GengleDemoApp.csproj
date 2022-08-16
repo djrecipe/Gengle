@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="XCOPY &quot;$(SolutionDir)Resources&quot; &quot;$(OutDir)&quot; /E /Y /I /R /D&#xD;&#xA;XCOPY &quot;$(SolutionDir)References&quot; &quot;$(OutDir)&quot; /E /Y /I /R /D&#xD;&#xA;XCOPY &quot;$(SolutionDir)GengleInterop/bin/$(Configuration)&quot; &quot;$(OutDir)&quot; /E /Y /I /R /D" />
+  </Target>
+
+</Project>
