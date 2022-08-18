@@ -44,5 +44,6 @@
     <ClInclude Include="VertexAttribute.h" />
     <ClInclude Include="Voxel.h" />
     <ClInclude Include="VoxelConstants.h" />
+    <ClInclude Include="WindowHelper.h" />
   </ItemGroup>
 </Project>

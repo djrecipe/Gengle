@@ -1,14 +1,12 @@
 #pragma once
 #include "GlobalTools.h"
 #include "PhysicsDescriptor.h"
-
 class PhysicsEngine
 {
 private:
 	GLboolean isRunning = false;
 	GLboolean outputsPending = false;
 	GLboolean inputsPending = false;
-	std::mutex mutex;
 	std::thread* threadRunning = NULL;
 	std::chrono::time_point<std::chrono::system_clock> clockStart;
 

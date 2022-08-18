@@ -1,5 +1,6 @@
 #include "PhysicsEngine.h"
-
+#include <mutex>
+std::mutex mutex;
 #pragma region Instance Methods
 /// <summary>
 /// Create a new physics engine
@@ -27,9 +28,9 @@ PhysicsEngine::~PhysicsEngine(void)
 GLboolean PhysicsEngine::GetIsRunning(void)
 {
 	GLboolean value = false;
-	this->mutex.lock();
+	mutex.lock();
 	value = this->isRunning;
-	this->mutex.unlock();
+	mutex.unlock();
 	return value;
 }
 
@@ -43,7 +44,7 @@ std::map<GUID, PhysicsDescriptor, GUIDComparer> PhysicsEngine::GetInputs(void)
 	// create empty inputs list
 	std::map<GUID, PhysicsDescriptor, GUIDComparer> items;
 	// lock mutex
-	this->mutex.lock();
+	mutex.lock();
 	// check if any inputs are pending
 	if (this->inputsPending)
 	{
@@ -53,7 +54,7 @@ std::map<GUID, PhysicsDescriptor, GUIDComparer> PhysicsEngine::GetInputs(void)
 		this->inputsPending = false;
 	}
 	// unlock mutex
-	this->mutex.unlock();
+	mutex.unlock();
 	// return results
 	return items;
 }
@@ -68,7 +69,7 @@ std::map<GUID, PhysicsDescriptor, GUIDComparer> PhysicsEngine::GetOutputs(void)
 	// create empty results list
 	std::map<GUID, PhysicsDescriptor, GUIDComparer> items;
 	// lock mutex
-	this->mutex.lock();
+	mutex.lock();
 	// check if any results are pending
 	if (this->outputsPending)
 	{
@@ -78,7 +79,7 @@ std::map<GUID, PhysicsDescriptor, GUIDComparer> PhysicsEngine::GetOutputs(void)
 		this->outputsPending = false;
 	}
 	// unlock mutex
-	this->mutex.unlock();
+	mutex.unlock();
 	// return results
 	return items;
 }
@@ -146,9 +147,9 @@ PhysicsDescriptor PhysicsEngine::ProcessItem(PhysicsDescriptor value, std::vecto
 /// <remarks>Thread-safe using a shared mutex</remarks>
 void PhysicsEngine::SetIsRunning(GLboolean value)
 {
-	this->mutex.lock();
+	mutex.lock();
 	this->isRunning = value;
-	this->mutex.unlock();
+	mutex.unlock();
 	return;
 }
 
@@ -159,10 +160,10 @@ void PhysicsEngine::SetIsRunning(GLboolean value)
 /// <remarks>Thread-safe using a shared mutex</remarks>
 void PhysicsEngine::SetInputs(std::map<GUID, PhysicsDescriptor, GUIDComparer> items)
 {
-	this->mutex.lock();
+	mutex.lock();
 	this->inputs = items;
 	this->inputsPending = true;
-	this->mutex.unlock();
+	mutex.unlock();
 	return;
 }
 
@@ -173,10 +174,10 @@ void PhysicsEngine::SetInputs(std::map<GUID, PhysicsDescriptor, GUIDComparer> it
 /// <remarks>Thread-safe using a shared mutex</remarks>
 void PhysicsEngine::SetOutputs(std::map<GUID, PhysicsDescriptor, GUIDComparer> items)
 {
-	this->mutex.lock();
+	mutex.lock();
 	this->outputs = items;
 	this->outputsPending = true;
-	this->mutex.unlock();
+	mutex.unlock();
 	return;
 }
 

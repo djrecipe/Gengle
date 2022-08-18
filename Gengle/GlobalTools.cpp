@@ -24,7 +24,7 @@ void __cdecl dprint(const GLchar *format, ...)
 	*p++ = '\n';
 	*p = '\0';
 	// --- Output String --- //
-	OutputDebugString(buf);
+	OutputDebugStringA(buf);
 	return;
 }
 
