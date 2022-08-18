@@ -2,6 +2,86 @@
 using namespace std;
 namespace Gengle
 {
+HGLRC WindowManager::m_hRC;
+HDC WindowManager::m_hDC;
+void WindowManager::SetGlContext(HWND hwnd)
+{
+	m_hDC = GetDC(hwnd);
+
+	BYTE iAlphaBits = 0;
+	BYTE iColorBits = 32;
+	BYTE iDepthBits = 16;
+	BYTE iAccumBits = 0;
+	BYTE iStencilBits = 0;
+
+	static PIXELFORMATDESCRIPTOR pfd =
+	{
+		sizeof(PIXELFORMATDESCRIPTOR),	//size
+		1,								//version
+		PFD_DRAW_TO_WINDOW |				//flags
+		PFD_SUPPORT_OPENGL |
+		PFD_DOUBLEBUFFER,
+		PFD_TYPE_RGBA,					//pixeltype
+		iColorBits,
+		0, 0, 0, 0, 0, 0,				//color bits ignored
+		iAlphaBits,
+		0,								//alpha shift ignored
+		iAccumBits,						//accum. buffer
+		0, 0, 0, 0,						//accum bits ignored
+		iDepthBits,						//depth buffer
+		iStencilBits,					//stencil buffer
+		0,								//aux buffer
+		PFD_MAIN_PLANE,					//layer type
+		0,								//reserved
+		0, 0, 0							//masks ignored
+	};
+
+	glm::uint PixelFormat = ChoosePixelFormat(m_hDC, &pfd);
+	SetPixelFormat(m_hDC, PixelFormat, &pfd);
+	m_hRC = wglCreateContext(m_hDC);
+	wglMakeCurrent(m_hDC, m_hRC);
+}
+void WindowManager::ChangeSize(double width, double height)
+{
+	wglMakeCurrent(m_hDC, m_hRC);
+	glViewport(0, 0, width, height);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(-1.0, 1.0, -1.0, 1.0, 1.0, 100.0);
+	// gluPerspective( 67.5, ((double)(iWidth) / (double)(iHeight)), 1.0, 500.0);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+
+	//glClear(GL_COLOR_BUFFER_BIT);
+}
+
+void WindowManager::Cleanup(HWND handle)
+{
+	if (NULL != m_hRC)
+	{
+		wglDeleteContext(m_hRC);
+		m_hRC = NULL;
+	}
+
+	if (NULL != handle && NULL != m_hDC)
+	{
+		ReleaseDC(handle, m_hDC);
+		m_hDC = NULL;
+	}
+
+	if (NULL != handle)
+	{
+		::DestroyWindow(handle);
+		handle = NULL;
+	}
+
+	wstring m_sClassName = L"OGLClassHwnd";
+	HINSTANCE m_hInstance = (HINSTANCE)GetModuleHandle(NULL);
+	UnregisterClass(m_sClassName.c_str(), m_hInstance);
+}
+
 HWND WindowManager::CreateNewWindow(HWND parent)
 {
 	HINSTANCE m_hInstance = (HINSTANCE)GetModuleHandle(NULL);
@@ -57,6 +137,12 @@ void WindowManager::ErrorExit(LPCTSTR lpszFunction)
 	LocalFree(lpDisplayBuf);
 	ExitProcess(dw);
 }
+void WindowManager::GetScale(double& scale_x, double& scale_y)
+{
+	scale_x = GetDeviceCaps(m_hDC, LOGPIXELSX) / 96.0;
+	scale_x = GetDeviceCaps(m_hDC, LOGPIXELSY) / 96.0;
+}
+
 LRESULT WINAPI WindowManager::MyMsgProc(HWND _hWnd, UINT _msg, WPARAM _wParam, LPARAM _lParam)
 {
 	switch (_msg)

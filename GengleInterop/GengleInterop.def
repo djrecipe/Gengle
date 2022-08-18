@@ -2,3 +2,7 @@ LIBRARY GengleInterop
 EXPORTS
     Demo               @1
     CreateNewWindow    @2
+    InitializeOpengl   @3
+    Cleanup            @4
+    GetScale           @5
+    ChangeSize         @6

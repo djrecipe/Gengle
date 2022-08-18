@@ -21,6 +21,7 @@ namespace GengleDemoApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private System.Windows.Threading.DispatcherTimer updateTimer = new System.Windows.Threading.DispatcherTimer();
         public MainWindow()
         {
             InitializeComponent();
@@ -34,6 +35,18 @@ namespace GengleDemoApp
         {
             HwndHost host = new GengleHwndHost();
             hwndPlaceholder.Child = host;
+            //
+            updateTimer.Interval = new TimeSpan(160000);
+            updateTimer.Tick += new EventHandler(updateTimer_Tick);
+            updateTimer.Start();
+        }
+        private void updateTimer_Tick(object sender, EventArgs e)
+        {
+            if (null != hwndPlaceholder &&
+                null != hwndPlaceholder.Child)
+            {
+                hwndPlaceholder.Child.InvalidateVisual();
+            }
         }
     }
 }

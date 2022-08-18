@@ -10,11 +10,18 @@ namespace Gengle
 {
 	class WindowManager
 	{
+	private:
+		static HGLRC m_hRC;
+		static HDC m_hDC;
 	public:
+		static void ChangeSize(double width, double height);
+		static void Cleanup(HWND handle);
 		static HWND CreateNewWindow(HWND parent);
 		static void ErrorExit(LPCTSTR lpszFunction);
+		static void GetScale(double& scale_x, double& scale_y);
 		static LRESULT WINAPI MyMsgProc(HWND _hWnd, UINT _msg, WPARAM _wParam, LPARAM _lParam);
 		static bool RegisterWindowClass(HINSTANCE m_hInstance, LPCWSTR m_sClassName);
+		static void SetGlContext(HWND hwnd);
 
 	};
 	////
