@@ -1,3 +1,4 @@
 LIBRARY GengleInterop
 EXPORTS
     Demo               @1
+    CreateNewWindow    @2

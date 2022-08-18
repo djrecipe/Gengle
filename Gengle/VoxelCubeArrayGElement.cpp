@@ -11,7 +11,7 @@ using namespace std;
 
 #include <Freeglut/2.8.1/VS2013/freeglut.h>	
 
-VoxelCubeArrayGElement::VoxelCubeArrayGElement(ShaderConfig* shaders, VertexArray* vao, Buffer* array_buffer_in, Buffer* element_buffer_in) :
+VoxelCubeArrayGElement::VoxelCubeArrayGElement(ShaderConfig* shaders, VertexArray* vao, GenericBuffer* array_buffer_in, GenericBuffer* element_buffer_in) :
 	GElement(shaders, vao, array_buffer_in, element_buffer_in)
 {
     this->numVoxelCubes=10;

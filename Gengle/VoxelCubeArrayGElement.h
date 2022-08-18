@@ -18,7 +18,7 @@ private:
     /// <summary>Number of voxel cubes within this voxel array</summary>
     GLuint numVoxelCubes;
 public:
-	VoxelCubeArrayGElement(ShaderConfig* shaders, VertexArray* vao, Buffer* array_buffer_in, Buffer* element_buffer_in);
+	VoxelCubeArrayGElement(ShaderConfig* shaders, VertexArray* vao, GenericBuffer* array_buffer_in, GenericBuffer* element_buffer_in);
 	void Draw(void);
 	void Prepare(void);
 	/// <summary>

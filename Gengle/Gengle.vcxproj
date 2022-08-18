@@ -227,7 +227,7 @@
     <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="PhysicsRectangle.cpp" />
     <ClCompile Include="TriangleGElement.cpp" />
-    <ClCompile Include="Buffer.cpp" />
+    <ClCompile Include="GenericBuffer.cpp" />
     <ClCompile Include="GElement.cpp" />
     <ClCompile Include="InputTransmitter.cpp" />
     <ClCompile Include="InputUpdate.cpp" />
@@ -249,7 +249,7 @@
     <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="PhysicsRectangle.h" />
     <ClInclude Include="TriangleGElement.h" />
-    <ClInclude Include="Buffer.h" />
+    <ClInclude Include="GenericBuffer.h" />
     <ClInclude Include="GElement.h" />
     <ClInclude Include="InputTransmitter.h" />
     <ClInclude Include="InputUpdate.h" />

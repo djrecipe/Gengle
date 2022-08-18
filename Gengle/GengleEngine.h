@@ -26,8 +26,8 @@ private:
 	glm::vec2 window_size;
 
 	VertexArray* vao = NULL;
-	Buffer* arrayBuffer = NULL;
-	Buffer* elementBuffer = NULL;
+	GenericBuffer* arrayBuffer = NULL;
+	GenericBuffer* elementBuffer = NULL;
 
 	std::vector<GElement*> elements;
 	InputReceiver* inputReceiver = NULL;

@@ -18,7 +18,7 @@ private:
 public:
 	InputReceiver(InputUpdate * input_update_in, glm::vec2 window_size);
 	~InputReceiver();
-	void ProcessKeyboardEvent(MovementCommands command, KeyStates state);
+	void ProcessKeyboardEvent(MovementCommands command, InputKeyStates state);
 	void ProcessMouseMovement(int x, int y);
 	void SetMouseSensitivities(GLfloat x, GLfloat y)
 	{

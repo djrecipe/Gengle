@@ -150,9 +150,9 @@ GengleEngine::GengleEngine(GLint argc, GLchar** argv, glm::vec2 window_size_in)
 	this->vao = new VertexArray();
 	this->vao->Initialize();
 	// create buffers
-	this->arrayBuffer = new Buffer();
+	this->arrayBuffer = new GenericBuffer();
 	this->arrayBuffer->Initialize(BufferTypes::Array);
-	this->elementBuffer = new Buffer();
+	this->elementBuffer = new GenericBuffer();
 	this->elementBuffer->Initialize(BufferTypes::Element);
 	// define vertex attribute arrays
 	std::vector<VertexAttribute> attributes;

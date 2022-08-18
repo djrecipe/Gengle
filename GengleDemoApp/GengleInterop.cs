@@ -17,8 +17,14 @@ namespace GengleDemoApp
         internal class UnmanagedDelegates
         {
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate void CreateNewWindow(IntPtr parent, out IntPtr result);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void Demo();
-            
+
+        }
+        internal static void CreateNewWindow(IntPtr parent, out IntPtr result)
+        {
+            libInterop.LoadFunction<UnmanagedDelegates.CreateNewWindow>("CreateNewWindow")(parent, out result);
         }
         internal static void Demo()
         {

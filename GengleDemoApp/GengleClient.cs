@@ -1,4 +1,7 @@
-﻿namespace GengleDemoApp
+﻿using System;
+using System.Windows.Interop;
+
+namespace GengleDemoApp
 {
     internal class GengleClient
     {
@@ -8,6 +11,12 @@
             GengleInterop.Initialize(library);
         }
 
+        public IntPtr CreateNewWindow(IntPtr parent)
+        {
+            IntPtr result= IntPtr.Zero;
+            GengleInterop.CreateNewWindow(parent, out result);
+            return result;
+        }
         public void Demo()
         {
             GengleInterop.Demo();

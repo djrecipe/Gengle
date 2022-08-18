@@ -7,7 +7,7 @@
 /// <param name="shaders">Shader configuration</param>
 /// <param name="vao">Vertex array</param>
 /// <param name="array_buffer_in">Array buffer for vertex data</param>
-TriangleGElement::TriangleGElement(ShaderConfig* shaders, VertexArray* vao, Buffer* array_buffer_in)
+TriangleGElement::TriangleGElement(ShaderConfig* shaders, VertexArray* vao, GenericBuffer* array_buffer_in)
 	: GElement(shaders, vao, array_buffer_in)
 {
 	return;

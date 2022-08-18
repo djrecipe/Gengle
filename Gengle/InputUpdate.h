@@ -2,7 +2,7 @@
 #include "GlobalTools.h"
 
 enum MovementCommands : GLuint { MoveNone = 0, MoveForward = 1, MoveBackward = 2, MoveLeft = 4, MoveRight = 8, MoveUp = 16, MoveDown = 32 };
-enum KeyStates : GLuint { KeyStateUp = 0, KeyStateDown = 1 };
+enum InputKeyStates : GLuint { KeyStateUp = 0, KeyStateDown = 1 };
 
 inline MovementCommands operator|(MovementCommands a, MovementCommands b)
 {

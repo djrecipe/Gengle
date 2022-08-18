@@ -7,13 +7,13 @@
 
 enum BufferTypes { Array = 0, Element = 1 };
 
-class Buffer
+class GenericBuffer
 {
 private:
 	static const GLuint MAX_BUFFERS = 64;
 	static GLuint current_index;
-	static GLuint buffer[Buffer::MAX_BUFFERS];
-	static GLboolean occupied[Buffer::MAX_BUFFERS];
+	static GLuint buffer[GenericBuffer::MAX_BUFFERS];
+	static GLboolean occupied[GenericBuffer::MAX_BUFFERS];
 	GLint index;
 	GLenum type;
 public:
@@ -23,8 +23,8 @@ public:
 	GLboolean SendData(const GLvoid* data, GLsizeiptr size);
 	GLboolean SendData(const GLvoid* data, GLsizeiptr size, GLenum usage);
 	GLboolean Valid(void);
-	Buffer();
-	~Buffer();
+	GenericBuffer();
+	~GenericBuffer();
 };
 
 #endif // __OmniBuffer__

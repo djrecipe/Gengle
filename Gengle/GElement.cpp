@@ -13,7 +13,7 @@ GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in)
 	return;
 }
 
-GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, Buffer* array_buffer_in)
+GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, GenericBuffer* array_buffer_in)
 {
 	CoCreateGuid(&this->id);
 
@@ -27,7 +27,7 @@ GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, Buffer* array
 	return;
 }
 
-GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, Buffer* array_buffer_in, Buffer* element_buffer_in)
+GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, GenericBuffer* array_buffer_in, GenericBuffer* element_buffer_in)
 {
 	CoCreateGuid(&this->id);
 

@@ -3,7 +3,7 @@
 #include <glm/vec2.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include "Buffer.h"
+#include "GenericBuffer.h"
 #include "PhysicsDescriptor.h"
 #include "ShaderConfig.h"
 #include "VertexArray.h"
@@ -26,8 +26,8 @@ protected:
 	GLfloat rotationAngleTwo = 0.0f;
 
 	VertexArray* vao;
-	Buffer* arrayBuffer = NULL;
-	Buffer* elementBuffer = NULL;
+	GenericBuffer* arrayBuffer = NULL;
+	GenericBuffer* elementBuffer = NULL;
 	ShaderConfig* shaders;
 	
 	FIBITMAP * texture = NULL;
@@ -37,8 +37,8 @@ protected:
 	void UpdatePhysicsHitbox(void);
 public:
 	GElement(ShaderConfig* shaders_in, VertexArray* vao_in);
-	GElement(ShaderConfig* shaders_in, VertexArray* vao_in, Buffer* array_buffer_in);
-	GElement(ShaderConfig* shaders_in, VertexArray* vao_in, Buffer* array_buffer_in, Buffer* element_buffer_in);
+	GElement(ShaderConfig* shaders_in, VertexArray* vao_in, GenericBuffer* array_buffer_in);
+	GElement(ShaderConfig* shaders_in, VertexArray* vao_in, GenericBuffer* array_buffer_in, GenericBuffer* element_buffer_in);
 
 	~GElement();
 

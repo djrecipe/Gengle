@@ -16,7 +16,7 @@ InputReceiver::~InputReceiver()
 {
 }
 
-void InputReceiver::ProcessKeyboardEvent(MovementCommands command, KeyStates state)
+void InputReceiver::ProcessKeyboardEvent(MovementCommands command, InputKeyStates state)
 {
 	dprint("Processing keyboard event %d", command);
 	this->inputUpdate->SetMovementFlag(command, state == KeyStateDown);
