@@ -41,6 +41,8 @@ void WindowManager::SetGlContext(HWND hwnd)
 	SetPixelFormat(m_hDC, PixelFormat, &pfd);
 	m_hRC = wglCreateContext(m_hDC);
 	wglMakeCurrent(m_hDC, m_hRC);
+	glEnable(GL_DEPTH_TEST);
+	glDisable(GL_TEXTURE_2D);
 }
 void WindowManager::ChangeSize(double width, double height)
 {
@@ -203,7 +205,7 @@ void WindowManager::Render()
 
 	wglMakeCurrent(m_hDC, m_hRC);
 
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClearColor(0.0f, 255.0f, 0.0f, 0.0f);
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();

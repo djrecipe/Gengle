@@ -35,6 +35,11 @@ namespace GengleDemoApp
             GengleInterop.GetScale(out scale_x, out scale_y);
         }
 
+        public void InitializeOpengl(IntPtr handle)
+        {
+            GengleInterop.InitializeOpengl(handle);
+        }
+
         public void Render()
         {
             GengleInterop.Render();

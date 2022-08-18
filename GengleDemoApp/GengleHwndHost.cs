@@ -18,6 +18,7 @@ namespace GengleDemoApp
         protected override HandleRef BuildWindowCore(HandleRef hwndParent)
         {
             IntPtr result = client.CreateNewWindow(hwndParent.Handle);
+            client.InitializeOpengl(result);
             return new HandleRef(this, result);
         }
 

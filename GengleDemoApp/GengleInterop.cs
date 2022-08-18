@@ -27,6 +27,8 @@ namespace GengleDemoApp
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void GetScale(out double scale_x, out double scale_y);
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate void InitializeOpengl(IntPtr handle);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void Render();
         }
 
@@ -50,6 +52,11 @@ namespace GengleDemoApp
         internal static void Demo()
         {
             libInterop.LoadFunction<UnmanagedDelegates.Demo>("Demo")();
+            return;
+        }
+        internal static void InitializeOpengl(IntPtr handle)
+        {
+            libInterop.LoadFunction<UnmanagedDelegates.InitializeOpengl>("InitializeOpengl")(handle);
             return;
         }
 
