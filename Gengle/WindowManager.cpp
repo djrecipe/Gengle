@@ -4,6 +4,7 @@ namespace Gengle
 {
 HGLRC WindowManager::m_hRC;
 HDC WindowManager::m_hDC;
+float WindowManager::m_fRotationAngle = 0.0;
 void WindowManager::SetGlContext(HWND hwnd)
 {
 	m_hDC = GetDC(hwnd);
@@ -195,4 +196,36 @@ bool WindowManager::RegisterWindowClass(HINSTANCE m_hInstance, LPCWSTR m_sClassN
 
 	return true;
 }
+void WindowManager::Render()
+{
+	if (m_hDC == NULL || m_hRC == NULL)
+		return;
+
+	wglMakeCurrent(m_hDC, m_hRC);
+
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glLoadIdentity();
+
+	glTranslatef(0.0f, 0.0f, -2.6f);
+	glRotatef(m_fRotationAngle, 0.0f, 1.0f, 0.0f);
+
+	glBegin(GL_TRIANGLES);
+	glColor3f(1.0f, 0.0f, 0.0f);
+	glVertex3f(-1.0f, -1.0f, 0.0f);
+	glColor3f(0.0f, 1.0f, 0.0f);
+	glVertex3f(0.0f, 1.0f, 0.0f);
+	glColor3f(0.0f, 0.0f, 1.0f);
+	glVertex3f(1.0f, -1.0f, 0.0f);
+	glEnd();
+
+	glFlush();
+	SwapBuffers(m_hDC); // NOTE: This is no longer wglSwapBuffers
+
+	// For constant rotation speed, and correct rotation speeds on different machines,
+	// we'd need a timer here. However, I don't want to bloat the example code.
+	m_fRotationAngle += 1.0;
+}
+
 }

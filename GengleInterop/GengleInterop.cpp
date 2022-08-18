@@ -67,6 +67,10 @@ void InitializeOpengl(void* hwnd)
 {
 	WindowManager::SetGlContext((HWND)hwnd);
 }
+void Render()
+{
+	WindowManager::Render();
+}
 }
 }
 }

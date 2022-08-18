@@ -6,3 +6,4 @@ EXPORTS
     Cleanup            @4
     GetScale           @5
     ChangeSize         @6
+    Render             @7

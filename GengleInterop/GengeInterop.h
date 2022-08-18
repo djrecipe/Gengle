@@ -12,6 +12,7 @@ extern "C"
     void Demo();
     void GetScale(double& scale_x, double& scale_y);
     void InitializeOpengl(void* hwnd);
+    void Render();
 }
 }
 }

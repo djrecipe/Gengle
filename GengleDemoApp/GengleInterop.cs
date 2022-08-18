@@ -26,6 +26,8 @@ namespace GengleDemoApp
             internal delegate void Demo();
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void GetScale(out double scale_x, out double scale_y);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate void Render();
         }
 
         internal static void ChangeSize(double width, double height)
@@ -48,6 +50,12 @@ namespace GengleDemoApp
         internal static void Demo()
         {
             libInterop.LoadFunction<UnmanagedDelegates.Demo>("Demo")();
+            return;
+        }
+
+        internal static void Render()
+        {
+            libInterop.LoadFunction<UnmanagedDelegates.Render>("Render")();
             return;
         }
         

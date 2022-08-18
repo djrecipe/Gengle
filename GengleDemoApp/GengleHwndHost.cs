@@ -23,7 +23,7 @@ namespace GengleDemoApp
 
         protected override void OnRender(DrawingContext drawingContext)
         {
-            //this.client.Render();
+            this.client.Render();
         }
 
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)

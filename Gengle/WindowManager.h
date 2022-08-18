@@ -13,6 +13,7 @@ namespace Gengle
 	private:
 		static HGLRC m_hRC;
 		static HDC m_hDC;
+		static float m_fRotationAngle;
 	public:
 		static void ChangeSize(double width, double height);
 		static void Cleanup(HWND handle);
@@ -22,7 +23,7 @@ namespace Gengle
 		static LRESULT WINAPI MyMsgProc(HWND _hWnd, UINT _msg, WPARAM _wParam, LPARAM _lParam);
 		static bool RegisterWindowClass(HINSTANCE m_hInstance, LPCWSTR m_sClassName);
 		static void SetGlContext(HWND hwnd);
-
+		static void Render();
 	};
 	////
 	//// This class implements HwndHost
