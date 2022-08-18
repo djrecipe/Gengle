@@ -143,7 +143,7 @@ void WindowManager::ErrorExit(LPCTSTR lpszFunction)
 void WindowManager::GetScale(double& scale_x, double& scale_y)
 {
 	scale_x = GetDeviceCaps(m_hDC, LOGPIXELSX) / 96.0;
-	scale_x = GetDeviceCaps(m_hDC, LOGPIXELSY) / 96.0;
+	scale_y = GetDeviceCaps(m_hDC, LOGPIXELSY) / 96.0;
 }
 
 LRESULT WINAPI WindowManager::MyMsgProc(HWND _hWnd, UINT _msg, WPARAM _wParam, LPARAM _lParam)
@@ -205,7 +205,7 @@ void WindowManager::Render()
 
 	wglMakeCurrent(m_hDC, m_hRC);
 
-	glClearColor(0.0f, 255.0f, 0.0f, 0.0f);
+	glClearColor(0.0f, 0.0, 0.0f, 0.0f);
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
