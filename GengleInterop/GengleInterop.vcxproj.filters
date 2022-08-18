@@ -5,10 +5,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GengeInterop.h" />
-    <ClInclude Include="WindowManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GengleInterop.cpp" />
-    <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
 </Project>

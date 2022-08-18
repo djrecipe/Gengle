@@ -240,6 +240,7 @@
     <ClCompile Include="VertexAttribute.cpp" />
     <ClCompile Include="Voxel.cpp" />
     <ClCompile Include="VoxelCubeArrayGElement.cpp" />
+    <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CubeGElement.h" />
@@ -263,7 +264,7 @@
     <ClInclude Include="Voxel.h" />
     <ClInclude Include="VoxelConstants.h" />
     <ClInclude Include="VoxelCubeArrayGElement.h" />
-    <ClInclude Include="WindowHelper.h" />
+    <ClInclude Include="WindowManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />

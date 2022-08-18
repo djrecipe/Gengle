@@ -27,26 +27,7 @@ namespace Gengle
         {
 			void CreateNewWindow(void* hwndParent, void*& result)
 			{
-				HINSTANCE m_hInstance = (HINSTANCE)GetModuleHandle(NULL);
-				wstring m_sWindowName = L"OpenGL in HwndHost";
-				wstring m_sClassName = L"OGLClassHwnd";
-				DWORD dwStyle = WS_CHILD | WS_VISIBLE;
-				int iWidth = 2;
-				int iHeight = 2;
-				HWND parentHwnd = (HWND)hwndParent;
-				HWND m_hWnd = CreateWindowEx(0,
-					m_sClassName.c_str(),
-					m_sWindowName.c_str(),
-					dwStyle,
-					0,  // X Pos
-					0,  // Y Pos
-					iWidth,
-					iHeight,
-					parentHwnd, // Parent
-					0,  // Menu
-					m_hInstance,
-					0); // Param
-				result = m_hWnd;
+				result = WindowManager::CreateNewWindow((HWND)hwndParent);
 			}
             void Demo(void)
             {

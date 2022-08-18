@@ -192,11 +192,9 @@ XCOPY "$(SolutionDir)References" "$(OutDir)" /E /Y /I /R /D</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GengeInterop.h" />
-    <ClInclude Include="WindowManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GengleInterop.cpp" />
-    <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />

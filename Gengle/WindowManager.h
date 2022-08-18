@@ -1,116 +1,20 @@
 #pragma once
-
-// Exclude rarely used parts of the windows headers
 #define WIN32_LEAN_AND_MEAN
 
+#include <strsafe.h>
 #include <Windows.h>
 
 #include "GlobalTools.h"
-#include "WindowHelper.h"
 
-// To use these, we must add some references...
-//	o PresentationFramework (for HwndHost)
-//		* PresentationCore
-//		* WindowsBase
-//using namespace System;
-//using namespace System::Windows;
-//using namespace System::Windows::Interop;
-//using namespace System::Windows::Input;
-//using namespace System::Windows::Media;
-//using namespace System::Runtime::InteropServices;
-
-namespace OpenGLCpp
+namespace Gengle
 {
 	class WindowManager
 	{
 	public:
-		//
-		// Taken from MSDN
-		//
-		static void ErrorExit(LPCTSTR lpszFunction)
-		{
-			// Retrieve the system error message for the last-error code
-			LPVOID lpMsgBuf;
-			LPVOID lpDisplayBuf;
-			DWORD dw = GetLastError();
-
-			FormatMessage(
-				FORMAT_MESSAGE_ALLOCATE_BUFFER |
-				FORMAT_MESSAGE_FROM_SYSTEM |
-				FORMAT_MESSAGE_IGNORE_INSERTS,
-				NULL,
-				dw,
-				MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-				(LPTSTR)&lpMsgBuf,
-				0, NULL);
-
-			// Display the error message and exit the process
-
-			lpDisplayBuf = (LPVOID)LocalAlloc(LMEM_ZEROINIT,
-				(lstrlen((LPCTSTR)lpMsgBuf) + lstrlen((LPCTSTR)lpszFunction) + 40) * sizeof(TCHAR));
-
-			StringCchPrintf((LPTSTR)lpDisplayBuf,
-				LocalSize(lpDisplayBuf) / sizeof(TCHAR),
-				TEXT("%s failed with error %d: %s"),
-				lpszFunction, dw, lpMsgBuf);
-			::MessageBox(NULL, (LPCTSTR)lpDisplayBuf, TEXT("Error"), MB_OK);
-
-			LocalFree(lpMsgBuf);
-			LocalFree(lpDisplayBuf);
-			ExitProcess(dw);
-		}
-		static LRESULT WINAPI MyMsgProc(HWND _hWnd, UINT _msg, WPARAM _wParam, LPARAM _lParam)
-		{
-			switch (_msg)
-			{
-				// Make sure the window gets focus when it has to!
-			case WM_IME_SETCONTEXT:
-				// LOWORD(wParam) = 0 stands for deactivation, so don't set
-				// focus then (results in a rather, err... 'greedy' window...)
-				if (LOWORD(_wParam) > 0)
-					SetFocus(_hWnd);
-
-				return 0;
-
-			default:
-				return DefWindowProc(_hWnd, _msg, _wParam, _lParam);
-			}
-		}
-		static bool RegisterWindowClass(HINSTANCE m_hInstance, LPCWSTR m_sClassName)
-		{
-			//
-			// Create custom WNDCLASS
-			//
-			WNDCLASS wndClass;
-
-			if (GetClassInfo(m_hInstance, m_sClassName, &wndClass))
-			{
-				// Class is already registered!
-				return true;
-			}
-
-			wndClass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
-
-			// Not providing a WNDPROC here results in a crash on my system:
-			wndClass.lpfnWndProc = (WNDPROC)MyMsgProc;
-			wndClass.cbClsExtra = 0;
-			wndClass.cbWndExtra = 0;
-			wndClass.hInstance = m_hInstance;
-			wndClass.hIcon = LoadIcon(NULL, IDI_WINLOGO);
-			wndClass.hCursor = LoadCursor(0, IDC_ARROW);
-			wndClass.hbrBackground = 0;
-			wndClass.lpszMenuName = 0; // No menu
-			wndClass.lpszClassName = m_sClassName;
-
-			// ... and register it
-			if (!RegisterClass(&wndClass))
-			{
-				ErrorExit(L"RegisterWindowClass");
-				return false;
-			}
-
-			return true;
-		}
+		static HWND CreateNewWindow(HWND parent);
+		static void ErrorExit(LPCTSTR lpszFunction);
+		static LRESULT WINAPI MyMsgProc(HWND _hWnd, UINT _msg, WPARAM _wParam, LPARAM _lParam);
+		static bool RegisterWindowClass(HINSTANCE m_hInstance, LPCWSTR m_sClassName);
 
 	};
 	////
