@@ -24,6 +24,8 @@ namespace Gengle
 		static bool RegisterWindowClass(HINSTANCE m_hInstance, LPCWSTR m_sClassName);
 		static void SetGlContext(HWND hwnd);
 		static void Render();
+		static void BeginRenderIteration();
+		static void EndRenderIteration();
 	};
 	////
 	//// This class implements HwndHost

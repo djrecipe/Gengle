@@ -41,6 +41,7 @@ void WindowManager::SetGlContext(HWND hwnd)
 	SetPixelFormat(m_hDC, PixelFormat, &pfd);
 	m_hRC = wglCreateContext(m_hDC);
 	wglMakeCurrent(m_hDC, m_hRC);
+	glewInit();
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_TEXTURE_2D);
 }
@@ -228,6 +229,25 @@ void WindowManager::Render()
 	// For constant rotation speed, and correct rotation speeds on different machines,
 	// we'd need a timer here. However, I don't want to bloat the example code.
 	m_fRotationAngle += 1.0;
+}
+void WindowManager::BeginRenderIteration()
+{
+	if (m_hDC == NULL || m_hRC == NULL)
+		return;
+
+	wglMakeCurrent(m_hDC, m_hRC);
+
+	glClearColor(0.0f, 0.0, 0.0f, 0.0f);
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glLoadIdentity();
+}
+void WindowManager::EndRenderIteration()
+{
+	glEnd();
+
+	glFlush();
+	SwapBuffers(m_hDC); // NOTE: This is no longer wglSwapBuffers
 }
 
 }

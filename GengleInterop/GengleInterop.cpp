@@ -25,6 +25,7 @@ namespace Interop
 {
 extern "C"
 {
+GengleEngine* engine;
 void ChangeSize(double width, double height)
 {
 	WindowManager::ChangeSize(width, height);
@@ -53,7 +54,7 @@ void Demo(void)
 	voxel_element->SetVoxelCubeCount(40);
 	voxel_element->GenerateVertices();
 	// start display loop
-	engine.Start();
+	engine.StartWithGlut();
 }
 void Cleanup(void* handle)
 {
@@ -65,11 +66,34 @@ void GetScale(double& scale_x, double& scale_y)
 }
 void InitializeOpengl(void* hwnd)
 {
+	//Demo(); // still works
+	//return;
 	WindowManager::SetGlContext((HWND)hwnd);
+	// create engine
+	engine = new GengleEngine();
+	// define elements [get initialization working first]
+	GElement* element = NULL;
+	element = engine->AddBasicElement(CubeElement);
+	element->SetScale(glm::vec3(10.0, 10.0, 10.0));
+	element->SetRotation(glm::radians(70.0f), glm::vec3(0.0, 1.0, 1.0));
+	element->SetOrigin(glm::vec3(10.0, -10.0, 0.0));
+	element->SetTexture((GLchar*)"BoxTexture.jpg");
+	//
+	VoxelCubeArrayGElement* voxel_element = (VoxelCubeArrayGElement*)engine->AddBasicElement(VoxelElement);
+	voxel_element->SetOrigin(glm::vec3(0.0, 0.0, 0.0));
+	voxel_element->SetScale(glm::vec3(4.0, 4.0, 4.0));
+	voxel_element->SetVoxelCubeCount(40);
+	voxel_element->GenerateVertices();
+	// start display loop
+	engine->StartWithoutGlut();
+	return;
 }
 void Render()
 {
-	WindowManager::Render();
+	WindowManager::BeginRenderIteration();
+	engine->DrawIteration();
+	WindowManager::EndRenderIteration();
+	//WindowManager::Render();
 }
 }
 }

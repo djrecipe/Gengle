@@ -36,7 +36,7 @@ int main(int argc, char** argv)
 	voxel_element->SetVoxelCubeCount(40);
 	voxel_element->GenerateVertices();
 	// start display loop
-	engine.Start();
+	engine.StartWithGlut();
 	// end program
 	return 0;
 }

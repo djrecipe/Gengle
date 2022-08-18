@@ -40,11 +40,14 @@ private:
 
 	void ProcessPhysics(void);
 public:
+	GengleEngine();
 	GengleEngine(GLint argc, GLchar** argv, glm::vec2 window_size_in);
 	~GengleEngine();
 
 	GElement* AddBasicElement(BasicElementTypes type,
 		SpawnOriginTypes origin_type = RelativeSpawnOrigin, glm::vec3 origin = glm::vec3(0.0, 0.0, 0.0));
-	void Start(void);
+	void DrawIteration();
+	void StartWithGlut(void);
+	void StartWithoutGlut(void);
 };
 

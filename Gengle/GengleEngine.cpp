@@ -20,8 +20,8 @@ void GengleEngine::DrawCallback()
 	}
 
 	glFlush();
-	GengleEngine::instance->ProcessPhysics();
-	GengleEngine::instance->inputTransmitter->TransmitViewUpdate();
+	//GengleEngine::instance->ProcessPhysics();
+	//GengleEngine::instance->inputTransmitter->TransmitViewUpdate();
 	return;
 }
 
@@ -133,6 +133,44 @@ void GengleEngine::SpecialKeyboardCallback(int key, int x, int y)
 	}
 }
 
+GengleEngine::GengleEngine()
+{
+	this->window_size = glm::vec2(1600, 900);
+	// create mouse input manager
+	this->inputUpdate = new InputUpdate();
+	this->inputReceiver = new InputReceiver(inputUpdate, this->window_size);
+	// create vao
+	this->vao = new VertexArray();
+	this->vao->Initialize();
+	// create buffers
+	this->arrayBuffer = new GenericBuffer();
+	this->arrayBuffer->Initialize(BufferTypes::Array);
+	this->elementBuffer = new GenericBuffer();
+	this->elementBuffer->Initialize(BufferTypes::Element);
+	// define vertex attribute arrays
+	std::vector<VertexAttribute> attributes;
+	VertexAttribute attribute(0, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+	attributes.push_back(attribute);
+	// create shader configuration
+	ShaderInfo shader_infos[] = {
+		{ GL_VERTEX_SHADER, "simple.vert" },
+		{ GL_FRAGMENT_SHADER, "simple.frag" },
+		{ GL_NONE, NULL } };
+	this->shaderConfig = new ShaderConfig(shader_infos, attributes);
+	this->shaderConfig->AddUniform("modelMatrix");
+	this->shaderConfig->AddUniform("projectionMatrix");
+	this->shaderConfig->AddUniform("viewMatrix");
+	// create input transmitter
+	this->inputTransmitter = new InputTransmitter(inputUpdate,
+		this->shaderConfig->GetUniform("projectionMatrix"),
+		this->shaderConfig->GetUniform("viewMatrix"));
+	// create physics engine
+	this->physicsEngine = new PhysicsEngine();
+	// set instance
+	GengleEngine::instance = this;
+	return;
+}
+
 GengleEngine::GengleEngine(GLint argc, GLchar** argv, glm::vec2 window_size_in)
 {
 	this->window_size = window_size_in;
@@ -231,7 +269,10 @@ GElement* GengleEngine::AddBasicElement(BasicElementTypes type, SpawnOriginTypes
 	this->elements.push_back(element);
 	return element;
 }
-
+void GengleEngine::DrawIteration()
+{
+	this->DrawCallback();
+}
 void GengleEngine::ProcessPhysics(void)
 {
 	// retrieve physics results
@@ -254,7 +295,7 @@ void GengleEngine::ProcessPhysics(void)
 	return;
 }
 
-void GengleEngine::Start(void)
+void GengleEngine::StartWithGlut(void)
 {
 	// enable shader
 	this->shaderConfig->Prepare();
@@ -266,5 +307,17 @@ void GengleEngine::Start(void)
 	this->shaderConfig->GetUniform("viewMatrix")->SetValue(initial_view_matrix);
 	// start engine
 	GlutManager::Start();
+	return;
+}
+void GengleEngine::StartWithoutGlut(void)
+{
+	// enable shader
+	this->shaderConfig->Prepare();
+	// send projection matrix
+	glm::mat4 initial_projection_matrix = glm::perspective(glm::radians(45.0f), window_size[0] / window_size[1], 0.1f, 10000.0f);
+	this->shaderConfig->GetUniform("projectionMatrix")->SetValue(initial_projection_matrix);
+	// send view matrix
+	glm::mat4 initial_view_matrix = glm::mat4(1.0);
+	this->shaderConfig->GetUniform("viewMatrix")->SetValue(initial_view_matrix);
 	return;
 }
