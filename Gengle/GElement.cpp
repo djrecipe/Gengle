@@ -1,6 +1,13 @@
 #include "GElement.h"
 
-GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in)
+GElement::GElement() : initialized(false)
+{
+	CoCreateGuid(&this->id);
+
+	this->physics.SetID(this->id);
+}
+
+GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in) : initialized(true)
 {
 	CoCreateGuid(&this->id);
 
@@ -13,7 +20,7 @@ GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in)
 	return;
 }
 
-GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, GenericBuffer* array_buffer_in)
+GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, GenericBuffer* array_buffer_in) : initialized(true)
 {
 	CoCreateGuid(&this->id);
 
@@ -27,7 +34,7 @@ GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, GenericBuffer
 	return;
 }
 
-GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, GenericBuffer* array_buffer_in, GenericBuffer* element_buffer_in)
+GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, GenericBuffer* array_buffer_in, GenericBuffer* element_buffer_in) : initialized(true)
 {
 	CoCreateGuid(&this->id);
 
@@ -44,6 +51,7 @@ GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, GenericBuffer
 
 GElement::~GElement()
 {
+	this->initialized = false;
 	if (this->texture != NULL)
 		FreeImage_Unload(this->texture);
 }
@@ -67,6 +75,13 @@ GLboolean GElement::GetEnablePhysics(void)
 PhysicsDescriptor GElement::GetPhysicsDescriptor(void)
 {
 	return this->physics;
+}
+void GElement::Initialize(ShaderConfig* shaders_in, VertexArray* vao_in)
+{
+	assert(shaders_in != nullptr);
+	assert(vao_in != nullptr);
+	this->shaders = shaders_in;
+	this->vao = vao_in;
 }
 
 void GElement::SetAcceleration(glm::vec3 value)

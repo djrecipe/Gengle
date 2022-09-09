@@ -22,6 +22,7 @@
     <ClCompile Include="Voxel.cpp" />
     <ClCompile Include="VoxelCubeArrayGElement.cpp" />
     <ClCompile Include="WindowManager.cpp" />
+    <ClCompile Include="AxisGElement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="VoxelCubeArrayGElement.h" />
@@ -46,5 +47,6 @@
     <ClInclude Include="Voxel.h" />
     <ClInclude Include="VoxelConstants.h" />
     <ClInclude Include="WindowManager.h" />
+    <ClInclude Include="AxisGElement.h" />
   </ItemGroup>
 </Project>

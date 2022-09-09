@@ -7,7 +7,6 @@
 #include "InputUpdate.h"
 #include "PhysicsEngine.h"
 
-enum BasicElementTypes : GLuint { TriangleElement = 0, CubeElement = 1, VoxelElement = 2};
 enum SpawnOriginTypes : GLuint { AbsoluteSpawnOrigin = 0, RelativeSpawnOrigin = 1};
 
 class GengleEngine
@@ -22,7 +21,6 @@ private:
 	static void MouseButtonCallback(int button, int state, int x, int y);
 	static void MouseCallback(int x, int y);
 	static void SpecialKeyboardCallback(int key, int x, int y);
-
 	glm::vec2 window_size;
 
 	VertexArray* vao = NULL;
@@ -44,7 +42,7 @@ public:
 	GengleEngine(GLint argc, GLchar** argv, glm::vec2 window_size_in);
 	~GengleEngine();
 
-	GElement* AddBasicElement(BasicElementTypes type,
+	GElement* AddBasicElement(GElement* element,
 		SpawnOriginTypes origin_type = RelativeSpawnOrigin, glm::vec3 origin = glm::vec3(0.0, 0.0, 0.0));
 	void DrawIteration();
 	void StartWithGlut(void);

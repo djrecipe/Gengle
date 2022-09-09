@@ -220,6 +220,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AxisGElement.cpp" />
     <ClCompile Include="CubeGElement.cpp" />
     <ClCompile Include="GengleEngine.cpp" />
     <ClCompile Include="MathUtils.cpp" />
@@ -243,6 +244,7 @@
     <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AxisGElement.h" />
     <ClInclude Include="CubeGElement.h" />
     <ClInclude Include="GengleEngine.h" />
     <ClInclude Include="MathUtils.h" />

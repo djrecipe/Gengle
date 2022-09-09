@@ -98,24 +98,24 @@ void GengleEngine::MouseCallback(int x, int y)
 
 void GengleEngine::MouseButtonCallback(int button, int state, int x, int y)
 {
-	switch (button)
-	{
-	case GLUT_LEFT_BUTTON:
-		switch (state)
-		{
-		case GLUT_DOWN:
-			GElement* entity = GengleEngine::instance->AddBasicElement(CubeElement);
-			glm::vec3 direction = glm::normalize(GengleEngine::instance->inputUpdate->GetViewDirection());
-			glm::vec2 angles = GengleEngine::instance->inputUpdate->GetViewAngles();
-			direction *= 10.0;
-			entity->SetVelocity(direction);
-			entity->SetRotation(glm::radians(-1.0*angles[0]), glm::vec3(0.0, 1.0, 0.0));
-			entity->SetRotation(glm::radians(angles[1]), glm::vec3(0.0, 0.0, 1.0), RotationOrderTwo);
-			break;
-		}
-		break;
-	}
-	return;
+	//switch (button)
+	//{
+	//case GLUT_LEFT_BUTTON:
+	//	switch (state)
+	//	{
+	//	case GLUT_DOWN:
+	//		GElement* entity = GengleEngine::instance->AddBasicElement(CubeElement);
+	//		glm::vec3 direction = glm::normalize(GengleEngine::instance->inputUpdate->GetViewDirection());
+	//		glm::vec2 angles = GengleEngine::instance->inputUpdate->GetViewAngles();
+	//		direction *= 10.0;
+	//		entity->SetVelocity(direction);
+	//		entity->SetRotation(glm::radians(-1.0*angles[0]), glm::vec3(0.0, 1.0, 0.0));
+	//		entity->SetRotation(glm::radians(angles[1]), glm::vec3(0.0, 0.0, 1.0), RotationOrderTwo);
+	//		break;
+	//	}
+	//	break;
+	//}
+	//return;
 }
 
 void GengleEngine::SpecialKeyboardCallback(int key, int x, int y)
@@ -239,24 +239,9 @@ GengleEngine::~GengleEngine()
 	return;
 }
 
-GElement* GengleEngine::AddBasicElement(BasicElementTypes type, SpawnOriginTypes origin_type, glm::vec3 origin)
+GElement* GengleEngine::AddBasicElement(GElement* element, SpawnOriginTypes origin_type, glm::vec3 origin)
 {
-
-	GElement * element = NULL;
-	switch (type)
-	{
-	case TriangleElement:
-		element = (GElement*)new TriangleGElement(this->shaderConfig, this->vao, this->arrayBuffer);
-		break;
-	case CubeElement:
-		element = (GElement*)new CubeGElement(this->shaderConfig, this->vao,
-			this->arrayBuffer, this->elementBuffer);
-		break;
-	case VoxelElement:
-		element = (GElement*)new VoxelCubeArrayGElement(this->shaderConfig, this->vao,
-			this->arrayBuffer, this->elementBuffer);
-		break;
-	}
+	element->Initialize(this->shaderConfig, this->vao);
 	switch (origin_type)
 	{
 	case AbsoluteSpawnOrigin:

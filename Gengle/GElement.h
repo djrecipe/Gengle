@@ -18,6 +18,7 @@ protected:
 	PhysicsDescriptor physics;
 	GLboolean enablePhysics = true;
 
+	bool initialized = false;
 	glm::vec3 scale = glm::vec3(1.0f, 1.0f, 1.0f);
 
 	glm::vec3 rotationAxisOne = glm::vec3(1.0f, 0.0f, 0.0f);
@@ -36,6 +37,7 @@ protected:
 
 	void UpdatePhysicsHitbox(void);
 public:
+	GElement();
 	GElement(ShaderConfig* shaders_in, VertexArray* vao_in);
 	GElement(ShaderConfig* shaders_in, VertexArray* vao_in, GenericBuffer* array_buffer_in);
 	GElement(ShaderConfig* shaders_in, VertexArray* vao_in, GenericBuffer* array_buffer_in, GenericBuffer* element_buffer_in);
@@ -44,6 +46,7 @@ public:
 
 	void ConsumePhysicsDescriptor(PhysicsDescriptor descriptor);
 	virtual void Draw(void) = 0;
+	virtual void Initialize(ShaderConfig* shaders_in, VertexArray* vao_in);
 	virtual void Prepare(void) = 0;
 	void PrepareHitbox(void);
 	void PrepareTexture(void)
