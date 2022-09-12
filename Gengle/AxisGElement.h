@@ -15,6 +15,7 @@ class AxisGElement : public GElement
 {
 private:
 public:
+	static const GLuint NumIndices = 2;
 	static const GLuint NumVertices = 2;
 	AxisGElement();
 	AxisGElement(ShaderConfig* shaders, VertexArray* vao, GenericBuffer* array_buffer_in);

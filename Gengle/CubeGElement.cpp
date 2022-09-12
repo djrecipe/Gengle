@@ -8,6 +8,12 @@
 
 #include <Freeglut/2.8.1/VS2013/freeglut.h>	
 
+CubeGElement::CubeGElement() : GElement()
+{
+    
+}
+
+
 CubeGElement::CubeGElement(ShaderConfig* shaders, VertexArray* vao, GenericBuffer* array_buffer_in, GenericBuffer* element_buffer_in) :
 	GElement(shaders, vao, array_buffer_in, element_buffer_in)
 {

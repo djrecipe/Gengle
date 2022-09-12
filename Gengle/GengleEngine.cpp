@@ -237,7 +237,7 @@ GengleEngine::~GengleEngine()
 
 GElement* GengleEngine::AddBasicElement(GElement* element, SpawnOriginTypes origin_type, glm::vec3 origin)
 {
-	element->Initialize(this->shaderConfig, this->vao, this->arrayBuffer);
+	element->Initialize(this->shaderConfig, this->vao, this->arrayBuffer, this->elementBuffer);
 	switch (origin_type)
 	{
 	case AbsoluteSpawnOrigin:

@@ -23,7 +23,7 @@ AxisGElement::AxisGElement(ShaderConfig* shaders, VertexArray* vao, GenericBuffe
 /// <seealso cref="glDrawArrays"/>
 void AxisGElement::Draw(void)
 {
-	glDrawArrays(GL_LINES, 0, AxisGElement::NumVertices);
+	glDrawElements(GL_LINES, AxisGElement::NumIndices, GL_UNSIGNED_INT, (void*)0);
 	return;
 }
 
@@ -41,14 +41,19 @@ void AxisGElement::Prepare(void)
 	// activate array buffer
 	this->arrayBuffer->Activate();
 	// send data to activated buffer
-	GLfloat vertices[NumVertices][2] = {
-		{ -1.0f, -1.0f },
-		{ 1.0f, -1.0f }
+	GLfloat vertices[NumVertices][3] = {
+		{ -1.0f, -1.0f, 0.0f },
+		{ 1.0f, -1.0f, 0.0f }
 	};
 	this->arrayBuffer->SendData(vertices, sizeof(vertices));
+	// activate element buffer
+	this->elementBuffer->Activate();
+	// send data to activated buffer
+	GLuint indices[NumIndices] = { 0, 1 };
+	this->elementBuffer->SendData(indices, sizeof(indices));
 	//
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	glPointSize(2.0f);
+	glPointSize(5.0f);
 	return;
 }
 #pragma endregion
