@@ -11,15 +11,11 @@ GengleEngine* GengleEngine::instance = NULL;
 
 void GengleEngine::DrawCallback()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
-
 	for (GElement* element : GengleEngine::instance->elements)
 	{
 		element->Prepare();
 		element->Draw();
 	}
-
-	glFlush();
 	//GengleEngine::instance->ProcessPhysics();
 	//GengleEngine::instance->inputTransmitter->TransmitViewUpdate();
 	return;
@@ -241,7 +237,7 @@ GengleEngine::~GengleEngine()
 
 GElement* GengleEngine::AddBasicElement(GElement* element, SpawnOriginTypes origin_type, glm::vec3 origin)
 {
-	element->Initialize(this->shaderConfig, this->vao);
+	element->Initialize(this->shaderConfig, this->vao, this->arrayBuffer);
 	switch (origin_type)
 	{
 	case AbsoluteSpawnOrigin:

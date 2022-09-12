@@ -76,12 +76,14 @@ PhysicsDescriptor GElement::GetPhysicsDescriptor(void)
 {
 	return this->physics;
 }
-void GElement::Initialize(ShaderConfig* shaders_in, VertexArray* vao_in)
+void GElement::Initialize(ShaderConfig* shaders_in, VertexArray* vao_in, GenericBuffer* array_buffer_in)
 {
 	assert(shaders_in != nullptr);
 	assert(vao_in != nullptr);
+	assert(array_buffer_in != nullptr);
 	this->shaders = shaders_in;
 	this->vao = vao_in;
+	this->arrayBuffer = array_buffer_in;
 }
 
 void GElement::SetAcceleration(glm::vec3 value)

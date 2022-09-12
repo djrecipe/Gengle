@@ -46,7 +46,7 @@ public:
 
 	void ConsumePhysicsDescriptor(PhysicsDescriptor descriptor);
 	virtual void Draw(void) = 0;
-	virtual void Initialize(ShaderConfig* shaders_in, VertexArray* vao_in);
+	virtual void Initialize(ShaderConfig* shaders_in, VertexArray* vao_in, GenericBuffer* array_buffer_in);
 	virtual void Prepare(void) = 0;
 	void PrepareHitbox(void);
 	void PrepareTexture(void)

@@ -69,7 +69,7 @@ void InitializeOpengl(void* hwnd)
 {
 	//Demo(); // still works
 	//return;
-	//WindowManager::SetGlContext((HWND)hwnd);
+	WindowManager::SetGlContext((HWND)hwnd);
 	// create engine
 	engine = new GengleEngine();
 	GElement* element = new AxisGElement();
@@ -93,10 +93,10 @@ void InitializeOpengl(void* hwnd)
 }
 void Render()
 {
-	//WindowManager::BeginRenderIteration();
-	//engine->DrawIteration();
-	//WindowManager::EndRenderIteration();
-	WindowManager::Render();
+	WindowManager::BeginRenderIteration();
+	engine->DrawIteration();
+	WindowManager::EndRenderIteration();
+	//WindowManager::Render();
 }
 }
 }

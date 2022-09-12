@@ -44,6 +44,9 @@ void WindowManager::SetGlContext(HWND hwnd)
 	glewInit();
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_TEXTURE_2D);
+	glClearColor(0.0f, 0.0, 0.0f, 0.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glLoadIdentity();
 }
 void WindowManager::ChangeSize(double width, double height)
 {
