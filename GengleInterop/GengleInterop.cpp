@@ -37,25 +37,6 @@ void CreateNewWindow(void* hwndParent, void*& result)
 }
 void Demo(void)
 {
-	glm::vec2 window_size = glm::vec2(1600, 900);
-	// create engine
-	char* args[] = {(char*)" "};
-	GengleEngine engine(0, args, window_size);
-	// define elements
-	GElement* element = new AxisGElement();
-	element = engine.AddBasicElement(element);
-	//element->SetScale(glm::vec3(10.0, 10.0, 10.0));
-	//element->SetRotation(glm::radians(70.0f), glm::vec3(0.0, 1.0, 1.0));
-	//element->SetOrigin(glm::vec3(10.0, -10.0, 0.0));
-	//element->SetTexture((GLchar*)"BoxTexture.jpg");
-	////
-	//VoxelCubeArrayGElement* voxel_element = (VoxelCubeArrayGElement*)engine.AddBasicElement(VoxelElement);
-	//voxel_element->SetOrigin(glm::vec3(0.0, 0.0, 0.0));
-	//voxel_element->SetScale(glm::vec3(4.0, 4.0, 4.0));
-	//voxel_element->SetVoxelCubeCount(40);
-	//voxel_element->GenerateVertices();
-	// start display loop
-	engine.StartWithGlut();
 }
 void Cleanup(void* handle)
 {
@@ -74,8 +55,12 @@ void InitializeOpengl(void* hwnd)
 	engine = new GengleEngine();
 	GElement* element1 = new AxisGElement();
 	element1 = engine->AddBasicElement(element1);
-	element1->SetScale(glm::vec3(1.0, 1.0, 1.0));
+	element1->SetScale(glm::vec3(100.0, 100.0, 100.0));
 	element1->SetOrigin(glm::vec3(0.0, 0.0, 0.0));
+	GElement* element2 = new AxisGElement();
+	element2 = engine->AddBasicElement(element2);
+	element2->SetScale(glm::vec3(100.0, 100.0, 100.0));
+	element2->SetOrigin(glm::vec3(0.0, 0.0, 0.0));
 	//// define elements [get initialization working first]
 	//GElement* element = NULL;
 	//element = engine->AddBasicElement(CubeElement);
@@ -90,7 +75,7 @@ void InitializeOpengl(void* hwnd)
 	//voxel_element->SetVoxelCubeCount(40);
 	//voxel_element->GenerateVertices();
 	//// start display loop
-	engine->StartWithoutGlut();
+	engine->StartWithoutGlut(CameraPerspectiveTypes::TwoDimensional);
 	return;
 }
 void Render()

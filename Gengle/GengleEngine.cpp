@@ -276,12 +276,23 @@ void GengleEngine::ProcessPhysics(void)
 	return;
 }
 
-void GengleEngine::StartWithGlut(void)
+void GengleEngine::StartWithGlut(CameraPerspectiveTypes perspective)
 {
 	// enable shader
 	this->shaderConfig->Prepare();
 	// send projection matrix
-	glm::mat4 initial_projection_matrix = glm::perspective(glm::radians(45.0f), window_size[0] / window_size[1], 0.1f, 10000.0f);
+	glm::mat4 initial_projection_matrix = glm::mat4(1.0);
+	switch(perspective)
+	{
+    case TwoDimensional:
+		initial_projection_matrix = glm::ortho(-100.0, 100.0, -100.0, 100.0);
+		break;
+    case ThreeDimensional:
+		initial_projection_matrix = glm::perspective(glm::radians(45.0f), window_size[0] / window_size[1], 0.1f, 10000.0f);
+		break;
+	default:
+		throw std::exception("camera perspective type not implemented");
+    }
 	this->shaderConfig->GetUniform("projectionMatrix")->SetValue(initial_projection_matrix);
 	// send view matrix
 	glm::mat4 initial_view_matrix = glm::mat4(1.0);
@@ -290,12 +301,23 @@ void GengleEngine::StartWithGlut(void)
 	GlutManager::Start();
 	return;
 }
-void GengleEngine::StartWithoutGlut(void)
+void GengleEngine::StartWithoutGlut(CameraPerspectiveTypes perspective)
 {
 	// enable shader
 	this->shaderConfig->Prepare();
 	// send projection matrix
-	glm::mat4 initial_projection_matrix = glm::ortho(-100.0, 100.0, -100.0, 100.0);//glm::perspective(glm::radians(45.0f), window_size[0] / window_size[1], 0.1f, 10000.0f);
+	glm::mat4 initial_projection_matrix = glm::mat4(1.0);
+	switch (perspective)
+	{
+	case TwoDimensional:
+		initial_projection_matrix = glm::ortho(-100.0, 100.0, -100.0, 100.0);
+		break;
+	case ThreeDimensional:
+		initial_projection_matrix = glm::perspective(glm::radians(45.0f), window_size[0] / window_size[1], 0.1f, 10000.0f);
+		break;
+	default:
+		throw std::exception("camera perspective type not implemented");
+	}
 	this->shaderConfig->GetUniform("projectionMatrix")->SetValue(initial_projection_matrix);
 	// send view matrix
 	glm::mat4 initial_view_matrix = glm::mat4(1.0);

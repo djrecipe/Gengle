@@ -42,8 +42,8 @@ void AxisGElement::Prepare(void)
 	this->arrayBuffer->Activate();
 	// send data to activated buffer
 	GLfloat vertices[NumVertices][3] = {
-		{ -1.0f, -1.0f, 0.0f },
-		{ 1.0f, -1.0f, 0.0f }
+		{ -1.0f, 0.0f, 0.0f },
+		{ 1.0f, 0.0f, 0.0f }
 	};
 	this->arrayBuffer->SendData(vertices, sizeof(vertices));
 	// activate element buffer

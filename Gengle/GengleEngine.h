@@ -8,6 +8,7 @@
 #include "PhysicsEngine.h"
 
 enum SpawnOriginTypes : GLuint { AbsoluteSpawnOrigin = 0, RelativeSpawnOrigin = 1};
+enum CameraPerspectiveTypes : GLuint {TwoDimensional = 0, ThreeDimensional = 1};
 
 class GengleEngine
 {
@@ -45,7 +46,7 @@ public:
 	GElement* AddBasicElement(GElement* element,
 		SpawnOriginTypes origin_type = RelativeSpawnOrigin, glm::vec3 origin = glm::vec3(0.0, 0.0, 0.0));
 	void DrawIteration();
-	void StartWithGlut(void);
-	void StartWithoutGlut(void);
+	void StartWithGlut(CameraPerspectiveTypes perspective);
+	void StartWithoutGlut(CameraPerspectiveTypes perspective);
 };
 

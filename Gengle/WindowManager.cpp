@@ -52,13 +52,13 @@ void WindowManager::ChangeSize(double width, double height)
 {
 	wglMakeCurrent(m_hDC, m_hRC);
 	glViewport(0, 0, width, height);
-
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glOrtho(-1.0, 1.0, -1.0, 1.0, 0.0, 1.0);
-	// gluPerspective( 67.5, ((double)(iWidth) / (double)(iHeight)), 1.0, 500.0);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+	// NOTE 9/12/22: math is handled in vertex shader instead
+	//glMatrixMode(GL_PROJECTION);
+	//glLoadIdentity();
+	//glOrtho(-1.0, 1.0, -1.0, 1.0, 0.0, 1.0);
+	//// gluPerspective( 67.5, ((double)(iWidth) / (double)(iHeight)), 1.0, 500.0);
+	//glMatrixMode(GL_MODELVIEW);
+	//glLoadIdentity();
 
 
 	//glClear(GL_COLOR_BUFFER_BIT);
