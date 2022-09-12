@@ -75,12 +75,7 @@ void InitializeOpengl(void* hwnd)
 	GElement* element1 = new AxisGElement();
 	element1 = engine->AddBasicElement(element1);
 	element1->SetScale(glm::vec3(1.0, 1.0, 1.0));
-	element1->SetOrigin(glm::vec3(0.0, 0.0, -10.0));
-	GElement* element2 = new AxisGElement();
-	element2 = engine->AddBasicElement(element2);
-	element2->SetScale(glm::vec3(1.0, 1.0, 1.0));
-	element2->SetOrigin(glm::vec3(0.0, 0.0, -10.0));
-	element2->SetRotation(90.0, glm::vec3(0.0, 0.0, 1.0));
+	element1->SetOrigin(glm::vec3(0.0, 0.0, 0.0));
 	//// define elements [get initialization working first]
 	//GElement* element = NULL;
 	//element = engine->AddBasicElement(CubeElement);

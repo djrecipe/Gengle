@@ -295,7 +295,7 @@ void GengleEngine::StartWithoutGlut(void)
 	// enable shader
 	this->shaderConfig->Prepare();
 	// send projection matrix
-	glm::mat4 initial_projection_matrix = glm::perspective(glm::radians(45.0f), window_size[0] / window_size[1], 0.1f, 10000.0f);
+	glm::mat4 initial_projection_matrix = glm::ortho(-100.0, 100.0, -100.0, 100.0);//glm::perspective(glm::radians(45.0f), window_size[0] / window_size[1], 0.1f, 10000.0f);
 	this->shaderConfig->GetUniform("projectionMatrix")->SetValue(initial_projection_matrix);
 	// send view matrix
 	glm::mat4 initial_view_matrix = glm::mat4(1.0);
