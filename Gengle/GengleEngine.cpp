@@ -153,8 +153,8 @@ GengleEngine::GengleEngine()
 	attributes.push_back(attribute);
 	// create shader configuration
 	ShaderInfo shader_infos[] = {
-		{ GL_VERTEX_SHADER, "simple.vert" },
-		{ GL_FRAGMENT_SHADER, "simple.frag" },
+		{ GL_VERTEX_SHADER, "VertexShader.glsl" },
+		{ GL_FRAGMENT_SHADER, "FragmentShader.glsl" },
 		{ GL_NONE, NULL } };
 	this->shaderConfig = new ShaderConfig(shader_infos, attributes);
 	this->shaderConfig->AddUniform("modelMatrix");
