@@ -27,7 +27,7 @@ int main(int argc, char** argv)
 	element = engine.AddBasicElement(CubeElement);
 	element->SetScale(glm::vec3(10.0, 10.0, 10.0));
 	element->SetRotation(glm::radians(70.0f), glm::vec3(0.0, 1.0, 1.0));
-	element->SetOrigin(glm::vec3(10.0, -10.0, 0.0));
+	element->SetOrigin(glm::vec3(100.0, -10.0, 0100.0));
 	element->SetTexture("BoxTexture.jpg");
 	//
 	VoxelCubeArrayGElement * voxel_element = (VoxelCubeArrayGElement *)engine.AddBasicElement(VoxelElement);

@@ -162,14 +162,6 @@ XCOPY "$(SolutionDir)References" "$(OutDir)" /E /Y /I /R /D</Command>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="simple.frag">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="simple.vert">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Gengle\Gengle.vcxproj">
       <Project>{cb75a33b-e9e6-4892-8dd0-e3192375c683}</Project>
     </ProjectReference>
