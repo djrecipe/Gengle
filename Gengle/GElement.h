@@ -50,7 +50,7 @@ public:
 	{
 		if (this->texture == NULL || this->textureWidth < 1 || this->textureHeight < 1)
 			return;
-		
+		this->shaders->GetUniform("istex")->SetValue(this->texture != nullptr);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, this->textureWidth, this->textureHeight,
 			0, GL_BGRA, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(this->texture));
 		return;

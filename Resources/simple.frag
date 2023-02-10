@@ -2,6 +2,9 @@
 
 out vec4 fColor;
 
+uniform bool istex;      // flag: use texture?
+uniform sampler2D tex0;
+
 vec4 ComputeLight (const in vec3 direction, const in vec4 lightcolorin, const in vec3 normal, const in vec3 halfvec, const in vec4 mydiffuse, const in vec4 myspecular, const in float myshininess, const in float dist_in)
 {
 
@@ -23,5 +26,12 @@ vec4 ComputeLight (const in vec3 direction, const in vec4 lightcolorin, const in
 
 void main()
 {
-	fColor = vec4(0.05, 0.1, 0.9, 1.0);
+	if(istex)
+	{
+		fColor = vec4(0.9, 0.1, 0.05, 1.0);
+	}
+	else
+	{
+		fColor = vec4(0.05, 0.1, 0.9, 1.0);
+	}
 }

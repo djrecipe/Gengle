@@ -58,4 +58,12 @@ void ShaderUniform::SetValue(glm::mat4x4 value)
 	glUniformMatrix4fv(location, 1, GL_FALSE, &value[0][0]);
 	return;
 }
+void ShaderUniform::SetValue(bool value)
+{
+	this->value_bool = value;
+	GLint location = this->GetLocation();
+	assert(location > -1);
+	glUniform1i(location, value);
+	return;
+}
 #pragma endregion

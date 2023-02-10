@@ -10,6 +10,7 @@ private:
 	const char* name;
 	GLint shaderProgram;
 	glm::mat4x4 value_mat4;
+	bool value_bool;
 public:
 	// construction/destruction
 	ShaderUniform(const char * name_in);
@@ -21,4 +22,5 @@ public:
 	void SetShaderProgram(GLint program);
 	// value setters
 	void SetValue(glm::mat4x4 value);
+	void SetValue(bool value);
 };

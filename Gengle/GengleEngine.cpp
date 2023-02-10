@@ -205,6 +205,8 @@ GengleEngine::GengleEngine(GLint argc, GLchar** argv, glm::vec2 window_size_in)
 	this->shaderConfig->AddUniform("modelMatrix");
 	this->shaderConfig->AddUniform("projectionMatrix");
 	this->shaderConfig->AddUniform("viewMatrix");
+	this->shaderConfig->AddUniform("istex");
+	this->shaderConfig->AddUniform("tex0");
 	// create input transmitter
 	this->inputTransmitter = new InputTransmitter(inputUpdate,
 		this->shaderConfig->GetUniform("projectionMatrix"),

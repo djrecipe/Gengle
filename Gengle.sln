@@ -7,14 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gengle", "Gengle\Gengle.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BasicDemo", "BasicDemo\BasicDemo.vcxproj", "{C917BD29-850E-4CC2-80B2-A65724119B21}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GengleInterop", "GengleInterop\GengleInterop.vcxproj", "{B10525C7-5DA3-405D-9481-12F9BA3DF680}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GengleDemoApp", "GengleDemoApp\GengleDemoApp.csproj", "{F4C3AC8D-4583-489E-8B31-704422DB7FEB}"
-	ProjectSection(ProjectDependencies) = postProject
-		{B10525C7-5DA3-405D-9481-12F9BA3DF680} = {B10525C7-5DA3-405D-9481-12F9BA3DF680}
-		{CB75A33B-E9E6-4892-8DD0-E3192375C683} = {CB75A33B-E9E6-4892-8DD0-E3192375C683}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|32-bit = Debug|32-bit
@@ -29,14 +21,6 @@ Global
 		{C917BD29-850E-4CC2-80B2-A65724119B21}.Debug|32-bit.Build.0 = Debug|Win32
 		{C917BD29-850E-4CC2-80B2-A65724119B21}.Release|32-bit.ActiveCfg = Release|Win32
 		{C917BD29-850E-4CC2-80B2-A65724119B21}.Release|32-bit.Build.0 = Release|Win32
-		{B10525C7-5DA3-405D-9481-12F9BA3DF680}.Debug|32-bit.ActiveCfg = Debug|Win32
-		{B10525C7-5DA3-405D-9481-12F9BA3DF680}.Debug|32-bit.Build.0 = Debug|Win32
-		{B10525C7-5DA3-405D-9481-12F9BA3DF680}.Release|32-bit.ActiveCfg = Release|x64
-		{B10525C7-5DA3-405D-9481-12F9BA3DF680}.Release|32-bit.Build.0 = Release|x64
-		{F4C3AC8D-4583-489E-8B31-704422DB7FEB}.Debug|32-bit.ActiveCfg = Debug|Any CPU
-		{F4C3AC8D-4583-489E-8B31-704422DB7FEB}.Debug|32-bit.Build.0 = Debug|Any CPU
-		{F4C3AC8D-4583-489E-8B31-704422DB7FEB}.Release|32-bit.ActiveCfg = Release|Any CPU
-		{F4C3AC8D-4583-489E-8B31-704422DB7FEB}.Release|32-bit.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
