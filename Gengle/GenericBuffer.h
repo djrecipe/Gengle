@@ -5,7 +5,7 @@
 
 #include <GLEW/1.11.0/glew.h>  
 
-enum BufferTypes { Array = 0, Element = 1 };
+enum BufferTypes { Array = 0, Element = 1, TexCoord = 2 };
 
 class GenericBuffer
 {

@@ -11,8 +11,9 @@ using namespace std;
 
 #include <Freeglut/2.8.1/VS2013/freeglut.h>	
 
-VoxelCubeArrayGElement::VoxelCubeArrayGElement(ShaderConfig* shaders, VertexArray* vao, GenericBuffer* array_buffer_in, GenericBuffer* element_buffer_in) :
-	GElement(shaders, vao, array_buffer_in, element_buffer_in)
+VoxelCubeArrayGElement::VoxelCubeArrayGElement(ShaderConfig* shaders, VertexArray* vao,
+    GenericBuffer* array_buffer_in, GenericBuffer* texcoord_buffer_in, GenericBuffer * element_buffer_in) :
+	GElement(shaders, vao, array_buffer_in, texcoord_buffer_in, element_buffer_in)
 {
     this->numVoxelCubes=10;
 	return;
@@ -40,12 +41,20 @@ void VoxelCubeArrayGElement::Prepare(void)
 	this->elementBuffer->Activate();
 	// send data to activated buffer
     this->elementBuffer->SendData(&elements[0], elements.size() * sizeof(GLuint));
+    // active tex coord buffr
 	this->PrepareTexture();
     //
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glPointSize(1.0f);
     return;
 }
+void VoxelCubeArrayGElement::PrepareTexture()
+{
+
+    this->shaders->GetUniform("istex")->SetValue(false);
+    return;
+}
+
 void VoxelCubeArrayGElement::SetVoxelCubeCount(GLuint count)
 {
     this->numVoxelCubes = count;

@@ -18,9 +18,10 @@ private:
     /// <summary>Number of voxel cubes within this voxel array</summary>
     GLuint numVoxelCubes;
 public:
-	VoxelCubeArrayGElement(ShaderConfig* shaders, VertexArray* vao, GenericBuffer* array_buffer_in, GenericBuffer* element_buffer_in);
+	VoxelCubeArrayGElement(ShaderConfig* shaders, VertexArray* vao, GenericBuffer* array_buffer_in, GenericBuffer* texcoord_buffer_in, GenericBuffer* element_buffer_in);
 	void Draw(void);
 	void Prepare(void);
+	void PrepareTexture(void);
 	/// <summary>
 	/// Generate vertices for all voxel cubes within this array using Marching Cubes
 	/// </summary>

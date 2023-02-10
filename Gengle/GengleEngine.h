@@ -26,7 +26,8 @@ private:
 	glm::vec2 window_size;
 
 	VertexArray* vao = NULL;
-	GenericBuffer* arrayBuffer = NULL;
+	GenericBuffer* vertexBuffer = NULL;
+	GenericBuffer* texcoordBuffer = NULL;
 	GenericBuffer* elementBuffer = NULL;
 
 	std::vector<GElement*> elements;
@@ -40,7 +41,6 @@ private:
 
 	void ProcessPhysics(void);
 public:
-	GengleEngine();
 	GengleEngine(GLint argc, GLchar** argv, glm::vec2 window_size_in);
 	~GengleEngine();
 

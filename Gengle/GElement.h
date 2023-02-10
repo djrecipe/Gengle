@@ -27,6 +27,7 @@ protected:
 
 	VertexArray* vao;
 	GenericBuffer* arrayBuffer = NULL;
+	GenericBuffer* texCoordBuffer = NULL;
 	GenericBuffer* elementBuffer = NULL;
 	ShaderConfig* shaders;
 	
@@ -38,7 +39,7 @@ protected:
 public:
 	GElement(ShaderConfig* shaders_in, VertexArray* vao_in);
 	GElement(ShaderConfig* shaders_in, VertexArray* vao_in, GenericBuffer* array_buffer_in);
-	GElement(ShaderConfig* shaders_in, VertexArray* vao_in, GenericBuffer* array_buffer_in, GenericBuffer* element_buffer_in);
+	GElement(ShaderConfig* shaders_in, VertexArray* vao_in, GenericBuffer* array_buffer_in, GenericBuffer* texcoord_buffer_in, GenericBuffer* element_buffer_in);
 
 	~GElement();
 
@@ -46,18 +47,7 @@ public:
 	virtual void Draw(void) = 0;
 	virtual void Prepare(void) = 0;
 	void PrepareHitbox(void);
-	void PrepareTexture(void)
-	{
-		if (this->texture == NULL || this->textureWidth < 1 || this->textureHeight < 1)
-		{
-			this->shaders->GetUniform("istex")->SetValue(false);
-			return;
-		}
-		this->shaders->GetUniform("istex")->SetValue(this->texture != NULL);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, this->textureWidth, this->textureHeight,
-			0, GL_BGRA, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(this->texture));
-		return;
-	}
+	virtual void PrepareTexture() = 0;
 	GLboolean GetDrawHitbox(void);
 	GLboolean GetEnablePhysics(void);
 	GUID GetID(void);

@@ -13,9 +13,10 @@ private:
 public:
 	static const GLuint NumVertices = 8;
 	static const GLuint NumIndices = 36;
-	CubeGElement(ShaderConfig* shaders, VertexArray* vao, GenericBuffer* array_buffer_in, GenericBuffer* element_buffer_in);
+	CubeGElement(ShaderConfig* shaders, VertexArray* vao, GenericBuffer* array_buffer_in, GenericBuffer* texcoord_buffer_in, GenericBuffer* element_buffer_in);
 	void Draw(void);
 	void Prepare(void);
+	void PrepareTexture(void);
 };
 
 #endif

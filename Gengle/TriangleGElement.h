@@ -19,6 +19,7 @@ public:
 	TriangleGElement(ShaderConfig* shaders, VertexArray* vao, GenericBuffer* array_buffer_in);
 	void Draw(void);
 	void Prepare(void);
+	void PrepareTexture(void);
 };
 
 #endif

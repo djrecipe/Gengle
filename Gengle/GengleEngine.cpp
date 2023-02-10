@@ -133,44 +133,6 @@ void GengleEngine::SpecialKeyboardCallback(int key, int x, int y)
 	}
 }
 
-GengleEngine::GengleEngine()
-{
-	this->window_size = glm::vec2(1600, 900);
-	// create mouse input manager
-	this->inputUpdate = new InputUpdate();
-	this->inputReceiver = new InputReceiver(inputUpdate, this->window_size);
-	// create vao
-	this->vao = new VertexArray();
-	this->vao->Initialize();
-	// create buffers
-	this->arrayBuffer = new GenericBuffer();
-	this->arrayBuffer->Initialize(BufferTypes::Array);
-	this->elementBuffer = new GenericBuffer();
-	this->elementBuffer->Initialize(BufferTypes::Element);
-	// define vertex attribute arrays
-	std::vector<VertexAttribute> attributes;
-	VertexAttribute attribute(0, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
-	attributes.push_back(attribute);
-	// create shader configuration
-	ShaderInfo shader_infos[] = {
-		{ GL_VERTEX_SHADER, "VertexShader.glsl" },
-		{ GL_FRAGMENT_SHADER, "FragmentShader.glsl" },
-		{ GL_NONE, NULL } };
-	this->shaderConfig = new ShaderConfig(shader_infos, attributes);
-	this->shaderConfig->AddUniform("modelMatrix");
-	this->shaderConfig->AddUniform("projectionMatrix");
-	this->shaderConfig->AddUniform("viewMatrix");
-	// create input transmitter
-	this->inputTransmitter = new InputTransmitter(inputUpdate,
-		this->shaderConfig->GetUniform("projectionMatrix"),
-		this->shaderConfig->GetUniform("viewMatrix"));
-	// create physics engine
-	this->physicsEngine = new PhysicsEngine();
-	// set instance
-	GengleEngine::instance = this;
-	return;
-}
-
 GengleEngine::GengleEngine(GLint argc, GLchar** argv, glm::vec2 window_size_in)
 {
 	this->window_size = window_size_in;
@@ -188,14 +150,18 @@ GengleEngine::GengleEngine(GLint argc, GLchar** argv, glm::vec2 window_size_in)
 	this->vao = new VertexArray();
 	this->vao->Initialize();
 	// create buffers
-	this->arrayBuffer = new GenericBuffer();
-	this->arrayBuffer->Initialize(BufferTypes::Array);
+	this->vertexBuffer = new GenericBuffer();
+	this->vertexBuffer->Initialize(BufferTypes::Array);
+	//this->texcoordBuffer = new GenericBuffer();
+	//this->texcoordBuffer->Initialize(BufferTypes::Array);
 	this->elementBuffer = new GenericBuffer();
 	this->elementBuffer->Initialize(BufferTypes::Element);
 	// define vertex attribute arrays
 	std::vector<VertexAttribute> attributes;
-	VertexAttribute attribute(0, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
-	attributes.push_back(attribute);
+	VertexAttribute vertex_attribute(0, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+	VertexAttribute texcoord_attribute(1, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+	attributes.push_back(vertex_attribute);
+	attributes.push_back(texcoord_attribute);
 	// create shader configuration
 	ShaderInfo shader_infos[] = {
 		{ GL_VERTEX_SHADER, "simple.vert" },
@@ -227,7 +193,7 @@ GengleEngine::~GengleEngine()
 
 	delete this->shaderConfig;
 	delete this->vao;
-	delete this->arrayBuffer;
+	delete this->vertexBuffer;
 	delete this->elementBuffer;
 
 	delete this->inputTransmitter;
@@ -248,15 +214,15 @@ GElement* GengleEngine::AddBasicElement(BasicElementTypes type, SpawnOriginTypes
 	switch (type)
 	{
 	case TriangleElement:
-		element = (GElement*)new TriangleGElement(this->shaderConfig, this->vao, this->arrayBuffer);
+		element = (GElement*)new TriangleGElement(this->shaderConfig, this->vao, this->vertexBuffer);
 		break;
 	case CubeElement:
 		element = (GElement*)new CubeGElement(this->shaderConfig, this->vao,
-			this->arrayBuffer, this->elementBuffer);
+			this->vertexBuffer, this->texcoordBuffer, this->elementBuffer);
 		break;
 	case VoxelElement:
 		element = (GElement*)new VoxelCubeArrayGElement(this->shaderConfig, this->vao,
-			this->arrayBuffer, this->elementBuffer);
+			this->vertexBuffer, this->texcoordBuffer, this->elementBuffer);
 		break;
 	}
 	switch (origin_type)

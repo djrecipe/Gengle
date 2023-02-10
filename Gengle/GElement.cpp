@@ -27,7 +27,8 @@ GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, GenericBuffer
 	return;
 }
 
-GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, GenericBuffer* array_buffer_in, GenericBuffer* element_buffer_in)
+GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, GenericBuffer* array_buffer_in,
+	GenericBuffer* texcoord_buffer_in, GenericBuffer* element_buffer_in)
 {
 	CoCreateGuid(&this->id);
 
@@ -36,6 +37,7 @@ GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in, GenericBuffer
 	this->shaders = shaders_in;
 	this->vao = vao_in;
 	this->arrayBuffer = array_buffer_in;
+	this->texCoordBuffer = texcoord_buffer_in;
 	this->elementBuffer = element_buffer_in;
 
 	this->UpdatePhysicsHitbox();

@@ -8,8 +8,8 @@
 
 #include <Freeglut/2.8.1/VS2013/freeglut.h>	
 
-CubeGElement::CubeGElement(ShaderConfig* shaders, VertexArray* vao, GenericBuffer* array_buffer_in, GenericBuffer* element_buffer_in) :
-	GElement(shaders, vao, array_buffer_in, element_buffer_in)
+CubeGElement::CubeGElement(ShaderConfig* shaders, VertexArray* vao, GenericBuffer* array_buffer_in, GenericBuffer* texcoord_buffer_in, GenericBuffer* element_buffer_in) :
+	GElement(shaders, vao, array_buffer_in, texcoord_buffer_in, element_buffer_in)
 {
 	return;
 }
@@ -20,6 +20,33 @@ void CubeGElement::Draw(void)
 	return;
 }
 
+void CubeGElement::PrepareTexture()
+{
+	if (this->texture == NULL || this->textureWidth < 1 || this->textureHeight < 1)
+	{
+		this->shaders->GetUniform("istex")->SetValue(false);
+		return;
+	}
+	//
+	//// activate array buffer
+	//this->texCoordBuffer->Activate();
+	//// send data to activated buffer
+	//GLfloat texcoords[this->NumVertices][2] = {
+	//	{ 0,0 },
+	//	{ 0,1 },
+	//	{ 1,1 },
+	//	{ 1,0 },
+	//	{ 0,0 },
+	//	{ 0,1 },
+	//	{ 1,1 },
+	//	{ 1,0 } };
+	//this->texCoordBuffer->SendData(texcoords, sizeof(texcoords));
+	//
+	this->shaders->GetUniform("istex")->SetValue(this->texture != NULL);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, this->textureWidth, this->textureHeight,
+		0, GL_BGRA, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(this->texture));
+	return;
+}
 void CubeGElement::Prepare(void)
 {
 	// configure shaders

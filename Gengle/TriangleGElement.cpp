@@ -47,4 +47,8 @@ void TriangleGElement::Prepare(void)
 	glPointSize(1.0f);
 	return;
 }
+void TriangleGElement::PrepareTexture(void)
+{
+    
+}
 #pragma endregion
