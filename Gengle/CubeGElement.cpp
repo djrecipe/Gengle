@@ -48,7 +48,7 @@ void CubeGElement::Prepare(void)
     this->elementBuffer->SendData(indices, sizeof(indices));
 	this->PrepareTexture();
     //
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     glPointSize(1.0f);
     return;
 }
