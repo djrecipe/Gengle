@@ -1,5 +1,7 @@
 #version 430 core
 
+in vec2 TexCoord;
+
 out vec4 fColor;
 
 uniform bool istex;      // flag: use texture?
@@ -28,7 +30,7 @@ void main()
 {
 	if(istex)
 	{
-		fColor = vec4(0.9, 0.1, 0.05, 1.0);
+		fColor = texture( tex0, TexCoord );
 	}
 	else
 	{
