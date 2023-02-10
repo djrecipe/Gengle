@@ -33,6 +33,9 @@ void VoxelCubeArrayGElement::Prepare(void)
 	this->shaders->GetUniform("modelMatrix")->SetValue(this->GetModelMatrix());
 	// activate vertex array object
 	this->vao->Activate();
+    //
+    this->shaders->GetAttribute("vPosition")->Prepare();
+    this->shaders->GetAttribute("vPosition")->Enable();
     // activate array buffer
 	this->arrayBuffer->Activate();
 	// send data to activated buffer

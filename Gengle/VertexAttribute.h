@@ -11,6 +11,7 @@
 class VertexAttribute
 {
 private:
+	const GLchar* name;
 	GLuint index = 0;
 	GLint size = -1;
 	GLenum type;
@@ -18,8 +19,9 @@ private:
 	GLsizei stride;
 	const void* pointer;
 public:
-	VertexAttribute(GLuint index_in, GLint size_in, GLenum type_in,
+	VertexAttribute(const GLchar* name_in, GLuint index_in, GLint size_in, GLenum type_in,
 		GLboolean normalized_in, GLsizei stride_in, const void* pointer_in);
+	const GLchar* GetName(void) { return name; }
 	void Prepare(void);
 	void Disable(void);
 	void Enable(void);

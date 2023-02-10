@@ -152,27 +152,27 @@ GengleEngine::GengleEngine(GLint argc, GLchar** argv, glm::vec2 window_size_in)
 	// create buffers
 	this->vertexBuffer = new GenericBuffer();
 	this->vertexBuffer->Initialize(BufferTypes::Array);
-	//this->texcoordBuffer = new GenericBuffer();
-	//this->texcoordBuffer->Initialize(BufferTypes::Array);
 	this->elementBuffer = new GenericBuffer();
 	this->elementBuffer->Initialize(BufferTypes::Element);
+	this->texcoordBuffer = new GenericBuffer();
+	this->texcoordBuffer->Initialize(BufferTypes::Element);
 	// define vertex attribute arrays
-	std::vector<VertexAttribute> attributes;
-	VertexAttribute vertex_attribute(0, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
-	VertexAttribute texcoord_attribute(1, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
-	attributes.push_back(vertex_attribute);
-	attributes.push_back(texcoord_attribute);
+	VertexAttribute* vertex_attribute = new VertexAttribute("vPosition", 0, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+	VertexAttribute* texcoord_attribute = new VertexAttribute("vTexCoord", 1, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
 	// create shader configuration
 	ShaderInfo shader_infos[] = {
 		{ GL_VERTEX_SHADER, "simple.vert" },
 		{ GL_FRAGMENT_SHADER, "simple.frag" },
 		{ GL_NONE, NULL } };
-	this->shaderConfig = new ShaderConfig(shader_infos, attributes);
+	this->shaderConfig = new ShaderConfig(shader_infos);
 	this->shaderConfig->AddUniform("modelMatrix");
 	this->shaderConfig->AddUniform("projectionMatrix");
 	this->shaderConfig->AddUniform("viewMatrix");
 	this->shaderConfig->AddUniform("istex");
 	this->shaderConfig->AddUniform("tex0");
+	this->shaderConfig->AddAttribute(vertex_attribute);
+	this->shaderConfig->AddAttribute(texcoord_attribute);
+	//
 	// create input transmitter
 	this->inputTransmitter = new InputTransmitter(inputUpdate,
 		this->shaderConfig->GetUniform("projectionMatrix"),

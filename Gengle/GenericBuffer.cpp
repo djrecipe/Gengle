@@ -1,6 +1,8 @@
 #include "GenericBuffer.h"
 #include <assert.h> 
 
+#include "ShaderConfig.h"
+
 #pragma region Libraries
 #pragma comment(lib,"opengl32.lib")
 #pragma comment(lib, "GLEW/1.11.0/x32/glew32s.lib")

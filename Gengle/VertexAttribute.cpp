@@ -11,9 +11,10 @@
 /// <param name="normalized_in">Determines whether values should be normalized</param>
 /// <param name="stride_in">Byte offset between consecutive attribute values</param>
 /// <param name="pointer_in">Pointer offset to the first vertex attribute component</param>
-VertexAttribute::VertexAttribute(GLuint index_in, GLint size_in, GLenum type_in,
+VertexAttribute::VertexAttribute(const GLchar* name_in, GLuint index_in, GLint size_in, GLenum type_in,
 	GLboolean normalized_in, GLsizei stride_in, const void* pointer_in)
 {
+	this->name = name_in;
 	this->index = index_in;
 	this->size = size_in;
 	this->type = type_in;

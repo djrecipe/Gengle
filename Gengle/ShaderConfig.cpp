@@ -1,5 +1,8 @@
 #include "ShaderConfig.h" 	
 
+#include "VertexArray.h"
+
+GLuint ShaderConfig::currentAttributeIndex=0;
 #pragma region Static Methods
 GLuint ShaderConfig::LoadShaders(ShaderInfo* shaders)
 {
@@ -111,11 +114,9 @@ const GLchar* ShaderConfig::ReadShader(const GLchar* filename)
 /// Create a new shader configuration using the specified parameters
 /// </summary>
 /// <param name="shaders_in">Shader program file descriptors</param>
-/// <param name="attributes_in">Vertex attribute definitions</param>
-ShaderConfig::ShaderConfig(ShaderInfo shaders_in[], std::vector<VertexAttribute> attributes_in)
+ShaderConfig::ShaderConfig(ShaderInfo shaders_in[])
 {
 	this->SetProgram(shaders_in);
-	this->SetAttributes(attributes_in);
 	return;
 }
 
@@ -143,6 +144,10 @@ void ShaderConfig::AddUniform(const char * name)
 	this->uniforms.push_back(uniform);
 	return;
 }
+void ShaderConfig::AddAttribute(VertexAttribute* attribute)
+{
+	this->attributes.push_back(attribute);
+}
 
 /// <summary>
 /// Retrieve the shader uniform associated with the specified name
@@ -150,7 +155,7 @@ void ShaderConfig::AddUniform(const char * name)
 /// <param name="name">Shader uniform name to find</param>
 /// <returns>Shader uniform</returns>
 /// <exception cref="std::runtime_error">Failed to find a shader uniform with the specified name</exception>
-ShaderUniform* ShaderConfig::GetUniform(const char * name)
+ShaderUniform* ShaderConfig::GetUniform(const char* name)
 {
 	for (int i = 0; i < this->uniforms.size(); i++)
 	{
@@ -158,7 +163,15 @@ ShaderUniform* ShaderConfig::GetUniform(const char * name)
 			return this->uniforms[i];
 	}
 	throw std::runtime_error("Failed to find uniform '" + std::string(name) + "'");
-	return NULL;
+}
+VertexAttribute* ShaderConfig::GetAttribute(const char* name)
+{
+	for (int i = 0; i < this->attributes.size(); i++)
+	{
+		if (this->attributes[i]->GetName() == name)
+			return this->attributes[i];
+	}
+	throw std::runtime_error("Failed to find attribute '" + std::string(name) + "'");
 }
 
 /// <summary>
@@ -173,25 +186,9 @@ void ShaderConfig::Prepare(void)
 	// enable shader program
 	glUseProgram(this->shaderProgram);
 	// configure shader attributes
-	for (VertexAttribute attribute : this->attributes)
-	{
-		attribute.Prepare();
-		attribute.Enable();
-	}
 	return;
 }
 
-/// <summary>
-/// Assign the specified vertex attributes to this shader program
-/// </summary>
-/// <param name="attributes_in">Vertex attributes to assign</param>
-void ShaderConfig::SetAttributes(std::vector<VertexAttribute> attributes_in)
-{
-	this->attributes.clear();
-	for (int i = 0; i < attributes_in.size(); i++)
-		this->attributes.push_back(attributes_in[i]);
-	return;
-}
 
 /// <summary>
 /// Load the specified shader program files and store the shader program index

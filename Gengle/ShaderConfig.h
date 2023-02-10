@@ -24,16 +24,19 @@ class ShaderConfig
 {
 private:
 	GLuint shaderProgram = -1;
-	std::vector<VertexAttribute> attributes;
+	std::vector<VertexAttribute*> attributes;
 	std::vector<ShaderUniform*> uniforms;
+	static GLuint currentAttributeIndex;
 	static GLuint LoadShaders(ShaderInfo*);
 	static const GLchar* ReadShader(const GLchar* filename);
 public:
-	ShaderConfig(ShaderInfo shaders_in[], std::vector<VertexAttribute> attributes_in);
+	ShaderConfig(ShaderInfo shaders_in[]);
 	~ShaderConfig();
 
+	void AddAttribute(VertexAttribute* attribute);
 	void AddUniform(const char * name);
 	ShaderUniform* GetUniform(const char * name);
+	VertexAttribute* GetAttribute(const char* name);
 	void Prepare(void);
 	void SetAttributes(std::vector<VertexAttribute> attributes_in);
 	void SetProgram(ShaderInfo shaders_in[]);

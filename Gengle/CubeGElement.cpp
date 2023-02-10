@@ -29,19 +29,37 @@ void CubeGElement::PrepareTexture()
 	}
 	//
 	//// activate array buffer
-	//this->texCoordBuffer->Activate();
+	this->texCoordBuffer->Activate();
 	//// send data to activated buffer
-	//GLfloat texcoords[this->NumVertices][2] = {
-	//	{ 0,0 },
-	//	{ 0,1 },
-	//	{ 1,1 },
-	//	{ 1,0 },
-	//	{ 0,0 },
-	//	{ 0,1 },
-	//	{ 1,1 },
-	//	{ 1,0 } };
-	//this->texCoordBuffer->SendData(texcoords, sizeof(texcoords));
+
+	GLfloat texCube[] = {
+		// -Bottom- (-Z)
+		//Texture
+		//u    v
+		0.0, 0.0, // tri1:pt1
+		1.0, 0.0, // tri1:pt2 
+		1.0, 1.0, // tri1:pt3
+		0.0, 1.0, // tri2:pt1
+		0.0, 0.0, // tri2:pt2
+		0.0, 1.0, // tri2:pt3
+		// -Top- (+Z)
+		//Texture
+		//u    v
+		1.0, 1.0,
+		1.0, 0.0,
+
+	};
 	//
+	this->shaders->GetAttribute("vTexCoord")->Prepare();
+	this->shaders->GetAttribute("vTexCoord")->Enable();
+	this->texCoordBuffer->SendData(texCube, sizeof(texCube));
+	//
+	//glTexCoordPointer(2, GL_FLOAT, sizeof(float) * 72, texCube);
+	glBindTexture(GL_TEXTURE_2D, this->textureId);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, this->textureWidth, this->textureHeight,
+		0, GL_BGRA, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(this->texture));
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	this->shaders->GetUniform("istex")->SetValue(this->texture != NULL);
 	return;
 }
@@ -53,6 +71,9 @@ void CubeGElement::Prepare(void)
 	this->shaders->GetUniform("modelMatrix")->SetValue(this->GetModelMatrix());
 	// activate vertex array object
 	this->vao->Activate();
+	//
+	this->shaders->GetAttribute("vPosition")->Prepare();
+	this->shaders->GetAttribute("vPosition")->Enable();	
     // activate array buffer
 	this->arrayBuffer->Activate();
 	// send data to activated buffer
@@ -73,7 +94,7 @@ void CubeGElement::Prepare(void)
     this->elementBuffer->SendData(indices, sizeof(indices));
 	this->PrepareTexture();
     //
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glPointSize(1.0f);
     return;
 }

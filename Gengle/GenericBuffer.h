@@ -20,6 +20,7 @@ public:
 	GLboolean Activate(void);
     GLboolean Delete(void);
 	GLboolean Initialize(BufferTypes buffer_type);
+	GLboolean Initialize(const GLchar* name);
 	GLboolean SendData(const GLvoid* data, GLsizeiptr size);
 	GLboolean SendData(const GLvoid* data, GLsizeiptr size, GLenum usage);
 	GLboolean Valid(void);
