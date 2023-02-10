@@ -49,8 +49,11 @@ public:
 	void PrepareTexture(void)
 	{
 		if (this->texture == NULL || this->textureWidth < 1 || this->textureHeight < 1)
+		{
+			this->shaders->GetUniform("istex")->SetValue(false);
 			return;
-		this->shaders->GetUniform("istex")->SetValue(this->texture != nullptr);
+		}
+		this->shaders->GetUniform("istex")->SetValue(this->texture != NULL);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, this->textureWidth, this->textureHeight,
 			0, GL_BGRA, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(this->texture));
 		return;
