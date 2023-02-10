@@ -30,7 +30,8 @@ protected:
 	GenericBuffer* texCoordBuffer = NULL;
 	GenericBuffer* elementBuffer = NULL;
 	ShaderConfig* shaders;
-	
+
+	GLuint textureId;
 	FIBITMAP * texture = NULL;
 	GLint textureWidth = 0;
 	GLint textureHeight = 0;
@@ -102,6 +103,13 @@ public:
 		this->textureWidth = FreeImage_GetWidth(this->texture);
 		this->textureHeight = FreeImage_GetHeight(this->texture);
 		dprint("Texture '%s' is %d x %d\n", path, this->textureWidth, this->textureHeight);
+		glGenTextures(1, &this->textureId);
+		glBindTexture(GL_TEXTURE_2D, this->textureId);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, this->textureWidth, this->textureHeight,
+			0, GL_BGRA, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(this->texture));
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
 
 		return;
 	}
