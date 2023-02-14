@@ -141,6 +141,7 @@ void ShaderConfig::AddUniform(const char * name)
 {
 	ShaderUniform * uniform = new ShaderUniform(name);
 	uniform->SetShaderProgram(this->shaderProgram);
+	assert(uniform->GetLocation() > -1);
 	this->uniforms.push_back(uniform);
 	return;
 }

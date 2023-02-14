@@ -102,14 +102,16 @@ public:
 		this->texture = FreeImage_ConvertTo32Bits(bitmap);
 		this->textureWidth = FreeImage_GetWidth(this->texture);
 		this->textureHeight = FreeImage_GetHeight(this->texture);
-		dprint("Texture '%s' is %d x %d\n", path, this->textureWidth, this->textureHeight);
+		auto bpp = FreeImage_GetBPP(this->texture);
+		dprint("Texture '%s' is %d x %d (%d bpp)\n", path, this->textureWidth, this->textureHeight, bpp);
 		glGenTextures(1, &this->textureId);
-		glBindTexture(GL_TEXTURE_2D, this->textureId);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, this->textureWidth, this->textureHeight,
-			0, GL_BGRA, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(this->texture));
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, this->textureId);
 
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, this->textureWidth, this->textureHeight, 0,
+			GL_RGBA, GL_UNSIGNED_BYTE, FreeImage_GetBits(this->texture));
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
 		return;
 	}
