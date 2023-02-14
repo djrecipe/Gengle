@@ -4,7 +4,6 @@
 
 #include "GenericBuffer.h"
 #include "GElement.h"
-#include "GlobalTools.h"
 #include "ShaderConfig.h"
 #include "VertexArray.h"
 

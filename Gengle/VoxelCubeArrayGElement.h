@@ -3,7 +3,6 @@
 #include <vector>
 #include <GLEW/1.11.0/glew.h> 
 #include "GElement.h"
-#include "Voxel.h"
 using namespace std;
 
 /// <summary>

@@ -3,7 +3,6 @@
 #ifndef __OmniShaderConfig__
 #define __OmniShaderConfig__
 
-#include "GlobalTools.h"
 #include "ShaderUniform.h"
 #include "VertexAttribute.h"
 

@@ -1,3 +1,4 @@
+#include "Gengle.pch.h"
 #include "GElement.h"
 
 GElement::GElement(ShaderConfig* shaders_in, VertexArray * vao_in)

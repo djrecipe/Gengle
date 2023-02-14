@@ -1,15 +1,10 @@
+#include "Gengle.pch.h"
 #include "VoxelCubeArrayGElement.h"
 #include "Voxel.h"
 #include "GlobalTools.h"
 #include "MathUtils.h"
 #include "ShaderConfig.h"
 using namespace std;
-#define FREEGLUT_STATIC
-
-#include <glm/gtc/noise.hpp>
-#pragma comment(lib, "Freeglut/2.8.1/VS2015/x32/freeglut_static.lib")
-
-#include <Freeglut/2.8.1/VS2013/freeglut.h>	
 
 VoxelCubeArrayGElement::VoxelCubeArrayGElement(ShaderConfig* shaders, VertexArray* vao,
     GenericBuffer* array_buffer_in, GenericBuffer* texcoord_buffer_in, GenericBuffer * element_buffer_in) :

@@ -1,6 +1,4 @@
 #pragma once
-#include "GlobalTools.h"
-
 #include "PhysicsRectangle.h"
 
 /// <summary>

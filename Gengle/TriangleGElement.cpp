@@ -1,3 +1,4 @@
+#include "Gengle.pch.h"
 #include "TriangleGElement.h"
 
 #pragma region Instance Methods

@@ -1,9 +1,8 @@
+#include "Gengle.pch.h"
 #include "GlobalTools.h"
 #include "GlutManager.h"
 #include "InputReceiver.h"
 
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/rotate_vector.hpp>
 
 InputReceiver::InputReceiver(InputUpdate * input_update_in, glm::vec2 window_size)
 {

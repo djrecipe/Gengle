@@ -1,6 +1,7 @@
+#include "Gengle.pch.h"
 #include "ShaderConfig.h" 	
 
-#include "VertexArray.h"
+#include "GlobalTools.h"
 
 GLuint ShaderConfig::currentAttributeIndex=0;
 #pragma region Static Methods

@@ -1,8 +1,6 @@
+#include "Gengle.pch.h"
 #include "GlobalTools.h"
 
-#include <iostream>	
-#include <stdarg.h>
-#include <windows.h>
 
 using namespace std;
 

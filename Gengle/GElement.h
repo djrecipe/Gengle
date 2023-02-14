@@ -1,12 +1,14 @@
 #pragma once
+#include <thread>
 #include <GLEW/1.11.0/glew.h>  
 #include <glm/vec2.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-
+#include "FreeImage/FreeImage.h"
 #include "GenericBuffer.h"
 #include "PhysicsDescriptor.h"
 #include "ShaderConfig.h"
 #include "VertexArray.h"
+#include "GlobalTools.h"
 
 enum RotationOrders : GLuint { RotationOrderOne = 0, RotationOrderTwo = 1 };
 

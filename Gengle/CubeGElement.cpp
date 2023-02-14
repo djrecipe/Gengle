@@ -1,3 +1,4 @@
+#include "Gengle.pch.h"
 #include "CubeGElement.h"
 #include "GlobalTools.h"
 #include "ShaderConfig.h"
@@ -36,6 +37,24 @@ void CubeGElement::PrepareTexture()
 		// -Bottom- (-Z)
 		//Texture
 		//u    v
+		0.0, 0.0, // tri1:pt1
+		1.0, 0.0, // tri1:pt2 
+		1.0, 1.0, // tri1:pt3
+		0.0, 0.0, // tri1:pt1
+		1.0, 0.0, // tri1:pt2 
+		1.0, 1.0, // tri1:pt3
+		0.0, 0.0, // tri1:pt1
+		1.0, 0.0, // tri1:pt2 
+		1.0, 1.0, // tri1:pt3
+		0.0, 0.0, // tri1:pt1
+		1.0, 0.0, // tri1:pt2 
+		1.0, 1.0, // tri1:pt3
+		0.0, 0.0, // tri1:pt1
+		1.0, 0.0, // tri1:pt2 
+		1.0, 1.0, // tri1:pt3
+		0.0, 0.0, // tri1:pt1
+		1.0, 0.0, // tri1:pt2 
+		1.0, 1.0, // tri1:pt3
 		0.0, 0.0, // tri1:pt1
 		1.0, 0.0, // tri1:pt2 
 		1.0, 1.0, // tri1:pt3
@@ -84,14 +103,14 @@ void CubeGElement::Prepare(void)
     // activate element buffer
 	this->elementBuffer->Activate();
 	// send data to activated buffer
-    GLuint indices[NumIndices] = { 0, 5, 4, 4, 6, 0, 6, 4, 3, 3, 2, 6, 2, 3, 7, 7, 1, 2, 1, 7, 5, 5, 0, 1, 0, 1, 2, 2, 6, 0, 5, 7, 3, 3, 4, 5 };
+    GLuint indices[NumIndices] = { 2,6,4, 4,3,2,   3,4,5, 5,7,3,   0,6,2, 2,1,0,   6,0,5, 5,4,6,    1,2,3, 3,7,1,   0,1,7, 7,5,0};
     this->elementBuffer->SendData(indices, sizeof(indices));
 	//vertex_attr->Disable();
     //
 
-	//glFrontFace(GL_CW);
-	//glCullFace(GL_BACK);
-	//glEnable(GL_CULL_FACE);
+	glFrontFace(GL_CW);
+	glCullFace(GL_BACK);
+	glEnable(GL_CULL_FACE);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     glPointSize(1.0f);
     return;

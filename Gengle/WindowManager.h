@@ -1,10 +1,4 @@
 #pragma once
-#define WIN32_LEAN_AND_MEAN
-
-#include <strsafe.h>
-#include <Windows.h>
-
-#include "GlobalTools.h"
 
 namespace Gengle
 {

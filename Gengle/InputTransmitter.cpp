@@ -1,8 +1,7 @@
+#include "Gengle.pch.h"
 #include "InputTransmitter.h"
 #include "GlobalTools.h"
 #include "GlutManager.h"
-
-#include <glm/gtc/matrix_transform.hpp>
 
 InputTransmitter::InputTransmitter(InputUpdate * input_update_in,
 	ShaderUniform * projection_uniform_in, ShaderUniform * view_uniform_in)

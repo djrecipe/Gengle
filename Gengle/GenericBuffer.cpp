@@ -1,5 +1,5 @@
+#include "Gengle.pch.h"
 #include "GenericBuffer.h"
-#include <assert.h> 
 
 #include "ShaderConfig.h"
 

@@ -3,8 +3,6 @@
 #ifndef __OmniVertexArray__
 #define __OmniVertexArray__
 
-#include "GlobalTools.h"
-
 /// <summary>
 /// Vertex array descriptor and function wrapper
 /// </summary>

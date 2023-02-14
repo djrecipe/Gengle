@@ -1,10 +1,5 @@
+#include "Gengle.pch.h"
 #include "Voxel.h"
-#include <cmath>
-#include <cassert>
-#include <vector>
-#include <GLEW/1.11.0/glew.h> 
-#include <glm/vec2.hpp>
-#include <glm/gtc/matrix_transform.hpp>
 using namespace std;
 GLushort Voxel::EdgesByAxis[3][4]={{1,3,5,7},
                                         {8,9,10,11},

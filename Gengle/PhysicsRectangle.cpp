@@ -1,3 +1,4 @@
+#include "Gengle.pch.h"
 #include "PhysicsRectangle.h"
 
 PhysicsRectangle::PhysicsRectangle(glm::vec3 origin_in, glm::vec3 scale_in)

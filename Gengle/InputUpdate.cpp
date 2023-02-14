@@ -1,5 +1,6 @@
+#include "Gengle.pch.h"
 #include "InputUpdate.h"
-
+#include "GlobalTools.h"
 #pragma region Instance Methods
 /// <summary>
 /// Create a new default input update object

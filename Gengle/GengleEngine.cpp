@@ -1,11 +1,10 @@
+#include "Gengle.pch.h"
 #include "GengleEngine.h"
 
 #include "CubeGElement.h"
 #include "TriangleGElement.h"
 #include "VoxelCubeArrayGElement.h"
 
-#include <GLEW/1.11.0/glew.h>
-#include <Freeglut/2.8.1/VS2013/freeglut.h>	
 
 GengleEngine* GengleEngine::instance = NULL;
 

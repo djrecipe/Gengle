@@ -1,7 +1,6 @@
+#include "Gengle.pch.h"
 #include "MathUtils.h"
 
-#include <glm/geometric.hpp>
-#include <glm/trigonometric.hpp>
 
 glm::vec3 MathUtils::Normal(glm::vec3 vec0_in, glm::vec3 vec1_in, bool normalize)
 {

@@ -1,5 +1,4 @@
 #pragma once
-#include "GlobalTools.h"
 
 /// <summary>
 /// Shader uniform variable descriptor and function wrapper

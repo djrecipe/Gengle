@@ -1,6 +1,4 @@
 #pragma once
-#include <GLEW/1.11.0/glew.h>
-#include <glm/vec3.hpp>
 
 class MathUtils
 {
