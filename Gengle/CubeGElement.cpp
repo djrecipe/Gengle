@@ -38,29 +38,13 @@ void CubeGElement::PrepareTexture()
 		//Texture
 		//u    v
 		0.0, 0.0, // tri1:pt1
-		1.0, 0.0, // tri1:pt2 
+		0.0, 1.0, // tri1:pt2 
 		1.0, 1.0, // tri1:pt3
 		0.0, 0.0, // tri1:pt1
-		1.0, 0.0, // tri1:pt2 
+		0.0, 1.0, // tri1:pt2 
 		1.0, 1.0, // tri1:pt3
-		0.0, 0.0, // tri1:pt1
-		1.0, 0.0, // tri1:pt2 
-		1.0, 1.0, // tri1:pt3
-		0.0, 0.0, // tri1:pt1
-		1.0, 0.0, // tri1:pt2 
-		1.0, 1.0, // tri1:pt3
-		0.0, 0.0, // tri1:pt1
-		1.0, 0.0, // tri1:pt2 
-		1.0, 1.0, // tri1:pt3
-		0.0, 0.0, // tri1:pt1
-		1.0, 0.0, // tri1:pt2 
-		1.0, 1.0, // tri1:pt3
-		0.0, 0.0, // tri1:pt1
-		1.0, 0.0, // tri1:pt2 
-		1.0, 1.0, // tri1:pt3
-		0.0, 0.0, // tri1:pt1
-		1.0, 0.0, // tri1:pt2 
-		1.0, 1.0, // tri1:pt3
+		1.0,0.0,
+		1.0,0.0
 
 	};
 	// active tex coord attr
