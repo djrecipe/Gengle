@@ -56,10 +56,6 @@ void CubeGElement::PrepareTexture()
 	//
 	//glTexCoordPointer(2, GL_FLOAT, sizeof(float) * 72, texCube);
 	glBindTexture(GL_TEXTURE_2D, this->textureId);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, this->textureWidth, this->textureHeight,
-		0, GL_BGRA, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(this->texture));
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	this->shaders->GetUniform("istex")->SetValue(this->texture != NULL);
 	return;
 }
@@ -94,7 +90,11 @@ void CubeGElement::Prepare(void)
     this->elementBuffer->SendData(indices, sizeof(indices));
 	this->PrepareTexture();
     //
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+	//glFrontFace(GL_CW);
+	//glCullFace(GL_BACK);
+	//glEnable(GL_CULL_FACE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     glPointSize(1.0f);
     return;
 }

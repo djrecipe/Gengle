@@ -30,7 +30,7 @@ void main()
 {
 	if(istex)
 	{
-		fColor = texture(tex0, vec2(0.0,1.0));
+		fColor = texture(tex0, TexCoord.st);
 	}
 	else
 	{
