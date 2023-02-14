@@ -155,7 +155,7 @@ GengleEngine::GengleEngine(GLint argc, GLchar** argv, glm::vec2 window_size_in)
 	this->elementBuffer = new GenericBuffer();
 	this->elementBuffer->Initialize(BufferTypes::Element);
 	this->texcoordBuffer = new GenericBuffer();
-	this->texcoordBuffer->Initialize(BufferTypes::TexCoord);
+	this->texcoordBuffer->Initialize(BufferTypes::Array);
 	// define vertex attribute arrays
 	VertexAttribute* vertex_attribute = new VertexAttribute("vPosition", 0, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
 	VertexAttribute* texcoord_attribute = new VertexAttribute("vTexCoord", 1, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));

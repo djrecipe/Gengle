@@ -75,9 +75,6 @@ GLboolean GenericBuffer::Initialize(BufferTypes buffer_type)
         case Element:
             this->type = GL_ELEMENT_ARRAY_BUFFER;
             break;
-        case TexCoord:
-		    this->type = GL_TEXTURE_COORD_ARRAY;
-		    break;
     }
 	// find unoccupied index
 	GLint target_index = -1;
@@ -106,7 +103,7 @@ GLboolean GenericBuffer::Initialize(BufferTypes buffer_type)
 	{
 		GenericBuffer::occupied[this->index] = true;
 		glGenBuffers(1, GenericBuffer::buffer + this->index);
-		return this->Activate();
+		return true;
 	}
 	return false;
 }

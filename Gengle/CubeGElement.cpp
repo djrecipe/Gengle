@@ -27,11 +27,11 @@ void CubeGElement::PrepareTexture()
 		this->shaders->GetUniform("istex")->SetValue(false);
 		return;
 	}
+	this->shaders->GetUniform("istex")->SetValue(this->texture != NULL);
 	//
 	//// activate array buffer
 	this->texCoordBuffer->Activate();
 	//// send data to activated buffer
-
 	GLfloat texCube[] = {
 		// -Bottom- (-Z)
 		//Texture
@@ -39,24 +39,19 @@ void CubeGElement::PrepareTexture()
 		0.0, 0.0, // tri1:pt1
 		1.0, 0.0, // tri1:pt2 
 		1.0, 1.0, // tri1:pt3
-		0.0, 1.0, // tri2:pt1
-		0.0, 0.0, // tri2:pt2
-		0.0, 1.0, // tri2:pt3
-		// -Top- (+Z)
-		//Texture
-		//u    v
-		1.0, 1.0,
-		1.0, 0.0,
+		0.0, 0.0, // tri1:pt1
+		1.0, 0.0, // tri1:pt2 
+		1.0, 1.0, // tri1:pt3
 
 	};
-	//
-	this->shaders->GetAttribute("vTexCoord")->Prepare();
-	this->shaders->GetAttribute("vTexCoord")->Enable();
+	// active tex coord attr
+	auto tex_attr = this->shaders->GetAttribute("vTexCoord");
+	tex_attr->Enable();
+	tex_attr->Prepare();
+	// send data
 	this->texCoordBuffer->SendData(texCube, sizeof(texCube));
 	//
-	//glTexCoordPointer(2, GL_FLOAT, sizeof(float) * 72, texCube);
 	glBindTexture(GL_TEXTURE_2D, this->textureId);
-	this->shaders->GetUniform("istex")->SetValue(this->texture != NULL);
 	return;
 }
 void CubeGElement::Prepare(void)
@@ -67,11 +62,12 @@ void CubeGElement::Prepare(void)
 	this->shaders->GetUniform("modelMatrix")->SetValue(this->GetModelMatrix());
 	// activate vertex array object
 	this->vao->Activate();
-	//
-	this->shaders->GetAttribute("vPosition")->Prepare();
-	this->shaders->GetAttribute("vPosition")->Enable();	
-    // activate array buffer
+	// activate array buffer
 	this->arrayBuffer->Activate();
+	// active vertex attribute
+	auto vertex_attr = this->shaders->GetAttribute("vPosition");
+	vertex_attr->Enable();
+	vertex_attr->Prepare();
 	// send data to activated buffer
     GLfloat vertices[NumVertices][3] = {
         { -1.0f, -1.0f, -1.0f },
@@ -83,12 +79,14 @@ void CubeGElement::Prepare(void)
         { -1.0f,  1.0f, -1.0f },
         {  1.0f, -1.0f,  1.0f } };
     this->arrayBuffer->SendData(vertices, sizeof(vertices));
+	// prepare texture
+	this->PrepareTexture();
     // activate element buffer
 	this->elementBuffer->Activate();
 	// send data to activated buffer
     GLuint indices[NumIndices] = { 0, 5, 4, 4, 6, 0, 6, 4, 3, 3, 2, 6, 2, 3, 7, 7, 1, 2, 1, 7, 5, 5, 0, 1, 0, 1, 2, 2, 6, 0, 5, 7, 3, 3, 4, 5 };
     this->elementBuffer->SendData(indices, sizeof(indices));
-	this->PrepareTexture();
+	//vertex_attr->Disable();
     //
 
 	//glFrontFace(GL_CW);

@@ -38,14 +38,18 @@ void VoxelCubeArrayGElement::Prepare(void)
     this->shaders->GetAttribute("vPosition")->Enable();
     // activate array buffer
 	this->arrayBuffer->Activate();
+    // active vertex attribute
+    auto vertex_attr = this->shaders->GetAttribute("vPosition");
+    vertex_attr->Enable();
+    vertex_attr->Prepare();
 	// send data to activated buffer
     this->arrayBuffer->SendData(&vertices[0], vertices.size() * sizeof(GLfloat));
+    // active tex coord buffr
+    this->PrepareTexture();
     // activate element buffer
 	this->elementBuffer->Activate();
 	// send data to activated buffer
     this->elementBuffer->SendData(&elements[0], elements.size() * sizeof(GLuint));
-    // active tex coord buffr
-	this->PrepareTexture();
     //
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glPointSize(1.0f);
@@ -53,8 +57,9 @@ void VoxelCubeArrayGElement::Prepare(void)
 }
 void VoxelCubeArrayGElement::PrepareTexture()
 {
-
     this->shaders->GetUniform("istex")->SetValue(false);
+    auto tex_attr = this->shaders->GetAttribute("vTexCoord");
+    tex_attr->Disable();
     return;
 }
 

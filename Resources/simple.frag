@@ -24,7 +24,7 @@ vec4 ComputeLight (const in vec3 direction, const in vec4 lightcolorin, const in
         }
 
         return (lambert + phong) * max(min(1.0-dist_in/5000.0,1.0),0.0);
-} 
+} 	
 
 void main()
 {
