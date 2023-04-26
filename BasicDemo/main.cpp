@@ -82,11 +82,21 @@ int main(int argc, char** argv)
 	element->SetOrigin(glm::vec3(100.0, -100.0, 0100.0));
 	element->SetTexture("BoxTexture.jpg");
 	//
-	VoxelCubeArrayGElement * voxel_element = (VoxelCubeArrayGElement *)engine.AddBasicElement(VoxelElement);
-	voxel_element->SetOrigin(glm::vec3(0.0, 0.0, 0.0));
-	voxel_element->SetScale(glm::vec3(4.0, 4.0, 4.0));
-	voxel_element->SetVoxelCubeCount(40);
-	voxel_element->GenerateVertices();
+	for (int x = 0; x < 3; x++)
+	{
+		for (int y = 0; y < 3; y++)
+		{
+			for (int z = 0; z < 3; z++)
+			{
+
+				VoxelCubeArrayGElement* voxel_element = (VoxelCubeArrayGElement*)engine.AddBasicElement(VoxelElement);
+				voxel_element->SetOrigin(glm::vec3(x*256.0, y*256.0, z*256.0));
+				voxel_element->SetScale(glm::vec3(4.0, 4.0, 4.0));
+				voxel_element->SetVoxelCubeCount(40);
+				voxel_element->GenerateVertices(x, y, z);
+			}
+		}
+	}
 	// start display loop
 	engine.StartWithGlut();
 	// end program

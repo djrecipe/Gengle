@@ -24,7 +24,7 @@ public:
 	/// <summary>
 	/// Generate vertices for all voxel cubes within this array using Marching Cubes
 	/// </summary>
-	void GenerateVertices();
+	void GenerateVertices(unsigned int x, unsigned int y, unsigned int z);
     /// <summary>
     /// Set the number of voxel cubes along a given axis. The total number of voxel cubes within the array will be this number cubed
     /// </summary>

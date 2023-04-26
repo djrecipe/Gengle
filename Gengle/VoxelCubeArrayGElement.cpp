@@ -46,7 +46,10 @@ void VoxelCubeArrayGElement::Prepare(void)
 	// send data to activated buffer
     this->elementBuffer->SendData(&elements[0], elements.size() * sizeof(GLuint));
     //
+    glFrontFace(GL_CW);
+    glDisable(GL_CULL_FACE);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     glPointSize(1.0f);
     return;
 }
@@ -63,7 +66,7 @@ void VoxelCubeArrayGElement::SetVoxelCubeCount(GLuint count)
     this->numVoxelCubes = count;
     return;
 }
-void VoxelCubeArrayGElement::GenerateVertices()
+void VoxelCubeArrayGElement::GenerateVertices(unsigned int x, unsigned int y, unsigned int z)
 {
     // calculate various squares
     GLuint width_squared=this->numVoxelCubes*this->numVoxelCubes;
@@ -78,9 +81,12 @@ void VoxelCubeArrayGElement::GenerateVertices()
     vector<GLuint> voxels;
     for(GLuint i=0; i<voxel_count; i++)         // generate a value for each voxel
     {
-        GLint z_index=i/v_w_squared;                                                   // the voxel's z index
-        GLint y_index=(i-z_index*v_w_squared)/v_width;                           // the voxel's y index
-        GLint x_index=(i-z_index*(v_w_squared)-y_index*v_width);                   // the voxel's x index
+        GLint z_index=(i/v_w_squared);                                                   // the voxel's z index
+        GLint y_index=((i-z_index*v_w_squared)/v_width);                           // the voxel's y index
+        GLint x_index=((i-z_index*(v_w_squared)-y_index*v_width));                   // the voxel's x index
+        x_index += x*this->numVoxelCubes;
+        y_index += y * this->numVoxelCubes;
+        z_index += z * this->numVoxelCubes;
         //this->vox.push_back((GLchar)(glm::perlin(glm::vec3((GLfloat)x_index/130.1,(GLfloat)y_index/99.7,(GLfloat)z_index/5.2),glm::vec3(100.0f))*127.0));
         /* the divisors here determine how chaotic the voxel values are: if the voxel values are too chaotic, mesh quality will suffer (jagged edges, etc.)*/
         voxels.push_back((GLchar)(glm::simplex(glm::vec3((GLdouble)x_index/79.7,(GLdouble)y_index/65.03,(GLdouble)z_index/30.261))*128.0));      // use the voxel's indices to seed a pseudo-random function
